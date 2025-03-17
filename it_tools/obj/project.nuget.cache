@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "jgYuc+EwmzAWvTJw2xZ0VWy9XWtno9x17WuKN6bDQtAAuaP0qmtKQ0++6VWpf5LV+jZdVAANaWTF5p0xUy/mDg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\dient\\source\\repos\\it_tools\\it_tools\\it_tools.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\dient\\.nuget\\packages\\microsoft.windows.sdk.buildtools\\10.0.22621.755\\microsoft.windows.sdk.buildtools.10.0.22621.755.nupkg.sha512",
+    "C:\\Users\\dient\\.nuget\\packages\\microsoft.windowsappsdk\\1.4.230913002\\microsoft.windowsappsdk.1.4.230913002.nupkg.sha512",
+    "C:\\Users\\dient\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\6.0.25\\microsoft.netcore.app.runtime.win-x86.6.0.25.nupkg.sha512",
+    "C:\\Users\\dient\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.31\\microsoft.windows.sdk.net.ref.10.0.19041.31.nupkg.sha512",
+    "C:\\Users\\dient\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\6.0.25\\microsoft.aspnetcore.app.runtime.win-x86.6.0.25.nupkg.sha512",
+    "C:\\Users\\dient\\.nuget\\packages\\microsoft.netcore.app.runtime.win-arm64\\6.0.25\\microsoft.netcore.app.runtime.win-arm64.6.0.25.nupkg.sha512",
+    "C:\\Users\\dient\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.25\\microsoft.aspnetcore.app.runtime.win-x64.6.0.25.nupkg.sha512",
+    "C:\\Users\\dient\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-arm64\\6.0.25\\microsoft.windowsdesktop.app.runtime.win-arm64.6.0.25.nupkg.sha512",
+    "C:\\Users\\dient\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.25\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.25.nupkg.sha512",
+    "C:\\Users\\dient\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-arm64\\6.0.25\\microsoft.aspnetcore.app.runtime.win-arm64.6.0.25.nupkg.sha512",
+    "C:\\Users\\dient\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.25\\microsoft.netcore.app.runtime.win-x64.6.0.25.nupkg.sha512",
+    "C:\\Users\\dient\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x86\\6.0.25\\microsoft.windowsdesktop.app.runtime.win-x86.6.0.25.nupkg.sha512"
+  ],
+  "logs": []
+}
