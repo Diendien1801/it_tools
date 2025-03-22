@@ -11,6 +11,28 @@
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Presentation\ViewModels\ConverterViewModel.cs" />
+    <Compile Remove="Presentation\ViewModels\CryptoViewModel.cs" />
+    <Compile Remove="Presentation\ViewModels\DataViewModel.cs" />
+    <Compile Remove="Presentation\ViewModels\DevViewModel.cs" />
+    <Compile Remove="Presentation\ViewModels\MathViewModel.cs" />
+    <Compile Remove="Presentation\ViewModels\MeasurementViewModel.cs" />
+    <Compile Remove="Presentation\ViewModels\MediaViewModel.cs" />
+    <Compile Remove="Presentation\ViewModels\NetworkViewModel.cs" />
+    <Compile Remove="Presentation\ViewModels\TextViewModel.cs" />
+    <Compile Remove="Presentation\ViewModels\WebViewModel.cs" />
+    <Compile Remove="Presentation\Views\ConverterPage.xaml.cs" />
+    <Compile Remove="Presentation\Views\CryptoPage.xaml.cs" />
+    <Compile Remove="Presentation\Views\DataPage.xaml.cs" />
+    <Compile Remove="Presentation\Views\DevPage.xaml.cs" />
+    <Compile Remove="Presentation\Views\MathPage.xaml.cs" />
+    <Compile Remove="Presentation\Views\MeasurementPage.xaml.cs" />
+    <Compile Remove="Presentation\Views\MediaPage.xaml.cs" />
+    <Compile Remove="Presentation\Views\NetworkPage.xaml.cs" />
+    <Compile Remove="Presentation\Views\TextPage.xaml.cs" />
+    <Compile Remove="Presentation\Views\WebPage.xaml.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -45,4 +67,72 @@
   <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
   </PropertyGroup>
+  <ItemGroup>
+    <CustomAdditionalCompileInputs Remove="Presentation\Views\CryptoPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="BusinessLogic\Services\ToolService.xaml" />
+    <None Remove="Presentation\Views\AuthPage.xaml" />
+    <None Remove="Presentation\Views\ConverterPage.xaml" />
+    <None Remove="Presentation\Views\CryptoPage.xaml" />
+    <None Remove="Presentation\Views\DataPage.xaml" />
+    <None Remove="Presentation\Views\DevPage.xaml" />
+    <None Remove="Presentation\Views\HomePage.xaml" />
+    <None Remove="Presentation\Views\MathPage.xaml" />
+    <None Remove="Presentation\Views\MeasurementPage.xaml" />
+    <None Remove="Presentation\Views\MediaPage.xaml" />
+    <None Remove="Presentation\Views\NetworkPage.xaml" />
+    <None Remove="Presentation\Views\TextPage.xaml" />
+    <None Remove="Presentation\Views\ToolDetailPage.xaml" />
+    <None Remove="Presentation\Views\ToolPage.xaml" />
+    <None Remove="Presentation\Views\WebPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Remove="Presentation\Views\ConverterPage.xaml" />
+    <Page Remove="Presentation\Views\CryptoPage.xaml" />
+    <Page Remove="Presentation\Views\DataPage.xaml" />
+    <Page Remove="Presentation\Views\DevPage.xaml" />
+    <Page Remove="Presentation\Views\MathPage.xaml" />
+    <Page Remove="Presentation\Views\MeasurementPage.xaml" />
+    <Page Remove="Presentation\Views\MediaPage.xaml" />
+    <Page Remove="Presentation\Views\NetworkPage.xaml" />
+    <Page Remove="Presentation\Views\TextPage.xaml" />
+    <Page Remove="Presentation\Views\WebPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Remove="Presentation\Views\CryptoPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="RandomStringTool">
+      <HintPath>..\..\RandomStringTool\RandomStringTool\bin\Debug\net6.0-windows10.0.19041.0\RandomStringTool.dll</HintPath>
+    </Reference>
+    <Reference Include="ToolLib">
+      <HintPath>..\..\ToolLib\ToolLib\bin\Debug\net6.0-windows10.0.19041.0\ToolLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="BusinessLogic\Services\ToolService.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Presentation\Views\ToolDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Presentation\Views\HomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Presentation\Views\AuthPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Presentation\Views\ToolPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
 </Project>

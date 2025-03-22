@@ -1,0 +1,33 @@
+<Page x:Class="it_tools.Presentation.Views.AuthPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Grid.Column="1" Padding="40">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+            <TextBlock Text="Start your 14-day free trial" FontSize="24" FontWeight="Bold"/>
+            <TextBlock Text="Already have an account?" FontSize="14">
+                <Run Text=" "/>
+                <Hyperlink Click="LoginLink_Click">Login</Hyperlink>
+            </TextBlock>
+
+            <TextBlock x:Name="ErrorTextBlock" Foreground="Red" Visibility="Collapsed"/>
+            <TextBlock x:Name="SuccessTextBlock" Foreground="Green" Visibility="Collapsed"/>
+
+            <!-- 🔹 Form Đăng ký -->
+            <StackPanel x:Name="RegisterForm">
+                <TextBox x:Name="EmailRegisterBox" PlaceholderText="Email address"/>
+                <PasswordBox x:Name="PasswordRegisterBox" PlaceholderText="Password"/>
+                <PasswordBox x:Name="ConfirmPasswordBox" PlaceholderText="Confirm Password"/>
+                <Button Content="Create account" Background="Green" Foreground="White" Click="RegisterButton_Click"/>
+            </StackPanel>
+
+            <!-- 🔹 Form Đăng nhập (Ẩn ban đầu) -->
+            <StackPanel x:Name="LoginForm" Visibility="Collapsed">
+                <TextBox x:Name="EmailLoginBox" PlaceholderText="Email address"/>
+                <PasswordBox x:Name="PasswordLoginBox" PlaceholderText="Password"/>
+                <Button Content="Login" Click="LoginButton_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+
+</Page>

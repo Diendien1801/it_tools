@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="it_tools.Presentation.Views.ToolDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:it_tools.Presentation.Views"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Padding="20">
+        <TextBlock x:Name="TitleTextBlock" FontSize="24" FontWeight="Bold" Foreground="Black" 
+                   HorizontalAlignment="Center" Margin="0,0,0,20"/>
+        <ContentControl x:Name="ToolContent" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+</Page>

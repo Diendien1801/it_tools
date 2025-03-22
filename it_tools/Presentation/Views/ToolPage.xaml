@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="it_tools.Presentation.Views.ToolPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:it_tools.Presentation.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Padding="20">
+        <TextBlock x:Name="TitleTextBlock" FontSize="24" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+        <ListView ItemsSource="{Binding Tools}" Margin="20,60,20,20" ItemClick="OnToolSelected" IsItemClickEnabled="True">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="3"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="#222222" CornerRadius="8" Padding="10" Margin="5">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Height="150">
+                                <FontIcon Glyph="&#x1F4C2;" FontSize="20" Foreground="White" Margin="0,0,10,0"/>
+                                <TextBlock Text="{Binding name}" FontSize="18" FontWeight="Bold" Foreground="White"/>
+                            </StackPanel>
+                            <TextBlock Text="{Binding descript}" Foreground="LightGray" TextWrapping="Wrap" FontSize="14"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
