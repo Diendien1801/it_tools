@@ -7,8 +7,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Padding="20">
-        <TextBlock x:Name="TitleTextBlock" FontSize="24" FontWeight="Bold" Foreground="Black" 
-                   HorizontalAlignment="Center" Margin="0,0,0,20"/>
         <ContentControl x:Name="ToolContent" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </Page>

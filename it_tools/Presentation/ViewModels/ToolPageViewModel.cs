@@ -14,11 +14,14 @@ namespace it_tools.Presentation.ViewModels
         private readonly ToolRepository _toolRepository;
         public ObservableCollection<Tool> Tools { get; set; }
 
+
         public ToolPageViewModel()
         {
             _toolRepository = new ToolRepository();
             Tools = new ObservableCollection<Tool>();
-            
+           
+
+
         }
         public async Task LoadTools(string idToolType)
         {
@@ -29,5 +32,6 @@ namespace it_tools.Presentation.ViewModels
                 Tools.Add(tool);
             }
         }
+        
     }
 }

@@ -15,7 +15,7 @@ namespace it_tools.BusinessLogic.Services
             {
                 // 🔹 Lấy thư mục gốc của ứng dụng
                 string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                string absolutePath = Path.Combine("C:\\Users\\dient\\source\\repos\\it_tools\\it_tools\\bin\\x86\\Debug\\net6.0-windows10.0.19041.0\\win10-x86\\RandomStringTool.dll", "");
+                string absolutePath = Path.Combine("", dllPath);
 
                 Debug.WriteLine($"🔹 Loading plugin from: {absolutePath}");
 

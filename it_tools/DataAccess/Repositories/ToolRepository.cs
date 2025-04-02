@@ -23,11 +23,12 @@ namespace it_tools.DataAccess.Repositories
             _httpClient = new HttpClient();
         }
 
-        public async Task<List<Tool>> GetToolsByCategoryAsync(string idToolType)
+
+        public async Task<List<Tool>> GetAllTools()
         {
             try
             {
-                string url = $"{_baseUrl}/api/tool/categories/{idToolType}";
+                string url = $"{_baseUrl}/api/tool/categories/all";
                 Debug.WriteLine($"🔹 Sending request to: {url}");
 
                 HttpResponseMessage response = await _httpClient.GetAsync(url);
@@ -36,21 +37,29 @@ namespace it_tools.DataAccess.Repositories
                 if (response.IsSuccessStatusCode)
                 {
                     string json = await response.Content.ReadAsStringAsync();
-                    Debug.WriteLine($"🔹 Response JSON: {json}"); // Log dữ liệu nhận được
+                    Debug.WriteLine($"🔹 Response JSON: {json}");
 
                     var result = JsonSerializer.Deserialize<BaseResponse<List<Tool>>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-                    if (result != null && result.success && result.data != null)
+                    if (result?.success == true && result.data != null)
                     {
                         Debug.WriteLine($"✅ Retrieved {result.data.Count} tools");
 
-                        // Load plugin từ DLL cho từng tool nếu có dllPath
                         foreach (var tool in result.data)
                         {
                             if (!string.IsNullOrEmpty(tool.dllPath))
                             {
-                                Debug.WriteLine($"🔹 Loading plugin for tool: {tool.name} from {tool.dllPath}");
-                                tool.LoadPlugin();
+                                tool.dllPath = Path.Combine(_pluginPath, tool.dllPath);
+                                Debug.WriteLine($"🔹 Plugin Path for {tool.name}: {tool.dllPath}");
+
+                                if (File.Exists(tool.dllPath))
+                                {
+                                    tool.LoadPlugin();
+                                }
+                                else
+                                {
+                                    Debug.WriteLine($"❌ Plugin not found at: {tool.dllPath}");
+                                }
                             }
                         }
 
@@ -74,6 +83,66 @@ namespace it_tools.DataAccess.Repositories
                 return new List<Tool>();
             }
         }
+        public async Task<List<Tool>> GetToolsByCategoryAsync(string idToolType)
+        {
+            try
+            {
+                string url = $"{_baseUrl}/api/tool/categories/{idToolType}";
+                Debug.WriteLine($"🔹 Sending request to: {url}");
+
+                HttpResponseMessage response = await _httpClient.GetAsync(url);
+                Debug.WriteLine($"🔹 Response Status Code: {response.StatusCode}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string json = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine($"🔹 Response JSON: {json}");
+
+                    var result = JsonSerializer.Deserialize<BaseResponse<List<Tool>>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                    if (result?.success == true && result.data != null)
+                    {
+                        Debug.WriteLine($"✅ Retrieved {result.data.Count} tools");
+
+                        foreach (var tool in result.data)
+                        {
+                            if (!string.IsNullOrEmpty(tool.dllPath))
+                            {
+                                tool.dllPath = Path.Combine(_pluginPath, tool.dllPath);
+                                Debug.WriteLine($"🔹 Plugin Path for {tool.name}: {tool.dllPath}");
+
+                                if (File.Exists(tool.dllPath))
+                                {
+                                    tool.LoadPlugin();
+                                }
+                                else
+                                {
+                                    Debug.WriteLine($"❌ Plugin not found at: {tool.dllPath}");
+                                }
+                            }
+                        }
+
+                        return result.data;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("❌ API returned failure response or null data");
+                        return new List<Tool>();
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine($"❌ API Error: {response.StatusCode}");
+                    return new List<Tool>();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ API Request Failed: {ex.Message}");
+                return new List<Tool>();
+            }
+        }
+
 
 
 
@@ -118,39 +187,39 @@ namespace it_tools.DataAccess.Repositories
             return new List<ToolCategory>();
         }
         
-        public List<Tool> LoadToolsFromFolder()
-        {
-            var tools = new List<Tool>();
+        //public List<Tool> LoadToolsFromFolder()
+        //{
+        //    var tools = new List<Tool>();
 
-            if (!Directory.Exists(_pluginPath))
-            {
-                Directory.CreateDirectory(_pluginPath);
-            }
-            foreach (var file in Directory.GetFiles(_pluginPath, "*.dll"))
-            {
-                Assembly assembly = Assembly.LoadFrom(file);
-                var pluginType = assembly.GetTypes().FirstOrDefault(t => typeof(ITool).IsAssignableFrom(t) && !t.IsInterface);
+        //    if (!Directory.Exists(_pluginPath))
+        //    {
+        //        Directory.CreateDirectory(_pluginPath);
+        //    }
+        //    foreach (var file in Directory.GetFiles(_pluginPath, "*.dll"))
+        //    {
+        //        Assembly assembly = Assembly.LoadFrom(file);
+        //        var pluginType = assembly.GetTypes().FirstOrDefault(t => typeof(ITool).IsAssignableFrom(t) && !t.IsInterface);
 
-                if (pluginType != null)
-                {
-                    var pluginInstance = (ITool)Activator.CreateInstance(pluginType);
-                    tools.Add(new Tool
-                    {
-                        idTool = Guid.NewGuid().ToString(),
-                        name = pluginInstance.name,
-                        descript = pluginInstance.descript,
-                        iconURL = pluginInstance.iconURL,
-                        idToolType = pluginInstance.idToolType,
-                        access_level = pluginInstance.access_level,
-                        status = pluginInstance.status,
-                        dllPath = file,
-                        LoadedPlugin = pluginInstance
-                    });
-                }
-            }
+        //        if (pluginType != null)
+        //        {
+        //            var pluginInstance = (ITool)Activator.CreateInstance(pluginType);
+        //            tools.Add(new Tool
+        //            {
+        //                idTool = Guid.NewGuid().ToString(),
+        //                name = pluginInstance.name,
+        //                descript = pluginInstance.descript,
+        //                iconURL = pluginInstance.iconURL,
+        //                idToolType = pluginInstance.idToolType,
+        //                access_level = pluginInstance.access_level,
+        //                status = pluginInstance.status,
+        //                dllPath = file,
+        //                LoadedPlugin = pluginInstance
+        //            });
+        //        }
+        //    }
 
-            return tools;
-        }
+        //    return tools;
+        //}
 
         // Để tạm ở đây
         public void ExecuteTool(Tool tool)

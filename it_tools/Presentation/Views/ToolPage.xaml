@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="it_tools.Presentation.Views.ToolPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -11,21 +10,20 @@
 
     <Grid Padding="20">
         <TextBlock x:Name="TitleTextBlock" FontSize="24" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
         <ListView ItemsSource="{Binding Tools}" Margin="20,60,20,20" ItemClick="OnToolSelected" IsItemClickEnabled="True">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="3"/>
+                    <ItemsWrapGrid Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border Background="#222222" CornerRadius="8" Padding="10" Margin="5">
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal" Height="150">
-                                <FontIcon Glyph="&#x1F4C2;" FontSize="20" Foreground="White" Margin="0,0,10,0"/>
-                                <TextBlock Text="{Binding name}" FontSize="18" FontWeight="Bold" Foreground="White"/>
-                            </StackPanel>
-                            <TextBlock Text="{Binding descript}" Foreground="LightGray" TextWrapping="Wrap" FontSize="14"/>
+                    <Border Background="#222222" CornerRadius="12" Padding="10" Margin="5" Width="300" Height="200">
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <FontIcon Glyph="&#x1F4C2;" FontSize="30" Foreground="White" Margin="0,0,0,10"/>
+                            <TextBlock Text="{Binding name}" FontSize="18" FontWeight="Bold" Foreground="White" TextAlignment="Center"/>
+                            <TextBlock Text="{Binding descript}" Foreground="LightGray" TextWrapping="Wrap" FontSize="14" TextAlignment="Center"/>
                         </StackPanel>
                     </Border>
                 </DataTemplate>

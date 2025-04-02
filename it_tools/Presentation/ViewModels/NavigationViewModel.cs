@@ -27,6 +27,12 @@ namespace it_tools.Presentation.ViewModels
         {
             var categories = await _toolRepository.GetToolCategoriesAsync();
             ToolCategories.Clear();
+            ToolCategories.Add(new ToolCategory
+            {
+                idToolType = "0",
+                name = "All"
+
+            });
             foreach (var category in categories)
             {
                 ToolCategories.Add(category);

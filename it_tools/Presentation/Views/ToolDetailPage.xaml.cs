@@ -41,7 +41,7 @@ namespace it_tools.Presentation.Views
                 _tool = tool;
                 Debug.WriteLine($"✅ Nhận được tool: {_tool.name}");
 
-                TitleTextBlock.Text = _tool.name;
+                
 
                 try
                 {

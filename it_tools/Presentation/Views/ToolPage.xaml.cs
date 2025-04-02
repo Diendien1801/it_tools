@@ -60,6 +60,7 @@ namespace it_tools.Presentation.Views
                 Debug.WriteLine($"✅ Chuyển sang ToolDetailPage với tool: {selectedTool.name}");
                 Frame.Navigate(typeof(ToolDetailPage), selectedTool.LoadedPlugin);
             }
+            
             else
             {
                 Debug.WriteLine("❌ e.ClickedItem không phải là ITool!");

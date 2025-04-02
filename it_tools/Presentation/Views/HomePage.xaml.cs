@@ -32,6 +32,7 @@ namespace it_tools.Presentation.Views
             {
                 rootElement.DataContext = ViewModel;
             }
+            ContentFrame.Navigate(typeof(ToolPage), ("0", "All"));
         }
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
