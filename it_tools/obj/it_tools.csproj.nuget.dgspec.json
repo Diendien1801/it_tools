@@ -58,6 +58,14 @@
             "Microsoft.WindowsAppSDK": {
               "target": "Package",
               "version": "[1.4.230913002, )"
+            },
+            "QRCoder": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
+            "libphonenumber-csharp": {
+              "target": "Package",
+              "version": "[9.0.2, )"
             }
           },
           "imports": [

@@ -18,7 +18,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\AppX</LayoutDir>
-    <RegisteredManifestChecksum>1098FF69CDD7FDE0EA04B0126915314847FC731F175DCD3F5435D98A51C3C8FB</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>5B980C018E67C4C6D16C193A3C90ABC217920404AD3F8944F00C4C12B3B49A5C</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>a18554f4-4912-4521-a3d4-33c1287ae789_1.0.0.0_x64__5a67ys7tgs43j</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>a18554f4-4912-4521-a3d4-33c1287ae789_5a67ys7tgs43j!App</RegisteredUserModeAppID>
     <RegisteredPackageID>a18554f4-4912-4521-a3d4-33c1287ae789</RegisteredPackageID>
@@ -29,29 +29,29 @@
     <AppXManifest Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-04-02T14:25:41.718</Modified>
+      <Modified>2025-04-03T16:17:32.693</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-04-02T14:25:41.343</Modified>
+      <Modified>2025-04-03T16:17:32.210</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\it_tools.runtimeconfig.json">
       <PackagePath>it_tools.runtimeconfig.json</PackagePath>
-      <Modified>2025-03-25T12:18:14.010</Modified>
+      <Modified>2025-04-03T14:35:03.022</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\it_tools.dll">
       <PackagePath>it_tools.dll</PackagePath>
-      <Modified>2025-04-02T14:25:41.156</Modified>
+      <Modified>2025-04-03T16:17:31.559</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>it_tools.exe</PackagePath>
-      <Modified>2025-04-02T14:25:41.171</Modified>
+      <Modified>2025-04-03T16:17:31.626</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\it_tools.deps.json">
       <PackagePath>it_tools.deps.json</PackagePath>
-      <Modified>2025-04-01T08:35:37.155</Modified>
+      <Modified>2025-04-03T16:17:32.072</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.netcore.app.runtime.win-x64\6.0.36\runtimes\win-x64\lib\net6.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -949,6 +949,14 @@
       <PackagePath>WinRT.Runtime.dll</PackagePath>
       <Modified>2024-11-11T17:23:02.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\libphonenumber-csharp\9.0.2\lib\netstandard2.0\PhoneNumbers.dll">
+      <PackagePath>PhoneNumbers.dll</PackagePath>
+      <Modified>2025-03-28T08:12:28.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.win32.systemevents\6.0.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll">
+      <PackagePath>Microsoft.Win32.SystemEvents.dll</PackagePath>
+      <Modified>2021-10-22T23:40:18.000</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.windowsappsdk\1.4.230913002\lib\net6.0-windows10.0.18362.0\Microsoft.InteractiveExperiences.Projection.dll">
       <PackagePath>Microsoft.InteractiveExperiences.Projection.dll</PackagePath>
       <Modified>2023-09-12T11:02:30.000</Modified>
@@ -1005,9 +1013,21 @@
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.Net.dll</PackagePath>
       <Modified>2023-09-14T01:39:10.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\qrcoder\1.6.0\lib\net6.0-windows7.0\QRCoder.dll">
+      <PackagePath>QRCoder.dll</PackagePath>
+      <Modified>2024-06-30T10:50:06.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\system.drawing.common\6.0.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll">
+      <PackagePath>System.Drawing.Common.dll</PackagePath>
+      <Modified>2021-10-22T23:48:10.000</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.windowsappsdk\1.4.230913002\runtimes\win10-x64\native\Microsoft.WindowsAppRuntime.Bootstrap.dll">
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.dll</PackagePath>
       <Modified>2023-07-28T17:58:18.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\runtime.win7-x64.runtime.native.system.io.compression\4.3.0\runtimes\win7-x64\native\clrcompression.dll">
+      <PackagePath>clrcompression.dll</PackagePath>
+      <Modified>2016-11-05T04:34:54.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\Plugins\RandomStringGenerator.dll">
       <PackagePath>RandomStringGenerator.dll</PackagePath>
