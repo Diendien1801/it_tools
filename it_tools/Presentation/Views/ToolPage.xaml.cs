@@ -1,42 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using it_tools.Presentation.ViewModels;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using ToolLib;
 using it_tools.DataAccess.Models;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace it_tools.Presentation.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class ToolPage : Page
-{
-    public ToolPageViewModel ViewModel { get; private set; }
-
-    public ToolPage()
     {
-        this.InitializeComponent();
-        ViewModel = new ToolPageViewModel();
-        DataContext = ViewModel;
-       
-    }
+        public ToolPageViewModel ViewModel { get; private set; }
+
+        public ToolPage()
+        {
+            this.InitializeComponent();
+            ViewModel = new ToolPageViewModel(
+                AuthPage.ViewModel
+                );
+            DataContext = ViewModel;
+        }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -51,8 +35,10 @@ namespace it_tools.Presentation.Views
 
                 TitleTextBlock.Text = name;
                 await ViewModel.LoadTools(idToolType);
+                
             }
         }
+
         private void OnToolSelected(object sender, ItemClickEventArgs e)
         {
             if (e.ClickedItem is Tool selectedTool)
@@ -60,15 +46,50 @@ namespace it_tools.Presentation.Views
                 Debug.WriteLine($"✅ Chuyển sang ToolDetailPage với tool: {selectedTool.name}");
                 Frame.Navigate(typeof(ToolDetailPage), selectedTool.LoadedPlugin);
             }
-            
             else
             {
-                Debug.WriteLine("❌ e.ClickedItem không phải là ITool!");
+                Debug.WriteLine("❌ e.ClickedItem không phải là Tool!");
             }
         }
 
+        private async void OnFavoriteButtonClick(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("🟢 OnFavoriteButtonClick triggered");
 
+            if (sender is Button button)
+            {
+                Debug.WriteLine($"🔍 Button found, Tag: {button.Tag}");
 
+                if (button.Tag is Tool selectedTool)
+                {
+                    Debug.WriteLine($"📌 Selected Tool: {selectedTool.name} (ID: {selectedTool.idTool}, isFavourite: {selectedTool.isFavourite})");
 
+                    await ViewModel.UpdateFavoriteStatus(selectedTool);
+
+                    Debug.WriteLine($"✅ Finished updating favorite status for {selectedTool.name}");
+                }
+                else
+                {
+                    Debug.WriteLine("❌ ERROR: Tag is not a Tool object!");
+                }
+            }
+            else
+            {
+                Debug.WriteLine("❌ ERROR: Sender is not a Button!");
+            }
+        }
+
+        private async Task ShowMessageDialog(string content, string title)
+        {
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = title,
+                Content = content,
+                CloseButtonText = "OK",
+                XamlRoot = this.XamlRoot
+            };
+
+            await dialog.ShowAsync();
+        }
     }
 }

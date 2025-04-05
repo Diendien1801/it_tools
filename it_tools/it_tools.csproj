@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="BusinessLogic\Services\ToolService.xaml" />
+    <None Remove="Presentation\Views\AccountPage.xaml" />
     <None Remove="Presentation\Views\AuthPage.xaml" />
     <None Remove="Presentation\Views\ConverterPage.xaml" />
     <None Remove="Presentation\Views\CryptoPage.xaml" />
@@ -115,6 +116,11 @@
     <Reference Include="ToolLib">
       <HintPath>..\..\ToolLib\ToolLib\bin\Debug\net6.0-windows10.0.19041.0\ToolLib.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Presentation\Views\AccountPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="BusinessLogic\Services\ToolService.xaml">

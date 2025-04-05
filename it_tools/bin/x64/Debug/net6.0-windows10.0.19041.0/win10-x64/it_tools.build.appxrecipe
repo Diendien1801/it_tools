@@ -787,6 +787,9 @@
     <AppxPackagedFile Include="C:\Users\dient\source\repos\ToolLib\ToolLib\bin\Debug\net6.0-windows10.0.19041.0\ToolLib.pri">
       <PackagePath>ToolLib.pri</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\Assets\avt11.jpg">
+      <PackagePath>Assets\avt11.jpg</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>

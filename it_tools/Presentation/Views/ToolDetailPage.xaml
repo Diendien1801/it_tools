@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:it_tools.Presentation.Views"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="White">
 
     <Grid Padding="20">
         <ContentControl x:Name="ToolContent" HorizontalAlignment="Center" VerticalAlignment="Center"/>

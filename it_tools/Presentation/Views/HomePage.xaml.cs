@@ -1,4 +1,4 @@
-using it_tools.DataAccess.Models;
+ï»¿using it_tools.DataAccess.Models;
 using it_tools.Presentation.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -25,6 +25,7 @@ namespace it_tools.Presentation.Views
     public sealed partial class HomePage : Page
     {
         public NavigationViewModel ViewModel { get; } = new NavigationViewModel();
+        
         public HomePage()
         {
             this.InitializeComponent();
@@ -36,13 +37,38 @@ namespace it_tools.Presentation.Views
         }
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            if (args.SelectedItem is ToolCategory category) // Ép ki?u v? ToolCategory
+            if (args.SelectedItem is ToolCategory category) 
             {
                 Debug.WriteLine($"Selected category: {category.name}");
                 Debug.WriteLine($"Navigating to ToolPage with id: {category.idToolType}");
+                
 
                 ContentFrame.Navigate(typeof(ToolPage), (category.idToolType, category.name));
             }
         }
+        private void SearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (ContentFrame.Content is ToolPage toolPage && toolPage.DataContext is ToolPageViewModel viewModel)
+            {
+                viewModel.FilterTools(sender.Text);
+            }
+        }
+
+        private void SearchBox_Nav(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("SearchBox clicked! Navigating to All...");
+            ContentFrame.Navigate(typeof(ToolPage), ("0", "All"));
+        }
+        private void TaskbarAccount_Tapped(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(typeof(AccountPage));
+        }
+
+
+
+
+
+
+
     }
 }

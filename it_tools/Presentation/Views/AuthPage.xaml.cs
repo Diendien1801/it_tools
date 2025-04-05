@@ -1,5 +1,6 @@
 ﻿using it_tools.BusinessLogic.Services;
 using it_tools.DataAccess.Repositories;
+using it_tools.Presentation.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -7,9 +8,11 @@ namespace it_tools.Presentation.Views
 {
     public sealed partial class AuthPage : Page
     {
-        private readonly AuthRepository _authService = new AuthRepository();
+
+        public static AuthViewModel ViewModel;
         public AuthPage()
         {
+            ViewModel = new AuthViewModel();
             this.InitializeComponent();
         }
 
@@ -24,7 +27,7 @@ namespace it_tools.Presentation.Views
                 return;
             }
 
-            var result = await _authService.RegisterAsync(email, password);
+            var result = await ViewModel.RegisterAsync(email, password);
             if (result.success)
             {
                 ShowSuccess("Account created! Please login.");
@@ -59,7 +62,7 @@ namespace it_tools.Presentation.Views
             string username = EmailLoginBox.Text;
             string password = PasswordLoginBox.Password;
 
-            var (success, message, token) = await _authService.LoginAsync(username, password);
+            var (success, message, token) = await ViewModel.LoginAsync(username, password);
 
             if (success)
             {
