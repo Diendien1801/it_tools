@@ -25,6 +25,7 @@ namespace it_tools.Presentation.ViewModels
             Tools = new ObservableCollection<Tool>();
         }
 
+
         public async Task UpdateFavoriteStatus(Tool tool)
         {
             if (_authViewModel.token == null)
@@ -127,5 +128,40 @@ namespace it_tools.Presentation.ViewModels
                 Tools.Add(tool);
             }
         }
+
+
+        // Kiểm tra level của user hiện tại và level của tool
+        public async Task<bool> IsUserLevelSufficient(string toolLevel)
+        {
+            if (_authViewModel.token == null)
+            {
+                return false;
+            }
+
+            var (success, message, account) = await _accountRepository.GetAccountInfoAsync(_authViewModel.token);
+
+            if (!success || account == null)
+            {
+                return false;
+            }
+
+            // Định nghĩa thứ tự cấp độ truy cập
+            var levelOrder = new Dictionary<string, int>
+    {
+        { "anonymous", 0 },
+        { "membership", 1 },
+        { "premium", 2 }
+    };
+
+            // Lấy cấp độ user và tool (mặc định nếu null thì là anonymous)
+            string userLevel = account.level?.ToLower() ?? "anonymous";
+            toolLevel = toolLevel?.ToLower() ?? "anonymous";
+
+            int userValue = levelOrder.ContainsKey(userLevel) ? levelOrder[userLevel] : 0;
+            int toolValue = levelOrder.ContainsKey(toolLevel) ? levelOrder[toolLevel] : 0;
+
+            return userValue >= toolValue;
+        }
+
     }
 }

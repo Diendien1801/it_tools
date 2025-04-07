@@ -1,11 +1,7 @@
 ﻿using it_tools.BusinessLogic.Services;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using ToolLib;
 
 namespace it_tools.DataAccess.Models
@@ -15,8 +11,32 @@ namespace it_tools.DataAccess.Models
         public string idTool { get; set; }
         public string name { get; set; }
         public string descript { get; set; }
-        public string status { get; set; }
-        public string access_level { get; set; }
+        private string _status;
+        public string status
+        {
+            get => _status;
+            set
+            {
+                if (_status != value)
+                {
+                    _status = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string _accessLevel;
+        public string access_level
+        {
+            get => _accessLevel;
+            set
+            {
+                if (_accessLevel != value)
+                {
+                    _accessLevel = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public string iconURL { get; set; }
         public string idToolType { get; set; }
         public string? dllPath { get; set; }

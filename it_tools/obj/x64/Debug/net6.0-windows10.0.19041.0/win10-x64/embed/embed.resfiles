@@ -3,5 +3,6 @@ MainWindow.xbf
 Presentation\Views\AccountPage.xbf
 Presentation\Views\AuthPage.xbf
 Presentation\Views\HomePage.xbf
+Presentation\Views\ManagerPage.xbf
 Presentation\Views\ToolDetailPage.xbf
 Presentation\Views\ToolPage.xbf

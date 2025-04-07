@@ -33,13 +33,26 @@
                     <NavigationViewItem Content="{x:Bind name}" Tag="{x:Bind idToolType}" />
                 </DataTemplate>
             </NavigationView.MenuItemTemplate>
+
             <NavigationView.PaneFooter>
-                <NavigationViewItem Content="Account" Tag="Account" x:Name="TaskbarAccount" Tapped="TaskbarAccount_Tapped">
-                    <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xEF58;" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                <!-- Account -->
+                <StackPanel>
+                    <NavigationViewItem Content="Account" Tag="Account" x:Name="TaskbarAccount" Tapped="TaskbarAccount_Tapped">
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xEF58;" />
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+
+                    <!-- Task Management -->
+                    <NavigationViewItem Content="Task Management" Tag="TaskManagement" x:Name="TaskbarTaskManagement" Tapped="TaskbarTaskManagement_Tapped">
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xE8FD;" />
+                            <!-- clipboard icon -->
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                </StackPanel>
             </NavigationView.PaneFooter>
+
             <Frame x:Name="ContentFrame"/>
             
         </NavigationView>

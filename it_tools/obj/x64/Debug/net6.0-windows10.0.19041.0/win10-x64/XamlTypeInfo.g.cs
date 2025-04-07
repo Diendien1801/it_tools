@@ -224,7 +224,7 @@ namespace it_tools.it_tools_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[46];
+            _typeNameTable = new string[48];
             _typeNameTable[0] = "Microsoft.UI.Xaml.Controls.XamlControlsResources";
             _typeNameTable[1] = "Microsoft.UI.Xaml.ResourceDictionary";
             _typeNameTable[2] = "Object";
@@ -265,14 +265,16 @@ namespace it_tools.it_tools_XamlTypeInfo
             _typeNameTable[37] = "Microsoft.UI.Xaml.Controls.Control";
             _typeNameTable[38] = "it_tools.Presentation.Views.HomePage";
             _typeNameTable[39] = "it_tools.Presentation.ViewModels.NavigationViewModel";
-            _typeNameTable[40] = "it_tools.Presentation.Views.ToolDetailPage";
-            _typeNameTable[41] = "it_tools.Presentation.Views.ToolPage";
-            _typeNameTable[42] = "it_tools.Presentation.ViewModels.ToolPageViewModel";
-            _typeNameTable[43] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
-            _typeNameTable[44] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
-            _typeNameTable[45] = "Int32";
+            _typeNameTable[40] = "it_tools.Presentation.Views.ManagerPage";
+            _typeNameTable[41] = "it_tools.Presentation.ViewModels.ManagementViewModel";
+            _typeNameTable[42] = "it_tools.Presentation.Views.ToolDetailPage";
+            _typeNameTable[43] = "it_tools.Presentation.Views.ToolPage";
+            _typeNameTable[44] = "it_tools.Presentation.ViewModels.ToolPageViewModel";
+            _typeNameTable[45] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
+            _typeNameTable[46] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
+            _typeNameTable[47] = "Int32";
 
-            _typeTable = new global::System.Type[46];
+            _typeTable = new global::System.Type[48];
             _typeTable[0] = typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources);
             _typeTable[1] = typeof(global::Microsoft.UI.Xaml.ResourceDictionary);
             _typeTable[2] = typeof(global::System.Object);
@@ -313,12 +315,14 @@ namespace it_tools.it_tools_XamlTypeInfo
             _typeTable[37] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
             _typeTable[38] = typeof(global::it_tools.Presentation.Views.HomePage);
             _typeTable[39] = typeof(global::it_tools.Presentation.ViewModels.NavigationViewModel);
-            _typeTable[40] = typeof(global::it_tools.Presentation.Views.ToolDetailPage);
-            _typeTable[41] = typeof(global::it_tools.Presentation.Views.ToolPage);
-            _typeTable[42] = typeof(global::it_tools.Presentation.ViewModels.ToolPageViewModel);
-            _typeTable[43] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
-            _typeTable[44] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
-            _typeTable[45] = typeof(global::System.Int32);
+            _typeTable[40] = typeof(global::it_tools.Presentation.Views.ManagerPage);
+            _typeTable[41] = typeof(global::it_tools.Presentation.ViewModels.ManagementViewModel);
+            _typeTable[42] = typeof(global::it_tools.Presentation.Views.ToolDetailPage);
+            _typeTable[43] = typeof(global::it_tools.Presentation.Views.ToolPage);
+            _typeTable[44] = typeof(global::it_tools.Presentation.ViewModels.ToolPageViewModel);
+            _typeTable[45] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
+            _typeTable[46] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
+            _typeTable[47] = typeof(global::System.Int32);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -365,9 +369,10 @@ namespace it_tools.it_tools_XamlTypeInfo
         private object Activate_36_InfoBadge() { return new global::Microsoft.UI.Xaml.Controls.InfoBadge(); }
         private object Activate_38_HomePage() { return new global::it_tools.Presentation.Views.HomePage(); }
         private object Activate_39_NavigationViewModel() { return new global::it_tools.Presentation.ViewModels.NavigationViewModel(); }
-        private object Activate_40_ToolDetailPage() { return new global::it_tools.Presentation.Views.ToolDetailPage(); }
-        private object Activate_41_ToolPage() { return new global::it_tools.Presentation.Views.ToolPage(); }
-        private object Activate_43_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
+        private object Activate_40_ManagerPage() { return new global::it_tools.Presentation.Views.ManagerPage(); }
+        private object Activate_42_ToolDetailPage() { return new global::it_tools.Presentation.Views.ToolDetailPage(); }
+        private object Activate_43_ToolPage() { return new global::it_tools.Presentation.Views.ToolPage(); }
+        private object Activate_45_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
         private void MapAdd_0_XamlControlsResources(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.Object, global::System.Object>)instance;
@@ -381,7 +386,7 @@ namespace it_tools.it_tools_XamlTypeInfo
             var newItem = (global::System.Object)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_44_IList(object instance, object item)
+        private void VectorAdd_46_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Controls.TreeViewNode>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)item;
@@ -669,31 +674,46 @@ namespace it_tools.it_tools_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 40:   //  it_tools.Presentation.Views.ToolDetailPage
+            case 40:   //  it_tools.Presentation.Views.ManagerPage
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_40_ToolDetailPage;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 41:   //  it_tools.Presentation.Views.ToolPage
-                userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_41_ToolPage;
+                userType.Activator = Activate_40_ManagerPage;
                 userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 42:   //  it_tools.Presentation.ViewModels.ToolPageViewModel
+            case 41:   //  it_tools.Presentation.ViewModels.ManagementViewModel
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 43:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
+            case 42:   //  it_tools.Presentation.Views.ToolDetailPage
+                userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_42_ToolDetailPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 43:   //  it_tools.Presentation.Views.ToolPage
+                userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_43_ToolPage;
+                userType.AddMemberName("ViewModel");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 44:   //  it_tools.Presentation.ViewModels.ToolPageViewModel
+                userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.SetIsReturnTypeStub();
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 45:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.Activator = Activate_43_TreeViewNode;
+                userType.Activator = Activate_45_TreeViewNode;
                 userType.AddMemberName("Children");
                 userType.AddMemberName("Content");
                 userType.AddMemberName("Depth");
@@ -705,14 +725,14 @@ namespace it_tools.it_tools_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 44:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
+            case 46:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.CollectionAdd = VectorAdd_44_IList;
+                userType.CollectionAdd = VectorAdd_46_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 45:   //  Int32
+            case 47:   //  Int32
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
             }
@@ -1226,57 +1246,67 @@ namespace it_tools.it_tools_XamlTypeInfo
             var that = (global::it_tools.Presentation.Views.HomePage)instance;
             return that.ViewModel;
         }
-        private object get_49_ToolPage_ViewModel(object instance)
+        private object get_49_ManagerPage_ViewModel(object instance)
+        {
+            var that = (global::it_tools.Presentation.Views.ManagerPage)instance;
+            return that.ViewModel;
+        }
+        private void set_49_ManagerPage_ViewModel(object instance, object Value)
+        {
+            var that = (global::it_tools.Presentation.Views.ManagerPage)instance;
+            that.ViewModel = (global::it_tools.Presentation.ViewModels.ManagementViewModel)Value;
+        }
+        private object get_50_ToolPage_ViewModel(object instance)
         {
             var that = (global::it_tools.Presentation.Views.ToolPage)instance;
             return that.ViewModel;
         }
-        private object get_50_TreeViewNode_Children(object instance)
+        private object get_51_TreeViewNode_Children(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Children;
         }
-        private object get_51_TreeViewNode_Content(object instance)
+        private object get_52_TreeViewNode_Content(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Content;
         }
-        private void set_51_TreeViewNode_Content(object instance, object Value)
+        private void set_52_TreeViewNode_Content(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.Content = (global::System.Object)Value;
         }
-        private object get_52_TreeViewNode_Depth(object instance)
+        private object get_53_TreeViewNode_Depth(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Depth;
         }
-        private object get_53_TreeViewNode_HasChildren(object instance)
+        private object get_54_TreeViewNode_HasChildren(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.HasChildren;
         }
-        private object get_54_TreeViewNode_HasUnrealizedChildren(object instance)
+        private object get_55_TreeViewNode_HasUnrealizedChildren(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.HasUnrealizedChildren;
         }
-        private void set_54_TreeViewNode_HasUnrealizedChildren(object instance, object Value)
+        private void set_55_TreeViewNode_HasUnrealizedChildren(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.HasUnrealizedChildren = (global::System.Boolean)Value;
         }
-        private object get_55_TreeViewNode_IsExpanded(object instance)
+        private object get_56_TreeViewNode_IsExpanded(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.IsExpanded;
         }
-        private void set_55_TreeViewNode_IsExpanded(object instance, object Value)
+        private void set_56_TreeViewNode_IsExpanded(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.IsExpanded = (global::System.Boolean)Value;
         }
-        private object get_56_TreeViewNode_Parent(object instance)
+        private object get_57_TreeViewNode_Parent(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Parent;
@@ -1631,56 +1661,62 @@ namespace it_tools.it_tools_XamlTypeInfo
                 xamlMember.Getter = get_48_HomePage_ViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
+            case "it_tools.Presentation.Views.ManagerPage.ViewModel":
+                userType = (global::it_tools.it_tools_XamlTypeInfo.XamlUserType)GetXamlTypeByName("it_tools.Presentation.Views.ManagerPage");
+                xamlMember = new global::it_tools.it_tools_XamlTypeInfo.XamlMember(this, "ViewModel", "it_tools.Presentation.ViewModels.ManagementViewModel");
+                xamlMember.Getter = get_49_ManagerPage_ViewModel;
+                xamlMember.Setter = set_49_ManagerPage_ViewModel;
+                break;
             case "it_tools.Presentation.Views.ToolPage.ViewModel":
                 userType = (global::it_tools.it_tools_XamlTypeInfo.XamlUserType)GetXamlTypeByName("it_tools.Presentation.Views.ToolPage");
                 xamlMember = new global::it_tools.it_tools_XamlTypeInfo.XamlMember(this, "ViewModel", "it_tools.Presentation.ViewModels.ToolPageViewModel");
-                xamlMember.Getter = get_49_ToolPage_ViewModel;
+                xamlMember.Getter = get_50_ToolPage_ViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Children":
                 userType = (global::it_tools.it_tools_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::it_tools.it_tools_XamlTypeInfo.XamlMember(this, "Children", "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>");
-                xamlMember.Getter = get_50_TreeViewNode_Children;
+                xamlMember.Getter = get_51_TreeViewNode_Children;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Content":
                 userType = (global::it_tools.it_tools_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::it_tools.it_tools_XamlTypeInfo.XamlMember(this, "Content", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_51_TreeViewNode_Content;
-                xamlMember.Setter = set_51_TreeViewNode_Content;
+                xamlMember.Getter = get_52_TreeViewNode_Content;
+                xamlMember.Setter = set_52_TreeViewNode_Content;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Depth":
                 userType = (global::it_tools.it_tools_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::it_tools.it_tools_XamlTypeInfo.XamlMember(this, "Depth", "Int32");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_52_TreeViewNode_Depth;
+                xamlMember.Getter = get_53_TreeViewNode_Depth;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.HasChildren":
                 userType = (global::it_tools.it_tools_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::it_tools.it_tools_XamlTypeInfo.XamlMember(this, "HasChildren", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_53_TreeViewNode_HasChildren;
+                xamlMember.Getter = get_54_TreeViewNode_HasChildren;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.HasUnrealizedChildren":
                 userType = (global::it_tools.it_tools_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::it_tools.it_tools_XamlTypeInfo.XamlMember(this, "HasUnrealizedChildren", "Boolean");
-                xamlMember.Getter = get_54_TreeViewNode_HasUnrealizedChildren;
-                xamlMember.Setter = set_54_TreeViewNode_HasUnrealizedChildren;
+                xamlMember.Getter = get_55_TreeViewNode_HasUnrealizedChildren;
+                xamlMember.Setter = set_55_TreeViewNode_HasUnrealizedChildren;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.IsExpanded":
                 userType = (global::it_tools.it_tools_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::it_tools.it_tools_XamlTypeInfo.XamlMember(this, "IsExpanded", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_55_TreeViewNode_IsExpanded;
-                xamlMember.Setter = set_55_TreeViewNode_IsExpanded;
+                xamlMember.Getter = get_56_TreeViewNode_IsExpanded;
+                xamlMember.Setter = set_56_TreeViewNode_IsExpanded;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Parent":
                 userType = (global::it_tools.it_tools_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::it_tools.it_tools_XamlTypeInfo.XamlMember(this, "Parent", "Microsoft.UI.Xaml.Controls.TreeViewNode");
-                xamlMember.Getter = get_56_TreeViewNode_Parent;
+                xamlMember.Getter = get_57_TreeViewNode_Parent;
                 xamlMember.SetIsReadOnly();
                 break;
             }

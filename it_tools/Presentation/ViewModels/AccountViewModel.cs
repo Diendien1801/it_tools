@@ -52,6 +52,16 @@ namespace it_tools.Presentation.ViewModels
             _authViewModel = authViewModel;
            
         }
+        public async Task<(bool success, string message)> SendUpgradeRequestAsync()
+        {
+            if (_authViewModel.token == null)
+            {
+                return (false, "Bạn cần đăng nhập để sử dụng tính năng này.");
+            }
+
+            var (success, message) = await _accountRepository.SendUpgradeRequestAsync(_authViewModel.token);
+            return (success, message);
+        }
 
         public async Task<bool> LoadAccountDataAsync()
         {

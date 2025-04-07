@@ -1,4 +1,5 @@
-﻿using it_tools.Presentation.ViewModels;
+﻿using it_tools.DataAccess.Repositories;
+using it_tools.Presentation.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -82,12 +83,19 @@ namespace it_tools.Presentation.Views
                 Title = title,
                 Content = content,
                 CloseButtonText = "OK",
-                XamlRoot = this.XamlRoot // Quan trọng: cần có để hiển thị trong WinUI 3
+                XamlRoot = this.XamlRoot 
             };
 
             await dialog.ShowAsync();
         }
 
+        private async void SendRequestUpgrade_Click(object sender, RoutedEventArgs e)
+        {
+            var (success, message) = await _viewModel.SendUpgradeRequestAsync();
+
+            string title = success ? "Thành công" : "Thông báo";
+            await ShowMessageDialog(message, title);
+        }
 
     }
 }

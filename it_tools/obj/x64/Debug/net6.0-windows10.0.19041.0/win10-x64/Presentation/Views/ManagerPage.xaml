@@ -1,0 +1,75 @@
+﻿<Page x:ConnectionId='1'
+    x:Class="it_tools.Presentation.Views.ManagerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:it_tools.Presentation.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local1="using:it_tools.DataAccess.Models"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer>
+        <StackPanel Padding="20" Spacing="20">
+
+            <!-- Danh sách Upgrade Requests -->
+            <TextBlock Text="Danh sách yêu cầu nâng cấp" FontSize="20" FontWeight="Bold"/>
+            <ListView x:ConnectionId='2' x:Name="RequestListView"
+                                                                            >
+                <ListView.ItemTemplate>
+                    <DataTemplate                                   >
+                        <Border x:ConnectionId='12' BorderBrush="White" BorderThickness="1" Margin="5" Padding="10">
+                            <StackPanel>
+                                <TextBlock x:ConnectionId='13'                           />
+                                <TextBlock x:ConnectionId='14'                          />
+                                <TextBlock x:ConnectionId='15'                       />
+                                <TextBlock x:ConnectionId='16'                        />
+                                <TextBlock x:ConnectionId='17'                           />
+                                <TextBlock x:ConnectionId='18'                           />
+                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                    <Button x:ConnectionId='19' Content="Accept"                          Margin="0,0,10,0"                     />
+                                    <Button x:ConnectionId='20' Content="Reject"                                              />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!-- Danh sách Tool -->
+            <TextBlock Text="Danh sách công cụ" FontSize="20" FontWeight="Bold" Margin="0,20,0,0"/>
+            <ListView x:ConnectionId='3' x:Name="ToolListView"
+                                                                         >
+                <ListView.ItemTemplate>
+                    <DataTemplate                         >
+                        <Border x:ConnectionId='5' BorderBrush="White" BorderThickness="1" Margin="5" Padding="10">
+                            <StackPanel>
+                                <TextBlock x:ConnectionId='6'                      FontWeight="Bold"/>
+                                <TextBlock Text="Trạng thái:"/>
+                                <TextBlock x:ConnectionId='7'                        Foreground="DarkGreen"/>
+
+                                <TextBlock Text="Quyền truy cập:" Margin="0,5,0,0"/>
+                                <ComboBox x:ConnectionId='8'                                                   
+                                                                
+                                            SelectedValuePath="Content"
+                                                                                                   
+                                            Width="200">
+                                    <ComboBoxItem Content="user"/>
+                                    <ComboBoxItem Content="premium"/>
+                                    <ComboBoxItem Content="anonymous"/>
+                                </ComboBox>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                    <Button x:ConnectionId='9' Content="Enable"                       Margin="0,0,10,0"                         />
+                                    <Button x:ConnectionId='10' Content="Disable"                                                />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>
+

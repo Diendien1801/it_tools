@@ -39,18 +39,42 @@ namespace it_tools.Presentation.Views
             }
         }
 
-        private void OnToolSelected(object sender, ItemClickEventArgs e)
+        private async void OnToolSelected(object sender, ItemClickEventArgs e)
         {
             if (e.ClickedItem is Tool selectedTool)
             {
-                Debug.WriteLine($"✅ Chuyển sang ToolDetailPage với tool: {selectedTool.name}");
+                Debug.WriteLine($"[DEBUG] 🔍 Tool được chọn: {selectedTool.name} (access_level = {selectedTool.access_level})");
+
+                // Gọi hàm kiểm tra quyền trong ViewModel
+                bool hasAccess = await ViewModel.IsUserLevelSufficient(selectedTool.access_level);
+
+                Debug.WriteLine($"[DEBUG] ✅ Quyền truy cập {(hasAccess ? "được cho phép" : "bị từ chối")} đối với tool: {selectedTool.name}");
+
+                if (!hasAccess)
+                {
+                    Debug.WriteLine($"[WARNING] ❌ Không đủ quyền để truy cập tool: {selectedTool.name}");
+
+                    var dialog = new ContentDialog
+                    {
+                        Title = "Truy cập bị từ chối",
+                        Content = $"Bạn cần cấp quyền '{selectedTool.access_level}' để sử dụng công cụ này.",
+                        CloseButtonText = "Đóng",
+                        XamlRoot = this.XamlRoot
+                    };
+
+                    await dialog.ShowAsync();
+                    return;
+                }
+
+                Debug.WriteLine($"[INFO] 🔄 Điều hướng sang ToolDetailPage với plugin: {selectedTool.LoadedPlugin}");
                 Frame.Navigate(typeof(ToolDetailPage), selectedTool.LoadedPlugin);
             }
             else
             {
-                Debug.WriteLine("❌ e.ClickedItem không phải là Tool!");
+                Debug.WriteLine("[ERROR] ❌ e.ClickedItem không phải là một Tool hợp lệ!");
             }
         }
+
 
         private async void OnFavoriteButtonClick(object sender, RoutedEventArgs e)
         {

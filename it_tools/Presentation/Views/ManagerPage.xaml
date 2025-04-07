@@ -1,0 +1,74 @@
+<Page
+    x:Class="it_tools.Presentation.Views.ManagerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:it_tools.Presentation.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local1="using:it_tools.DataAccess.Models"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer>
+        <StackPanel Padding="20" Spacing="20">
+
+            <!-- Danh sách Upgrade Requests -->
+            <TextBlock Text="Danh sách yêu cầu nâng cấp" FontSize="20" FontWeight="Bold"/>
+            <ListView x:Name="RequestListView"
+                      ItemsSource="{x:Bind ViewModel.Requests, Mode=OneWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local1:UpgradeRequest">
+                        <Border BorderBrush="White" BorderThickness="1" Margin="5" Padding="10">
+                            <StackPanel>
+                                <TextBlock Text="{x:Bind IdRequest}" />
+                                <TextBlock Text="{x:Bind Username}" />
+                                <TextBlock Text="{x:Bind Level}" />
+                                <TextBlock Text="{x:Bind Status}" />
+                                <TextBlock Text="{x:Bind CreatedAt}" />
+                                <TextBlock Text="{x:Bind HandledAt}" />
+                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                    <Button Content="Accept" Tag="{x:Bind IdRequest}" Margin="0,0,10,0" Click="Accept_Click"/>
+                                    <Button Content="Reject" Tag="{x:Bind IdRequest}" Click="Reject_Click"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!-- Danh sách Tool -->
+            <TextBlock Text="Danh sách công cụ" FontSize="20" FontWeight="Bold" Margin="0,20,0,0"/>
+            <ListView x:Name="ToolListView"
+                      ItemsSource="{x:Bind ViewModel.Tools, Mode=OneWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local1:Tool">
+                        <Border BorderBrush="White" BorderThickness="1" Margin="5" Padding="10">
+                            <StackPanel>
+                                <TextBlock Text="{x:Bind name}" FontWeight="Bold"/>
+                                <TextBlock Text="Trạng thái:"/>
+                                <TextBlock Text="{x:Bind status}" Foreground="DarkGreen"/>
+
+                                <TextBlock Text="Quyền truy cập:" Margin="0,5,0,0"/>
+                                <ComboBox SelectedValue="{x:Bind access_level, Mode=TwoWay}"
+                                           Tag="{x:Bind idTool}"
+                                            SelectedValuePath="Content"
+                                            SelectionChanged="AccessLevelComboBox_SelectionChanged"
+                                            Width="200">
+                                    <ComboBoxItem Content="user"/>
+                                    <ComboBoxItem Content="premium"/>
+                                    <ComboBoxItem Content="anonymous"/>
+                                </ComboBox>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                    <Button Content="Enable" Tag="{x:Bind idTool}" Margin="0,0,10,0" Click="EnableTool_Click"/>
+                                    <Button Content="Disable" Tag="{x:Bind idTool}" Click="DisableTool_Click"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

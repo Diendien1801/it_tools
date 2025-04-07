@@ -82,6 +82,7 @@
     <None Remove="Presentation\Views\DataPage.xaml" />
     <None Remove="Presentation\Views\DevPage.xaml" />
     <None Remove="Presentation\Views\HomePage.xaml" />
+    <None Remove="Presentation\Views\ManagerPage.xaml" />
     <None Remove="Presentation\Views\MathPage.xaml" />
     <None Remove="Presentation\Views\MeasurementPage.xaml" />
     <None Remove="Presentation\Views\MediaPage.xaml" />
@@ -116,6 +117,11 @@
     <Reference Include="ToolLib">
       <HintPath>..\..\ToolLib\ToolLib\bin\Debug\net6.0-windows10.0.19041.0\ToolLib.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Presentation\Views\ManagerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Presentation\Views\AccountPage.xaml">

@@ -24,6 +24,16 @@
                     </Ellipse>
                 </Grid>
             </StackPanel>
+            <!-- Nút yêu cầu nâng cấp -->
+            <Button x:ConnectionId='2' Content="Nâng cấp tài khoản"
+        Command="{Binding RequestUpgradeCommand}"
+        Background="#0078D7"
+        Foreground="White"
+        Padding="10,5"
+        HorizontalAlignment="Left"
+        Margin="10,0,0,30"
+                                        
+        />
 
             <!-- User Information -->
             <Grid Margin="0,0,0,30">
@@ -83,7 +93,7 @@
                                     <TextBlock Text="{Binding name}" FontWeight="SemiBold"/>
                                     <TextBlock Text="{Binding descript}" TextWrapping="Wrap" Opacity="0.7"/>
                                 </StackPanel>
-                                <Button x:ConnectionId='3' Grid.Column="2" Content="Remove" Padding="10,5" Margin="10,0,0,0"                            />
+                                <Button x:ConnectionId='4' Grid.Column="2" Content="Remove" Padding="10,5" Margin="10,0,0,0"                            />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

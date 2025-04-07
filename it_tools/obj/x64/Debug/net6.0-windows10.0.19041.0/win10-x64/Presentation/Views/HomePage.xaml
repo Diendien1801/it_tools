@@ -33,14 +33,27 @@
                     <NavigationViewItem x:ConnectionId='5'                                                   />
                 </DataTemplate>
             </NavigationView.MenuItemTemplate>
+
             <NavigationView.PaneFooter>
-                <NavigationViewItem x:ConnectionId='6' Content="Account" Tag="Account" x:Name="TaskbarAccount"                               >
-                    <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xEF58;" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                <!-- Account -->
+                <StackPanel>
+                    <NavigationViewItem x:ConnectionId='6' Content="Account" Tag="Account" x:Name="TaskbarAccount"                               >
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xEF58;" />
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+
+                    <!-- Task Management -->
+                    <NavigationViewItem x:ConnectionId='7' Content="Task Management" Tag="TaskManagement" x:Name="TaskbarTaskManagement"                                      >
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xE8FD;" />
+                            <!-- clipboard icon -->
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                </StackPanel>
             </NavigationView.PaneFooter>
-            <Frame x:ConnectionId='7' x:Name="ContentFrame"/>
+
+            <Frame x:ConnectionId='8' x:Name="ContentFrame"/>
             
         </NavigationView>
     </Grid>

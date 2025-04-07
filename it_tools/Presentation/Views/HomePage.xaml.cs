@@ -63,6 +63,10 @@ namespace it_tools.Presentation.Views
         {
             ContentFrame.Navigate(typeof(AccountPage));
         }
+        private void TaskbarTaskManagement_Tapped(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(typeof(ManagerPage));
+        }
 
 
 
