@@ -18,6 +18,8 @@
             <!-- Converters -->
             <converters:HeartColorConverter x:Key="HeartColorConverter"/>
             <converters:HeartIconConverter x:Key="HeartIconConverter"/>
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:AccessLevelColorConverter x:Key="AccessLevelColorConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

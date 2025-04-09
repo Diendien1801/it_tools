@@ -14,7 +14,9 @@ namespace it_tools.Presentation.ViewModels
     {
         private readonly ToolRepository _toolRepository;
         public ObservableCollection<ToolCategory> ToolCategories { get; set; }
-
+        
+        public bool IsUser { get; set; } = false;
+        public bool IsAdmin { get; set; } = false;
         public NavigationViewModel()
         {
             _toolRepository = new ToolRepository();
@@ -31,6 +33,12 @@ namespace it_tools.Presentation.ViewModels
             {
                 idToolType = "0",
                 name = "All"
+
+            });
+            ToolCategories.Add(new ToolCategory
+            {
+                idToolType = "-1",
+                name = "Favourite"
 
             });
             foreach (var category in categories)

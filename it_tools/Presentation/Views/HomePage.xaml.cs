@@ -24,15 +24,17 @@ namespace it_tools.Presentation.Views
     
     public sealed partial class HomePage : Page
     {
-        public NavigationViewModel ViewModel { get; } = new NavigationViewModel();
+        public static NavigationViewModel ViewModel { get; set; } = new NavigationViewModel();
         
+
+
+
         public HomePage()
-        {
+        { 
             this.InitializeComponent();
-            if (this.Content is FrameworkElement rootElement)
-            {
-                rootElement.DataContext = ViewModel;
-            }
+            
+             this.DataContext = ViewModel;
+            
             ContentFrame.Navigate(typeof(ToolPage), ("0", "All"));
         }
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)

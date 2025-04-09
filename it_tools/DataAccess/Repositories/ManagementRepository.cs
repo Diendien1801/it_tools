@@ -305,6 +305,109 @@ namespace it_tools.DataAccess.Repositories
             }
         }
 
+        public async Task<(bool success, string message)> DeleteToolAsync(string token, string idTool)
+        {
+            try
+            {
+                string url = $"{BaseUrl}/tool/delete"; 
+                Debug.WriteLine($"[DEBUG] Calling API: {url}");
+
+                var body = new { idTool = idTool };
+                var content = new StringContent(JsonSerializer.Serialize(body), Encoding.UTF8, "application/json");
+
+                var request = new HttpRequestMessage(HttpMethod.Post, url)
+                {
+                    Content = content
+                };
+                request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                HttpResponseMessage response = await _httpClient.SendAsync(request);
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                Debug.WriteLine($"[DEBUG] Response Status: {response.StatusCode}");
+                Debug.WriteLine($"[DEBUG] Response Content: {responseContent}");
+
+                var result = JsonSerializer.Deserialize<BaseResponse<object>>(responseContent, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+                if (result != null && result.success)
+                {
+                    return (true, result.message);
+                }
+
+                return (false, result?.message ?? "Unknown error");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[ERROR] Exception in DeleteToolAsync: {ex.Message}");
+                return (false, "Lỗi khi xóa tool");
+            }
+        }
+
+
+        public async Task<(bool success, string message)> AddToolAsync(
+    string token,
+    string name,
+    string descript,
+    string iconURL,
+    string access_level,
+    string dllPath,
+    string idToolType
+)
+        {
+            try
+            {
+                string url = $"{BaseUrl}/tool/add"; // khớp với route backend
+                Debug.WriteLine($"[DEBUG] Calling API: {url}");
+
+                var requestBody = new
+                {
+                    name = name,
+                    descript = descript,
+                    iconURL = iconURL,
+                    access_level = access_level,
+                    dllPath = dllPath,
+                    idToolType = idToolType
+                };
+
+                var jsonContent = new StringContent(
+                    JsonSerializer.Serialize(requestBody),
+                    Encoding.UTF8,
+                    "application/json"
+                );
+
+                var request = new HttpRequestMessage(HttpMethod.Post, url)
+                {
+                    Content = jsonContent
+                };
+                request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                HttpResponseMessage response = await _httpClient.SendAsync(request);
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                Debug.WriteLine($"[DEBUG] Response Status: {response.StatusCode}");
+                Debug.WriteLine($"[DEBUG] Response Content: {responseContent}");
+
+                var result = JsonSerializer.Deserialize<BaseResponse<object>>(responseContent, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+                if (result != null && result.success)
+                {
+                    return (true, result.message);
+                }
+
+                return (false, result?.message ?? "Unknown error");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[ERROR] Exception in AddToolAsync: {ex.Message}");
+                return (false, "Lỗi khi thêm công cụ");
+            }
+        }
 
 
 

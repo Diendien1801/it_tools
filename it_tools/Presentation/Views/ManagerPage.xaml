@@ -12,6 +12,48 @@
     <ScrollViewer>
         <StackPanel Padding="20" Spacing="20">
 
+            <StackPanel Margin="0,30,0,0" Padding="10" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" CornerRadius="10">
+                <TextBlock Text="Thêm công cụ mới" FontSize="20" FontWeight="Bold" Margin="0,0,0,10" />
+
+                <!-- Tên công cụ -->
+                <TextBlock Text="Tên công cụ:"/>
+                <TextBox x:Name="ToolNameTextBox" PlaceholderText="Nhập tên tool" Margin="0,5,0,10"/>
+
+                <!-- Mô tả -->
+                <TextBlock Text="Mô tả:"/>
+                <TextBox x:Name="ToolDescriptionTextBox" PlaceholderText="Nhập mô tả tool" Margin="0,5,0,10"/>
+                
+                <!-- Tool type -->
+                <TextBlock Text="Loại công cụ:" />
+                <ComboBox x:Name="ToolTypeComboBox"
+                    ItemsSource="{x:Bind ViewModel.ToolCategories, Mode=OneWay}"
+                    SelectedItem="{x:Bind ViewModel.SelectedToolCategory, Mode=TwoWay}"
+                    DisplayMemberPath="name"
+                     Width="200"
+                    Margin="0,5,0,10"/>
+                <!-- Loại quyền truy cập -->
+                <TextBlock Text="Quyền truy cập:"/>
+                <ComboBox x:Name="AccessLevelComboBox" Width="200" Margin="0,5,0,10">
+                    <ComboBoxItem Content="user" />
+                    <ComboBoxItem Content="premium" />
+                    <ComboBoxItem Content="anonymous" />
+                </ComboBox>
+
+                <!-- Chọn file DLL -->
+                <TextBlock Text="Chọn file DLL:"/>
+                <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,5,0,10">
+                    <TextBox x:Name="DllPathTextBox" IsReadOnly="True" Width="300"/>
+                    <Button Content="Chọn file" Click="BrowseDll_Click"/>
+                </StackPanel>
+
+                <!-- Icon URL -->
+                <TextBlock Text="Icon URL (nếu có):"/>
+                <TextBox x:Name="IconUrlTextBox" PlaceholderText="https://example.com/icon.png" Margin="0,5,0,10"/>
+
+                <!-- Nút Thêm -->
+                <Button Content="Thêm công cụ" Click="AddTool_Click" Background="Green" Foreground="White" />
+            </StackPanel>
+
             <!-- Danh sách Upgrade Requests -->
             <TextBlock Text="Danh sách yêu cầu nâng cấp" FontSize="20" FontWeight="Bold"/>
             <ListView x:Name="RequestListView"
@@ -62,6 +104,8 @@
                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                     <Button Content="Enable" Tag="{x:Bind idTool}" Margin="0,0,10,0" Click="EnableTool_Click"/>
                                     <Button Content="Disable" Tag="{x:Bind idTool}" Click="DisableTool_Click"/>
+                                    <Button Content="Delete" Tag="{x:Bind idTool}" Click="DeleteTool_Click"/>
+
                                 </StackPanel>
                             </StackPanel>
                         </Border>

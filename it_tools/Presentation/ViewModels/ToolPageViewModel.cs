@@ -97,17 +97,21 @@ namespace it_tools.Presentation.ViewModels
 
             //  Cập nhật danh sách gốc ban đầu
             AllTools = tools.ToList();
-
+            
             //  Load danh sách yêu thích từ API
             await LoadFavouriteTools();
-
+            if (idToolType == "-1")
+            {
+                AllTools = FavouriteTools;
+            }
             //  Gắn cờ isFavourite cho từng tool
             foreach (var tool in AllTools)
             {
                 tool.isFavourite = FavouriteTools.Any(fav => fav.idTool == tool.idTool);
             }
-
-            //  Cập nhật UI
+            
+              
+                //  Cập nhật UI
             Tools.Clear();
             foreach (var tool in AllTools)
             {
@@ -133,18 +137,6 @@ namespace it_tools.Presentation.ViewModels
         // Kiểm tra level của user hiện tại và level của tool
         public async Task<bool> IsUserLevelSufficient(string toolLevel)
         {
-            if (_authViewModel.token == null)
-            {
-                return false;
-            }
-
-            var (success, message, account) = await _accountRepository.GetAccountInfoAsync(_authViewModel.token);
-
-            if (!success || account == null)
-            {
-                return false;
-            }
-
             // Định nghĩa thứ tự cấp độ truy cập
             var levelOrder = new Dictionary<string, int>
     {
@@ -153,15 +145,40 @@ namespace it_tools.Presentation.ViewModels
         { "premium", 2 }
     };
 
-            // Lấy cấp độ user và tool (mặc định nếu null thì là anonymous)
-            string userLevel = account.level?.ToLower() ?? "anonymous";
+            // Lấy cấp độ yêu cầu của tool (mặc định anonymous)
             toolLevel = toolLevel?.ToLower() ?? "anonymous";
-
-            int userValue = levelOrder.ContainsKey(userLevel) ? levelOrder[userLevel] : 0;
             int toolValue = levelOrder.ContainsKey(toolLevel) ? levelOrder[toolLevel] : 0;
+
+            // Nếu chưa đăng nhập, chỉ cho phép tool anonymous
+            if (_authViewModel.token == null)
+            {
+                return toolValue == 0;
+            }
+
+            var (success, _, account) = await _accountRepository.GetAccountInfoAsync(_authViewModel.token);
+
+            if (!success || account == null)
+            {
+                return toolValue == 0;
+            }
+
+            string userLevel = account.level?.ToLower() ?? "anonymous";
+            int userValue = levelOrder.ContainsKey(userLevel) ? levelOrder[userLevel] : 0;
 
             return userValue >= toolValue;
         }
+        public async Task<bool> IsUserAuthenticated()
+        {
+            if (_authViewModel.token == null)
+            {
+                return false;
+            }
+
+            var (success, _, account) = await _accountRepository.GetAccountInfoAsync(_authViewModel.token);
+
+            return success && account != null;
+        }
 
     }
+
 }

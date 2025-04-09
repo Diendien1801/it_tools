@@ -7,7 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     mc:Ignorable="d"
-    Background="AliceBlue"
+    Background="White"
     >
 
     <Grid
@@ -15,36 +15,100 @@
         >
         <NavigationView x:Name="NavView"
                        
-            MenuItemsSource="{x:Bind ViewModel.ToolCategories, Mode=OneWay}"
+            MenuItemsSource="{Binding ToolCategories, Mode=OneWay}"
             SelectionChanged="NavView_SelectionChanged">
 
             <!-- Thêm thanh tìm kiếm vào Header -->
             <NavigationView.Header>
                 <AutoSuggestBox x:Name="SearchBox"
-                                
-                    PlaceholderText="Tìm kiếm..."
-                    TextChanged="SearchBox_TextChanged"
-                    GotFocus="SearchBox_Nav"    
-                                />
+                PlaceholderText="Tìm kiếm..."
+                TextChanged="SearchBox_TextChanged"
+                GotFocus="SearchBox_Nav"
+                Width="600"
+                
+                Background="White"
+                BorderBrush="LightSlateGray"
+                BorderThickness="1"
+                FocusVisualPrimaryBrush="CornflowerBlue"/>
+
             </NavigationView.Header>
 
             <NavigationView.MenuItemTemplate>
                 <DataTemplate x:DataType="local1:ToolCategory">
-                    <NavigationViewItem Content="{x:Bind name}" Tag="{x:Bind idToolType}" />
+                    <NavigationViewItem Content="{x:Bind name}" Tag="{x:Bind idToolType}">
+                        <NavigationViewItem.Style>
+                            <Style TargetType="NavigationViewItem">
+                                <!-- Mặc định -->
+                                <Setter Property="Background" Value="White" />
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="BorderBrush" Value="White" />
+                                <Setter Property="BorderThickness" Value="1" />
+
+                                <!-- VisualStateManager -->
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="NavigationViewItem">
+                                            <Grid Background="{TemplateBinding Background}">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <!-- Trạng thái mặc định -->
+                                                        <VisualState x:Name="Normal" />
+
+                                                        <!-- Trạng thái được chọn -->
+                                                        <VisualState x:Name="Selected">
+                                                            <VisualState.Setters>
+                                                                <Setter Target="ContentPresenter.Foreground" Value="White" />
+                                                                <Setter Target="RootBorder.Background" Value="CornflowerBlue" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+
+                                                        <!-- Trạng thái hover -->
+                                                        <VisualState x:Name="PointerOver">
+                                                            <VisualState.Setters>
+                                                                <Setter Target="RootBorder.Background" Value="LightGray" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+
+                                                <!-- Bo tròn và thêm margin -->
+                                                <Border x:Name="RootBorder"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="8"
+                        Margin="8,0"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                                                    <ContentPresenter x:Name="ContentPresenter"
+                                      Content="{TemplateBinding Content}"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"
+                                      Margin="20,8,0,8" />
+                                                </Border>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </NavigationViewItem.Style>
+                    </NavigationViewItem>
                 </DataTemplate>
             </NavigationView.MenuItemTemplate>
 
             <NavigationView.PaneFooter>
-                <!-- Account -->
                 <StackPanel>
-                    <NavigationViewItem Content="Account" Tag="Account" x:Name="TaskbarAccount" Tapped="TaskbarAccount_Tapped">
+                    <!-- Account -->
+                    <NavigationViewItem Content="Account" Tag="Account" x:Name="TaskbarAccount" 
+                            Tapped="TaskbarAccount_Tapped"
+                            Visibility="{Binding IsUser, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
                         <NavigationViewItem.Icon>
                             <FontIcon Glyph="&#xEF58;" />
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
 
                     <!-- Task Management -->
-                    <NavigationViewItem Content="Task Management" Tag="TaskManagement" x:Name="TaskbarTaskManagement" Tapped="TaskbarTaskManagement_Tapped">
+                    <NavigationViewItem Content="Task Management" Tag="TaskManagement" x:Name="TaskbarTaskManagement" 
+                            Tapped="TaskbarTaskManagement_Tapped"
+                            Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
                         <NavigationViewItem.Icon>
                             <FontIcon Glyph="&#xE8FD;" />
                             <!-- clipboard icon -->

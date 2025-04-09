@@ -1,33 +1,202 @@
 <Page x:Class="it_tools.Presentation.Views.AuthPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="White">
 
-    <Grid Grid.Column="1" Padding="40">
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
-            <TextBlock Text="Start your 14-day free trial" FontSize="24" FontWeight="Bold"/>
-            <TextBlock Text="Already have an account?" FontSize="14">
-                <Run Text=" "/>
-                <Hyperlink Click="LoginLink_Click">Login</Hyperlink>
-            </TextBlock>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="600"/>
+        </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="ErrorTextBlock" Foreground="Red" Visibility="Collapsed"/>
-            <TextBlock x:Name="SuccessTextBlock" Foreground="Green" Visibility="Collapsed"/>
+        <!-- Left Side - Image Section -->
+        <Grid Grid.Column="0" Background="#0A0A0A" >
+            <Border >
+                <Grid>
+                    <Image x:Name="BackgroundImage" Source="https://i.pinimg.com/736x/de/9c/ff/de9cff062895917d84875dd58b1034c5.jpg" Stretch="UniformToFill"/>
+                    <StackPanel Margin="40" VerticalAlignment="Top">
+                        
+                        <TextBlock Text="Get" 
+                                 Foreground="White" 
+                                 FontSize="48" 
+                                 FontWeight="Light"/>
+                        <TextBlock Text="Everything" 
+                                 Foreground="White" 
+                                 FontSize="48" 
+                                 FontWeight="Light"/>
+                        <TextBlock Text="You Want" 
+                                 Foreground="White" 
+                                 FontSize="48" 
+                                 FontWeight="Light"
+                                 Margin="0,0,0,20"/>
+                        <TextBlock Text="Command Your Tech. Master Your World." 
+                                 Foreground="#808080" 
+                                 FontSize="14" 
+                                 TextWrapping="Wrap" 
+                                 MaxWidth="300"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
 
-            <!-- 🔹 Form Đăng ký -->
-            <StackPanel x:Name="RegisterForm">
-                <TextBox x:Name="EmailRegisterBox" PlaceholderText="Email address"/>
-                <PasswordBox x:Name="PasswordRegisterBox" PlaceholderText="Password"/>
-                <PasswordBox x:Name="ConfirmPasswordBox" PlaceholderText="Confirm Password"/>
-                <Button Content="Create account" Background="Green" Foreground="White" Click="RegisterButton_Click"/>
+        <!-- Right Side - Forms -->
+        <Grid Grid.Column="1" Margin="40">
+            <StackPanel VerticalAlignment="Center">
+                
+
+                <!-- Error and Success Messages -->
+                <TextBlock x:Name="ErrorTextBlock" 
+           Foreground="Red" 
+           Visibility="Collapsed"
+           Margin="0,0,0,16"
+           TextWrapping="Wrap" 
+           MaxWidth="400"/>
+                <!-- Đặt chiều rộng tối đa -->
+
+                <TextBlock x:Name="SuccessTextBlock" 
+           Foreground="Green" 
+           Visibility="Collapsed"
+           Margin="0,0,0,16"
+           TextWrapping="Wrap" 
+           MaxWidth="400"/>
+                <!-- Đặt chiều rộng tối đa -->
+
+                <!-- Register Form -->
+                <StackPanel x:Name="RegisterForm">
+                    <TextBlock Text="Let's start" 
+                             FontSize="32" 
+                             FontWeight="SemiBold" 
+                             Margin="0,0,0,8"/>
+                    
+                    <StackPanel Orientation="Horizontal" 
+                              Margin="0,0,0,40">
+                        <TextBlock Text="Already have an account?" 
+                                 Foreground="#666666"/>
+                        <TextBlock Margin="4,0,0,0">
+                            <Hyperlink Click="LoginLink_Click">Login</Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+
+                    <TextBlock Text="Email" 
+                             Margin="0,0,0,8"/>
+                    <TextBox x:Name="EmailRegisterBox" 
+                            Height="44" 
+                            Padding="12,12" 
+                            VerticalContentAlignment="Center"
+                            Background="#F8F8F8"
+                            BorderThickness="0"
+                            Margin="0,0,0,24"/>
+
+                    <TextBlock Text="Password" 
+                             Margin="0,0,0,8"/>
+                    <PasswordBox x:Name="PasswordRegisterBox" 
+                               Height="44" 
+                               Padding="12,12" 
+                               VerticalContentAlignment="Center"
+                               Background="#F8F8F8"
+                               BorderThickness="0"
+                               Margin="0,0,0,24"/>
+
+                    <TextBlock Text="Confirm Password" 
+                             Margin="0,0,0,8"/>
+                    <PasswordBox x:Name="ConfirmPasswordBox" 
+                               Height="44" 
+                                Padding="12,12" 
+                               VerticalContentAlignment="Center"
+                               Background="#F8F8F8"
+                               BorderThickness="0"
+                               Margin="0,0,0,24"/>
+
+                    <Button Content="Create account" 
+                            Height="44" 
+                            Background="Blue" 
+                            Foreground="White"
+                            Margin="0,30,0,0"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Center"
+                            Click="RegisterButton_Click"/>
+
+                    
+                </StackPanel>
+
+                <!-- Login Form -->
+                <StackPanel x:Name="LoginForm" Visibility="Collapsed">
+                    <TextBlock Text="Welcome Back" 
+                             FontSize="32" 
+                             FontWeight="SemiBold" 
+                             Margin="0,0,0,8"/>
+                    <TextBlock Text="Enter your email and password to access your account" 
+                             Foreground="#666666" 
+                             Margin="0,0,0,40"/>
+
+                    <TextBlock Text="Email" 
+                             Margin="0,0,0,8"/>
+                    <TextBox x:Name="EmailLoginBox" 
+                            Height="44" 
+                             Padding="12,12"  
+                            VerticalContentAlignment="Center"
+                            Background="#F8F8F8"
+                            BorderThickness="0"
+                            Margin="0,0,0,24"/>
+
+                    <TextBlock Text="Password" 
+                             Margin="0,0,0,8"/>
+                    <Grid>
+                        <PasswordBox x:Name="PasswordLoginBox" 
+                                   Height="44" 
+                                    Padding="12,12"  
+                                   VerticalContentAlignment="Center"
+                                   Background="#F8F8F8"
+                                   BorderThickness="0"
+                                   Margin="0,0,0,16"/>
+                        
+                    </Grid>
+
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,16" Spacing="10">
+                        <Button x:Name="LoginButton"
+            Height="44"
+            Width="100"
+            Background="Blue"
+            Foreground="White"
+            FontWeight="Bold"
+            Click="LoginButton_Click">
+                            <Grid>
+                                <!-- Text "Login" -->
+                                <TextBlock x:Name="LoginButtonText" Text="Login" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <!-- Loading spinner -->
+                                <ProgressRing x:Name="LoginProgressRing" IsActive="False" Width="20" Height="20" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </Button>
+                        <Button x:Name="GuessButton"
+        Height="44"
+        Width="100"
+        Background="Gray"
+        Foreground="White"
+        FontWeight="Bold"
+        Click="GuessButton_Click">
+                            <Grid>
+                                <!-- Text "Guess" -->
+                                <TextBlock x:Name="GuessButtonText" Text="Guess" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                                <!-- Loading spinner -->
+                                <ProgressRing x:Name="GuessProgressRing" IsActive="False" Width="20" Height="20" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </Button>
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Horizontal" 
+                              HorizontalAlignment="Center" 
+                              Margin="0,24,0,0">
+                        <TextBlock Text="Don't have an account?" 
+                                 Foreground="#666666"/>
+                        <TextBlock Margin="4,0,0,0">
+                            <Hyperlink Click="SignUpLink_Click">Sign Up</Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
-
-            <!-- 🔹 Form Đăng nhập (Ẩn ban đầu) -->
-            <StackPanel x:Name="LoginForm" Visibility="Collapsed">
-                <TextBox x:Name="EmailLoginBox" PlaceholderText="Email address"/>
-                <PasswordBox x:Name="PasswordLoginBox" PlaceholderText="Password"/>
-                <Button Content="Login" Click="LoginButton_Click"/>
-            </StackPanel>
-        </StackPanel>
+        </Grid>
     </Grid>
-
-</Page>
+</Page> 

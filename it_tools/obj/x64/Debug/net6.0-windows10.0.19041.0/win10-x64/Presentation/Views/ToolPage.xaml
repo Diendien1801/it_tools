@@ -18,26 +18,40 @@
                     <ItemsWrapGrid Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
+            <!-- Style để ẩn hiệu ứng hover -->
+            
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border Background="CornflowerBlue" CornerRadius="12" Padding="10" Margin="5" Width="300" Height="200">
-                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <!-- N�t tr�i tim -->
-                            <Button x:ConnectionId='5'                               Background="Transparent" Tag="{Binding}">
+                    <Border Background="#66D0E8FF" CornerRadius="12" Padding="10" Margin="5" Width="300" Height="200" BorderBrush="CornflowerBlue" BorderThickness="2">
+                        <Grid>
+                            <!-- Nút trái tim góc phải trên -->
+                            <Button x:ConnectionId='5'                               Tag="{Binding}" 
+                    HorizontalAlignment="Right" VerticalAlignment="Top" 
+                    Margin="5" BorderThickness="0" Background="Transparent">
                                 <FontIcon Glyph="{Binding isFavourite, Converter={StaticResource HeartIconConverter}}" 
-              FontSize="24" 
-              Foreground="{Binding isFavourite, Converter={StaticResource HeartColorConverter}}"/>
+                          FontSize="24" 
+                          Foreground="{Binding isFavourite, Converter={StaticResource HeartColorConverter}}"/>
                             </Button>
 
+                            <!-- Tag access_level nằm ngay dưới trái tim -->
+                            <TextBlock Text="{Binding access_level}" 
+                       FontSize="14" 
+                       FontWeight="Bold" 
+                       HorizontalAlignment="Right" 
+                       VerticalAlignment="Top"
+                       Margin="5,35,5,0"
+                       Foreground="{Binding access_level, Converter={StaticResource AccessLevelColorConverter}}"/>
 
-                            <FontIcon Glyph="&#x1F4C2;" FontSize="30" Foreground="White" Margin="0,0,0,10"/>
-                            <TextBlock Text="{Binding name}" FontSize="18" FontWeight="Bold" Foreground="White" TextAlignment="Center"/>
-                            <TextBlock Text="{Binding descript}" Foreground="LightGray" TextWrapping="Wrap" FontSize="14" TextAlignment="Center"/>
-
-                            
-                        </StackPanel>
+                            <!-- Nội dung chính -->
+                            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,20,10,10">
+                                <Image Source="{Binding iconURL}" Margin="0,0,0,10" HorizontalAlignment="Left" Width="40" Height="40" />
+                                <TextBlock Text="{Binding name}" FontSize="18" FontWeight="Bold" Foreground="Black" TextAlignment="Left" HorizontalAlignment="Left"/>
+                                <TextBlock Text="{Binding descript}" Foreground="Gray" TextWrapping="Wrap" FontSize="14" TextAlignment="Left" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </Grid>
                     </Border>
                 </DataTemplate>
+
             </ListView.ItemTemplate>
         </ListView>
 

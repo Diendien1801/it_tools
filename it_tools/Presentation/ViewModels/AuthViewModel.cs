@@ -1,5 +1,6 @@
 ﻿using it_tools.DataAccess.Models;
 using it_tools.DataAccess.Repositories;
+using it_tools.Presentation.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,10 +13,12 @@ namespace it_tools.Presentation.ViewModels
     public class AuthViewModel
     {
         private readonly AuthRepository _authRepository;
+        private readonly AccountRepository _accountRepository;
         public  string token { get; private set; }
         public AuthViewModel()
         {
             _authRepository = new AuthRepository();
+            _accountRepository = new AccountRepository();
             token = string.Empty;
         }
 
@@ -25,6 +28,7 @@ namespace it_tools.Presentation.ViewModels
         public async Task<(bool success, string message)> RegisterAsync(string username, string password)
         {
             var result = await _authRepository.RegisterAsync(username, password);
+            
             return result;
         }
 
@@ -41,6 +45,16 @@ namespace it_tools.Presentation.ViewModels
             {
                 token = result.token;
                 Debug.WriteLine($"[LoginAsync] Lưu token: {token}");
+                var (success, message, user) = await _accountRepository.GetAccountInfoAsync(token);
+                if(user.role == "user")
+                {
+                    HomePage.ViewModel.IsUser = true;
+                }
+                else if( user.role == "admin")
+                {
+                    HomePage.ViewModel.IsUser = true;
+                    HomePage.ViewModel.IsAdmin = true;
+                }
             }
             else
             {

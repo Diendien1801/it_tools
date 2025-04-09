@@ -1,27 +1,78 @@
 ﻿using it_tools.DataAccess.Models;
 using it_tools.DataAccess.Repositories;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace it_tools.Presentation.ViewModels
 {
-    public class ManagementViewModel
+    public class ManagementViewModel : INotifyPropertyChanged
     {
         private readonly ManagementRepository _repository;
         private readonly AuthViewModel _authViewModel;
+        private readonly NavigationViewModel _navigationViewModel;
 
         public ObservableCollection<UpgradeRequest> Requests { get; set; }
         public ObservableCollection<Tool> Tools { get; set; } // Thêm danh sách tools
 
-        public ManagementViewModel(AuthViewModel authViewModel)
+        public ObservableCollection<ToolCategory> ToolCategories { get; set; }
+        private ToolCategory _selectedToolCategory;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        public ToolCategory SelectedToolCategory
+        {
+            get => _selectedToolCategory;
+            set
+            {
+                if (_selectedToolCategory != value)
+                {
+                    _selectedToolCategory = value;
+                    OnPropertyChanged(nameof(SelectedToolCategory));
+                }
+            }
+        }
+        public ManagementViewModel(AuthViewModel authViewModel, NavigationViewModel navigationViewModel)
         {
             _repository = new ManagementRepository();
             _authViewModel = authViewModel;
+            _navigationViewModel = navigationViewModel;
             Requests = new ObservableCollection<UpgradeRequest>();
             Tools = new ObservableCollection<Tool>();
+            ToolCategories = new ObservableCollection<ToolCategory>();
+            ToolCategories = navigationViewModel.ToolCategories; 
+
+        }
+
+
+        public async Task<(bool success, string message)> DeleteToolAsync(string idTool)
+        {
+            try
+            {
+                string token = _authViewModel.token;
+                var result = await _repository.DeleteToolAsync(token, idTool);
+
+                if (result.success)
+                {
+                    // Xóa khỏi danh sách hiển thị
+                    var toolToRemove = Tools.FirstOrDefault(t => t.idTool == idTool);
+                    if (toolToRemove != null)
+                    {
+                        Tools.Remove(toolToRemove);
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Lỗi khi xóa tool: {ex.Message}");
+            }
         }
 
         public async Task<bool> LoadRequestsAsync()
@@ -198,6 +249,52 @@ namespace it_tools.Presentation.ViewModels
                 Debug.WriteLine($"[INFO] Tool {idTool} accessLevel updated to {newAccessLevel}");
             }
         }
+
+        public async Task<(bool success, string message)> AddToolAsync(
+    string name,
+    string descript,
+    string iconURL,
+    string access_level,
+    string dllPath,
+    string idToolType
+)
+        {
+            if (string.IsNullOrEmpty(_authViewModel.token))
+            {
+                return (false, "Bạn cần đăng nhập để thực hiện chức năng này");
+            }
+
+            try
+            {
+                var (success, message) = await _repository.AddToolAsync(
+                    _authViewModel.token,
+                    name,
+                    descript,
+                    iconURL,
+                    access_level,
+                    dllPath,
+                    idToolType
+                );
+
+                if (success)
+                {
+                    // load lại tool
+                    await LoadToolsAsync();
+                    Debug.WriteLine($"[INFO] AddToolAsync: Tool added thành công");
+                }
+                else
+                {
+                    Debug.WriteLine($"[ERROR] AddToolAsync: {message}");
+                }
+
+                return (success, message);
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Lỗi khi thêm tool: {ex.Message}");
+            }
+        }
+        
 
 
 

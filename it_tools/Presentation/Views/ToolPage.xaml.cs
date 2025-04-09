@@ -77,31 +77,21 @@ namespace it_tools.Presentation.Views
 
 
         private async void OnFavoriteButtonClick(object sender, RoutedEventArgs e)
+{
+    if (sender is Button button && button.Tag is Tool selectedTool)
+    {
+        bool isAllowed = await ViewModel.IsUserAuthenticated();
+
+        if (!isAllowed)
         {
-            Debug.WriteLine("🟢 OnFavoriteButtonClick triggered");
-
-            if (sender is Button button)
-            {
-                Debug.WriteLine($"🔍 Button found, Tag: {button.Tag}");
-
-                if (button.Tag is Tool selectedTool)
-                {
-                    Debug.WriteLine($"📌 Selected Tool: {selectedTool.name} (ID: {selectedTool.idTool}, isFavourite: {selectedTool.isFavourite})");
-
-                    await ViewModel.UpdateFavoriteStatus(selectedTool);
-
-                    Debug.WriteLine($"✅ Finished updating favorite status for {selectedTool.name}");
-                }
-                else
-                {
-                    Debug.WriteLine("❌ ERROR: Tag is not a Tool object!");
-                }
-            }
-            else
-            {
-                Debug.WriteLine("❌ ERROR: Sender is not a Button!");
-            }
+            await ShowMessageDialog("Bạn cần đăng nhập hoặc nâng cấp tài khoản để sử dụng chức năng này.", "Truy cập bị hạn chế");
+            return;
         }
+
+        await ViewModel.UpdateFavoriteStatus(selectedTool);
+    }
+}
+
 
         private async Task ShowMessageDialog(string content, string title)
         {
