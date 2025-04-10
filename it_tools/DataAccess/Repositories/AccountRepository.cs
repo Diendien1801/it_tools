@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -15,7 +16,8 @@ namespace it_tools.DataAccess.Repositories
     {
         private readonly HttpClient _httpClient;
         private const string BaseUrl = "http://localhost:5000/api/account";
-        
+        private readonly string _pluginPath = "C:/Users/dient/source/repos/it_tools/it_tools/";
+
 
         public AccountRepository()
         {
@@ -76,7 +78,23 @@ namespace it_tools.DataAccess.Repositories
 
                 if (result != null && result.success)
                 {
-                    Debug.WriteLine($"[GetFavoriteToolsAsync] Số lượng tool yêu thích: {result.data.Count}");
+                    foreach (var tool in result.data)
+                    {
+                        if (!string.IsNullOrEmpty(tool.dllPath))
+                        {
+                            tool.dllPath = Path.Combine(_pluginPath, tool.dllPath);
+                            Debug.WriteLine($"🔹 Plugin Path for {tool.name}: {tool.dllPath}");
+
+                            if (File.Exists(tool.dllPath))
+                            {
+                                tool.LoadPlugin();
+                            }
+                            else
+                            {
+                                Debug.WriteLine($"❌ Plugin not found at: {tool.dllPath}");
+                            }
+                        }
+                    }
                     return (true, result.message, result.data);
                 }
 

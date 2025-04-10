@@ -224,111 +224,121 @@ namespace it_tools.it_tools_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[51];
+            _typeNameTable = new string[56];
             _typeNameTable[0] = "Microsoft.UI.Xaml.Controls.XamlControlsResources";
             _typeNameTable[1] = "Microsoft.UI.Xaml.ResourceDictionary";
             _typeNameTable[2] = "Object";
             _typeNameTable[3] = "Boolean";
             _typeNameTable[4] = "it_tools.Converter.HeartColorConverter";
-            _typeNameTable[5] = "it_tools.Converter.HeartIconConverter";
-            _typeNameTable[6] = "it_tools.Converter.BooleanToVisibilityConverter";
-            _typeNameTable[7] = "it_tools.Converter.AccessLevelColorConverter";
-            _typeNameTable[8] = "it_tools.MainWindow";
-            _typeNameTable[9] = "Microsoft.UI.Xaml.Window";
-            _typeNameTable[10] = "it_tools.Presentation.Views.AccountPage";
-            _typeNameTable[11] = "Microsoft.UI.Xaml.Controls.Page";
-            _typeNameTable[12] = "Microsoft.UI.Xaml.Controls.UserControl";
-            _typeNameTable[13] = "Microsoft.UI.Xaml.Controls.ProgressRing";
-            _typeNameTable[14] = "Microsoft.UI.Xaml.Controls.Control";
-            _typeNameTable[15] = "Double";
-            _typeNameTable[16] = "Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings";
-            _typeNameTable[17] = "Microsoft.UI.Xaml.DependencyObject";
-            _typeNameTable[18] = "it_tools.Presentation.Views.AuthPage";
-            _typeNameTable[19] = "Microsoft.UI.Xaml.Controls.NavigationView";
-            _typeNameTable[20] = "Microsoft.UI.Xaml.Controls.ContentControl";
-            _typeNameTable[21] = "Microsoft.UI.Xaml.DataTemplate";
-            _typeNameTable[22] = "Microsoft.UI.Xaml.UIElement";
-            _typeNameTable[23] = "Microsoft.UI.Xaml.Controls.AutoSuggestBox";
-            _typeNameTable[24] = "Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode";
-            _typeNameTable[25] = "System.Enum";
-            _typeNameTable[26] = "System.ValueType";
-            _typeNameTable[27] = "System.Collections.Generic.IList`1<Object>";
-            _typeNameTable[28] = "Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible";
-            _typeNameTable[29] = "Microsoft.UI.Xaml.Style";
-            _typeNameTable[30] = "Microsoft.UI.Xaml.Controls.StyleSelector";
-            _typeNameTable[31] = "Microsoft.UI.Xaml.Controls.DataTemplateSelector";
-            _typeNameTable[32] = "Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode";
-            _typeNameTable[33] = "Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode";
-            _typeNameTable[34] = "String";
-            _typeNameTable[35] = "Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus";
-            _typeNameTable[36] = "Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled";
-            _typeNameTable[37] = "Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings";
-            _typeNameTable[38] = "Microsoft.UI.Xaml.Controls.NavigationViewItem";
-            _typeNameTable[39] = "Microsoft.UI.Xaml.Controls.NavigationViewItemBase";
-            _typeNameTable[40] = "Microsoft.UI.Xaml.Controls.IconElement";
-            _typeNameTable[41] = "Microsoft.UI.Xaml.Controls.InfoBadge";
-            _typeNameTable[42] = "it_tools.Presentation.Views.HomePage";
-            _typeNameTable[43] = "it_tools.Presentation.Views.ManagerPage";
-            _typeNameTable[44] = "it_tools.Presentation.ViewModels.ManagementViewModel";
-            _typeNameTable[45] = "it_tools.Presentation.Views.ToolDetailPage";
-            _typeNameTable[46] = "it_tools.Presentation.Views.ToolPage";
-            _typeNameTable[47] = "it_tools.Presentation.ViewModels.ToolPageViewModel";
-            _typeNameTable[48] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
-            _typeNameTable[49] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
-            _typeNameTable[50] = "Int32";
+            _typeNameTable[5] = "it_tools.Converter.DateTimeConverter1";
+            _typeNameTable[6] = "it_tools.Converter.HeartIconConverter";
+            _typeNameTable[7] = "it_tools.Converter.BooleanToVisibilityConverter";
+            _typeNameTable[8] = "it_tools.Converter.AccessLevelColorConverter";
+            _typeNameTable[9] = "it_tools.Converter.StatusColorConverter";
+            _typeNameTable[10] = "it_tools.Converter.StatusToVisibilityConverter";
+            _typeNameTable[11] = "it_tools.Converter.StatusToBackgroundConverter";
+            _typeNameTable[12] = "it_tools.Converter.StatusToBorderBrushConverter";
+            _typeNameTable[13] = "it_tools.MainWindow";
+            _typeNameTable[14] = "Microsoft.UI.Xaml.Window";
+            _typeNameTable[15] = "it_tools.Presentation.Views.AccountPage";
+            _typeNameTable[16] = "Microsoft.UI.Xaml.Controls.Page";
+            _typeNameTable[17] = "Microsoft.UI.Xaml.Controls.UserControl";
+            _typeNameTable[18] = "Microsoft.UI.Xaml.Controls.ProgressRing";
+            _typeNameTable[19] = "Microsoft.UI.Xaml.Controls.Control";
+            _typeNameTable[20] = "Double";
+            _typeNameTable[21] = "Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings";
+            _typeNameTable[22] = "Microsoft.UI.Xaml.DependencyObject";
+            _typeNameTable[23] = "it_tools.Presentation.Views.AuthPage";
+            _typeNameTable[24] = "Microsoft.UI.Xaml.Controls.NavigationView";
+            _typeNameTable[25] = "Microsoft.UI.Xaml.Controls.ContentControl";
+            _typeNameTable[26] = "Microsoft.UI.Xaml.DataTemplate";
+            _typeNameTable[27] = "Microsoft.UI.Xaml.UIElement";
+            _typeNameTable[28] = "Microsoft.UI.Xaml.Controls.AutoSuggestBox";
+            _typeNameTable[29] = "Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode";
+            _typeNameTable[30] = "System.Enum";
+            _typeNameTable[31] = "System.ValueType";
+            _typeNameTable[32] = "System.Collections.Generic.IList`1<Object>";
+            _typeNameTable[33] = "Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible";
+            _typeNameTable[34] = "Microsoft.UI.Xaml.Style";
+            _typeNameTable[35] = "Microsoft.UI.Xaml.Controls.StyleSelector";
+            _typeNameTable[36] = "Microsoft.UI.Xaml.Controls.DataTemplateSelector";
+            _typeNameTable[37] = "Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode";
+            _typeNameTable[38] = "Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode";
+            _typeNameTable[39] = "String";
+            _typeNameTable[40] = "Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus";
+            _typeNameTable[41] = "Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled";
+            _typeNameTable[42] = "Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings";
+            _typeNameTable[43] = "Microsoft.UI.Xaml.Controls.NavigationViewItem";
+            _typeNameTable[44] = "Microsoft.UI.Xaml.Controls.NavigationViewItemBase";
+            _typeNameTable[45] = "Microsoft.UI.Xaml.Controls.IconElement";
+            _typeNameTable[46] = "Microsoft.UI.Xaml.Controls.InfoBadge";
+            _typeNameTable[47] = "it_tools.Presentation.Views.HomePage";
+            _typeNameTable[48] = "it_tools.Presentation.Views.ManagerPage";
+            _typeNameTable[49] = "it_tools.Presentation.ViewModels.ManagementViewModel";
+            _typeNameTable[50] = "it_tools.Presentation.Views.ToolDetailPage";
+            _typeNameTable[51] = "it_tools.Presentation.Views.ToolPage";
+            _typeNameTable[52] = "it_tools.Presentation.ViewModels.ToolPageViewModel";
+            _typeNameTable[53] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
+            _typeNameTable[54] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
+            _typeNameTable[55] = "Int32";
 
-            _typeTable = new global::System.Type[51];
+            _typeTable = new global::System.Type[56];
             _typeTable[0] = typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources);
             _typeTable[1] = typeof(global::Microsoft.UI.Xaml.ResourceDictionary);
             _typeTable[2] = typeof(global::System.Object);
             _typeTable[3] = typeof(global::System.Boolean);
             _typeTable[4] = typeof(global::it_tools.Converter.HeartColorConverter);
-            _typeTable[5] = typeof(global::it_tools.Converter.HeartIconConverter);
-            _typeTable[6] = typeof(global::it_tools.Converter.BooleanToVisibilityConverter);
-            _typeTable[7] = typeof(global::it_tools.Converter.AccessLevelColorConverter);
-            _typeTable[8] = typeof(global::it_tools.MainWindow);
-            _typeTable[9] = typeof(global::Microsoft.UI.Xaml.Window);
-            _typeTable[10] = typeof(global::it_tools.Presentation.Views.AccountPage);
-            _typeTable[11] = typeof(global::Microsoft.UI.Xaml.Controls.Page);
-            _typeTable[12] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
-            _typeTable[13] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressRing);
-            _typeTable[14] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
-            _typeTable[15] = typeof(global::System.Double);
-            _typeTable[16] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings);
-            _typeTable[17] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
-            _typeTable[18] = typeof(global::it_tools.Presentation.Views.AuthPage);
-            _typeTable[19] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationView);
-            _typeTable[20] = typeof(global::Microsoft.UI.Xaml.Controls.ContentControl);
-            _typeTable[21] = typeof(global::Microsoft.UI.Xaml.DataTemplate);
-            _typeTable[22] = typeof(global::Microsoft.UI.Xaml.UIElement);
-            _typeTable[23] = typeof(global::Microsoft.UI.Xaml.Controls.AutoSuggestBox);
-            _typeTable[24] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode);
-            _typeTable[25] = typeof(global::System.Enum);
-            _typeTable[26] = typeof(global::System.ValueType);
-            _typeTable[27] = typeof(global::System.Collections.Generic.IList<global::System.Object>);
-            _typeTable[28] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible);
-            _typeTable[29] = typeof(global::Microsoft.UI.Xaml.Style);
-            _typeTable[30] = typeof(global::Microsoft.UI.Xaml.Controls.StyleSelector);
-            _typeTable[31] = typeof(global::Microsoft.UI.Xaml.Controls.DataTemplateSelector);
-            _typeTable[32] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode);
-            _typeTable[33] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode);
-            _typeTable[34] = typeof(global::System.String);
-            _typeTable[35] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus);
-            _typeTable[36] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled);
-            _typeTable[37] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings);
-            _typeTable[38] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItem);
-            _typeTable[39] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItemBase);
-            _typeTable[40] = typeof(global::Microsoft.UI.Xaml.Controls.IconElement);
-            _typeTable[41] = typeof(global::Microsoft.UI.Xaml.Controls.InfoBadge);
-            _typeTable[42] = typeof(global::it_tools.Presentation.Views.HomePage);
-            _typeTable[43] = typeof(global::it_tools.Presentation.Views.ManagerPage);
-            _typeTable[44] = typeof(global::it_tools.Presentation.ViewModels.ManagementViewModel);
-            _typeTable[45] = typeof(global::it_tools.Presentation.Views.ToolDetailPage);
-            _typeTable[46] = typeof(global::it_tools.Presentation.Views.ToolPage);
-            _typeTable[47] = typeof(global::it_tools.Presentation.ViewModels.ToolPageViewModel);
-            _typeTable[48] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
-            _typeTable[49] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
-            _typeTable[50] = typeof(global::System.Int32);
+            _typeTable[5] = typeof(global::it_tools.Converter.DateTimeConverter1);
+            _typeTable[6] = typeof(global::it_tools.Converter.HeartIconConverter);
+            _typeTable[7] = typeof(global::it_tools.Converter.BooleanToVisibilityConverter);
+            _typeTable[8] = typeof(global::it_tools.Converter.AccessLevelColorConverter);
+            _typeTable[9] = typeof(global::it_tools.Converter.StatusColorConverter);
+            _typeTable[10] = typeof(global::it_tools.Converter.StatusToVisibilityConverter);
+            _typeTable[11] = typeof(global::it_tools.Converter.StatusToBackgroundConverter);
+            _typeTable[12] = typeof(global::it_tools.Converter.StatusToBorderBrushConverter);
+            _typeTable[13] = typeof(global::it_tools.MainWindow);
+            _typeTable[14] = typeof(global::Microsoft.UI.Xaml.Window);
+            _typeTable[15] = typeof(global::it_tools.Presentation.Views.AccountPage);
+            _typeTable[16] = typeof(global::Microsoft.UI.Xaml.Controls.Page);
+            _typeTable[17] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
+            _typeTable[18] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressRing);
+            _typeTable[19] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
+            _typeTable[20] = typeof(global::System.Double);
+            _typeTable[21] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings);
+            _typeTable[22] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
+            _typeTable[23] = typeof(global::it_tools.Presentation.Views.AuthPage);
+            _typeTable[24] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationView);
+            _typeTable[25] = typeof(global::Microsoft.UI.Xaml.Controls.ContentControl);
+            _typeTable[26] = typeof(global::Microsoft.UI.Xaml.DataTemplate);
+            _typeTable[27] = typeof(global::Microsoft.UI.Xaml.UIElement);
+            _typeTable[28] = typeof(global::Microsoft.UI.Xaml.Controls.AutoSuggestBox);
+            _typeTable[29] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode);
+            _typeTable[30] = typeof(global::System.Enum);
+            _typeTable[31] = typeof(global::System.ValueType);
+            _typeTable[32] = typeof(global::System.Collections.Generic.IList<global::System.Object>);
+            _typeTable[33] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible);
+            _typeTable[34] = typeof(global::Microsoft.UI.Xaml.Style);
+            _typeTable[35] = typeof(global::Microsoft.UI.Xaml.Controls.StyleSelector);
+            _typeTable[36] = typeof(global::Microsoft.UI.Xaml.Controls.DataTemplateSelector);
+            _typeTable[37] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode);
+            _typeTable[38] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode);
+            _typeTable[39] = typeof(global::System.String);
+            _typeTable[40] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus);
+            _typeTable[41] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled);
+            _typeTable[42] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings);
+            _typeTable[43] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItem);
+            _typeTable[44] = typeof(global::Microsoft.UI.Xaml.Controls.NavigationViewItemBase);
+            _typeTable[45] = typeof(global::Microsoft.UI.Xaml.Controls.IconElement);
+            _typeTable[46] = typeof(global::Microsoft.UI.Xaml.Controls.InfoBadge);
+            _typeTable[47] = typeof(global::it_tools.Presentation.Views.HomePage);
+            _typeTable[48] = typeof(global::it_tools.Presentation.Views.ManagerPage);
+            _typeTable[49] = typeof(global::it_tools.Presentation.ViewModels.ManagementViewModel);
+            _typeTable[50] = typeof(global::it_tools.Presentation.Views.ToolDetailPage);
+            _typeTable[51] = typeof(global::it_tools.Presentation.Views.ToolPage);
+            _typeTable[52] = typeof(global::it_tools.Presentation.ViewModels.ToolPageViewModel);
+            _typeTable[53] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
+            _typeTable[54] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
+            _typeTable[55] = typeof(global::System.Int32);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -365,22 +375,27 @@ namespace it_tools.it_tools_XamlTypeInfo
 
         private object Activate_0_XamlControlsResources() { return new global::Microsoft.UI.Xaml.Controls.XamlControlsResources(); }
         private object Activate_4_HeartColorConverter() { return new global::it_tools.Converter.HeartColorConverter(); }
-        private object Activate_5_HeartIconConverter() { return new global::it_tools.Converter.HeartIconConverter(); }
-        private object Activate_6_BooleanToVisibilityConverter() { return new global::it_tools.Converter.BooleanToVisibilityConverter(); }
-        private object Activate_7_AccessLevelColorConverter() { return new global::it_tools.Converter.AccessLevelColorConverter(); }
-        private object Activate_8_MainWindow() { return new global::it_tools.MainWindow(); }
-        private object Activate_10_AccountPage() { return new global::it_tools.Presentation.Views.AccountPage(); }
-        private object Activate_13_ProgressRing() { return new global::Microsoft.UI.Xaml.Controls.ProgressRing(); }
-        private object Activate_18_AuthPage() { return new global::it_tools.Presentation.Views.AuthPage(); }
-        private object Activate_19_NavigationView() { return new global::Microsoft.UI.Xaml.Controls.NavigationView(); }
-        private object Activate_37_NavigationViewTemplateSettings() { return new global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings(); }
-        private object Activate_38_NavigationViewItem() { return new global::Microsoft.UI.Xaml.Controls.NavigationViewItem(); }
-        private object Activate_41_InfoBadge() { return new global::Microsoft.UI.Xaml.Controls.InfoBadge(); }
-        private object Activate_42_HomePage() { return new global::it_tools.Presentation.Views.HomePage(); }
-        private object Activate_43_ManagerPage() { return new global::it_tools.Presentation.Views.ManagerPage(); }
-        private object Activate_45_ToolDetailPage() { return new global::it_tools.Presentation.Views.ToolDetailPage(); }
-        private object Activate_46_ToolPage() { return new global::it_tools.Presentation.Views.ToolPage(); }
-        private object Activate_48_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
+        private object Activate_5_DateTimeConverter1() { return new global::it_tools.Converter.DateTimeConverter1(); }
+        private object Activate_6_HeartIconConverter() { return new global::it_tools.Converter.HeartIconConverter(); }
+        private object Activate_7_BooleanToVisibilityConverter() { return new global::it_tools.Converter.BooleanToVisibilityConverter(); }
+        private object Activate_8_AccessLevelColorConverter() { return new global::it_tools.Converter.AccessLevelColorConverter(); }
+        private object Activate_9_StatusColorConverter() { return new global::it_tools.Converter.StatusColorConverter(); }
+        private object Activate_10_StatusToVisibilityConverter() { return new global::it_tools.Converter.StatusToVisibilityConverter(); }
+        private object Activate_11_StatusToBackgroundConverter() { return new global::it_tools.Converter.StatusToBackgroundConverter(); }
+        private object Activate_12_StatusToBorderBrushConverter() { return new global::it_tools.Converter.StatusToBorderBrushConverter(); }
+        private object Activate_13_MainWindow() { return new global::it_tools.MainWindow(); }
+        private object Activate_15_AccountPage() { return new global::it_tools.Presentation.Views.AccountPage(); }
+        private object Activate_18_ProgressRing() { return new global::Microsoft.UI.Xaml.Controls.ProgressRing(); }
+        private object Activate_23_AuthPage() { return new global::it_tools.Presentation.Views.AuthPage(); }
+        private object Activate_24_NavigationView() { return new global::Microsoft.UI.Xaml.Controls.NavigationView(); }
+        private object Activate_42_NavigationViewTemplateSettings() { return new global::Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings(); }
+        private object Activate_43_NavigationViewItem() { return new global::Microsoft.UI.Xaml.Controls.NavigationViewItem(); }
+        private object Activate_46_InfoBadge() { return new global::Microsoft.UI.Xaml.Controls.InfoBadge(); }
+        private object Activate_47_HomePage() { return new global::it_tools.Presentation.Views.HomePage(); }
+        private object Activate_48_ManagerPage() { return new global::it_tools.Presentation.Views.ManagerPage(); }
+        private object Activate_50_ToolDetailPage() { return new global::it_tools.Presentation.Views.ToolDetailPage(); }
+        private object Activate_51_ToolPage() { return new global::it_tools.Presentation.Views.ToolPage(); }
+        private object Activate_53_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
         private void MapAdd_0_XamlControlsResources(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.Object, global::System.Object>)instance;
@@ -388,13 +403,13 @@ namespace it_tools.it_tools_XamlTypeInfo
             var newItem = (global::System.Object)item;
             collection.Add(newKey, newItem);
         }
-        private void VectorAdd_27_IList(object instance, object item)
+        private void VectorAdd_32_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::System.Object>)instance;
             var newItem = (global::System.Object)item;
             collection.Add(newItem);
         }
-        private void VectorAdd_49_IList(object instance, object item)
+        private void VectorAdd_54_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Controls.TreeViewNode>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)item;
@@ -438,56 +453,91 @@ namespace it_tools.it_tools_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 5:   //  it_tools.Converter.HeartIconConverter
+            case 5:   //  it_tools.Converter.DateTimeConverter1
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_5_HeartIconConverter;
+                userType.Activator = Activate_5_DateTimeConverter1;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 6:   //  it_tools.Converter.BooleanToVisibilityConverter
+            case 6:   //  it_tools.Converter.HeartIconConverter
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_6_BooleanToVisibilityConverter;
+                userType.Activator = Activate_6_HeartIconConverter;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 7:   //  it_tools.Converter.AccessLevelColorConverter
+            case 7:   //  it_tools.Converter.BooleanToVisibilityConverter
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_7_AccessLevelColorConverter;
+                userType.Activator = Activate_7_BooleanToVisibilityConverter;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 8:   //  it_tools.MainWindow
+            case 8:   //  it_tools.Converter.AccessLevelColorConverter
+                userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_8_AccessLevelColorConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 9:   //  it_tools.Converter.StatusColorConverter
+                userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_9_StatusColorConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 10:   //  it_tools.Converter.StatusToVisibilityConverter
+                userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_10_StatusToVisibilityConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 11:   //  it_tools.Converter.StatusToBackgroundConverter
+                userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_11_StatusToBackgroundConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 12:   //  it_tools.Converter.StatusToBorderBrushConverter
+                userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_12_StatusToBorderBrushConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 13:   //  it_tools.MainWindow
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
-                userType.Activator = Activate_8_MainWindow;
+                userType.Activator = Activate_13_MainWindow;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 9:   //  Microsoft.UI.Xaml.Window
+            case 14:   //  Microsoft.UI.Xaml.Window
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 10:   //  it_tools.Presentation.Views.AccountPage
+            case 15:   //  it_tools.Presentation.Views.AccountPage
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_10_AccountPage;
+                userType.Activator = Activate_15_AccountPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 11:   //  Microsoft.UI.Xaml.Controls.Page
+            case 16:   //  Microsoft.UI.Xaml.Controls.Page
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 12:   //  Microsoft.UI.Xaml.Controls.UserControl
+            case 17:   //  Microsoft.UI.Xaml.Controls.UserControl
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 13:   //  Microsoft.UI.Xaml.Controls.ProgressRing
+            case 18:   //  Microsoft.UI.Xaml.Controls.ProgressRing
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
-                userType.Activator = Activate_13_ProgressRing;
+                userType.Activator = Activate_18_ProgressRing;
                 userType.AddMemberName("IsActive");
                 userType.AddMemberName("IsIndeterminate");
                 userType.AddMemberName("Maximum");
@@ -497,34 +547,34 @@ namespace it_tools.it_tools_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 14:   //  Microsoft.UI.Xaml.Controls.Control
+            case 19:   //  Microsoft.UI.Xaml.Controls.Control
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 15:   //  Double
+            case 20:   //  Double
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 16:   //  Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings
+            case 21:   //  Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 17:   //  Microsoft.UI.Xaml.DependencyObject
+            case 22:   //  Microsoft.UI.Xaml.DependencyObject
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 18:   //  it_tools.Presentation.Views.AuthPage
+            case 23:   //  it_tools.Presentation.Views.AuthPage
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_18_AuthPage;
+                userType.Activator = Activate_23_AuthPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 19:   //  Microsoft.UI.Xaml.Controls.NavigationView
+            case 24:   //  Microsoft.UI.Xaml.Controls.NavigationView
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ContentControl"));
-                userType.Activator = Activate_19_NavigationView;
+                userType.Activator = Activate_24_NavigationView;
                 userType.AddMemberName("MenuItemsSource");
                 userType.AddMemberName("Header");
                 userType.AddMemberName("MenuItemTemplate");
@@ -565,23 +615,23 @@ namespace it_tools.it_tools_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 20:   //  Microsoft.UI.Xaml.Controls.ContentControl
+            case 25:   //  Microsoft.UI.Xaml.Controls.ContentControl
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 21:   //  Microsoft.UI.Xaml.DataTemplate
+            case 26:   //  Microsoft.UI.Xaml.DataTemplate
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 22:   //  Microsoft.UI.Xaml.UIElement
+            case 27:   //  Microsoft.UI.Xaml.UIElement
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 23:   //  Microsoft.UI.Xaml.Controls.AutoSuggestBox
+            case 28:   //  Microsoft.UI.Xaml.Controls.AutoSuggestBox
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 24:   //  Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode
+            case 29:   //  Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
                 userType.AddEnumValue("Minimal", global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Minimal);
                 userType.AddEnumValue("Compact", global::Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Compact);
@@ -589,24 +639,24 @@ namespace it_tools.it_tools_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 25:   //  System.Enum
+            case 30:   //  System.Enum
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
                 xamlType = userType;
                 break;
 
-            case 26:   //  System.ValueType
+            case 31:   //  System.ValueType
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 xamlType = userType;
                 break;
 
-            case 27:   //  System.Collections.Generic.IList`1<Object>
+            case 32:   //  System.Collections.Generic.IList`1<Object>
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.CollectionAdd = VectorAdd_27_IList;
+                userType.CollectionAdd = VectorAdd_32_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 28:   //  Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible
+            case 33:   //  Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
                 userType.AddEnumValue("Collapsed", global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Collapsed);
                 userType.AddEnumValue("Visible", global::Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Visible);
@@ -614,26 +664,26 @@ namespace it_tools.it_tools_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 29:   //  Microsoft.UI.Xaml.Style
+            case 34:   //  Microsoft.UI.Xaml.Style
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 30:   //  Microsoft.UI.Xaml.Controls.StyleSelector
+            case 35:   //  Microsoft.UI.Xaml.Controls.StyleSelector
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 31:   //  Microsoft.UI.Xaml.Controls.DataTemplateSelector
+            case 36:   //  Microsoft.UI.Xaml.Controls.DataTemplateSelector
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 32:   //  Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode
+            case 37:   //  Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
                 userType.AddEnumValue("MoreLabel", global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode.MoreLabel);
                 userType.AddEnumValue("NoLabel", global::Microsoft.UI.Xaml.Controls.NavigationViewOverflowLabelMode.NoLabel);
                 xamlType = userType;
                 break;
 
-            case 33:   //  Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode
+            case 38:   //  Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
                 userType.AddEnumValue("Auto", global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Auto);
                 userType.AddEnumValue("Left", global::Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Left);
@@ -643,18 +693,18 @@ namespace it_tools.it_tools_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 34:   //  String
+            case 39:   //  String
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 35:   //  Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus
+            case 40:   //  Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
                 userType.AddEnumValue("Disabled", global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus.Disabled);
                 userType.AddEnumValue("Enabled", global::Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus.Enabled);
                 xamlType = userType;
                 break;
 
-            case 36:   //  Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled
+            case 41:   //  Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
                 userType.AddEnumValue("WhenSelectionFollowsFocus", global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled.WhenSelectionFollowsFocus);
                 userType.AddEnumValue("Always", global::Microsoft.UI.Xaml.Controls.NavigationViewShoulderNavigationEnabled.Always);
@@ -662,15 +712,15 @@ namespace it_tools.it_tools_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 37:   //  Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings
+            case 42:   //  Microsoft.UI.Xaml.Controls.NavigationViewTemplateSettings
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 38:   //  Microsoft.UI.Xaml.Controls.NavigationViewItem
+            case 43:   //  Microsoft.UI.Xaml.Controls.NavigationViewItem
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NavigationViewItemBase"));
-                userType.Activator = Activate_38_NavigationViewItem;
+                userType.Activator = Activate_43_NavigationViewItem;
                 userType.AddMemberName("Icon");
                 userType.AddMemberName("CompactPaneLength");
                 userType.AddMemberName("HasUnrealizedChildren");
@@ -683,69 +733,69 @@ namespace it_tools.it_tools_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 39:   //  Microsoft.UI.Xaml.Controls.NavigationViewItemBase
+            case 44:   //  Microsoft.UI.Xaml.Controls.NavigationViewItemBase
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ContentControl"));
                 userType.AddMemberName("IsSelected");
                 xamlType = userType;
                 break;
 
-            case 40:   //  Microsoft.UI.Xaml.Controls.IconElement
+            case 45:   //  Microsoft.UI.Xaml.Controls.IconElement
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 41:   //  Microsoft.UI.Xaml.Controls.InfoBadge
+            case 46:   //  Microsoft.UI.Xaml.Controls.InfoBadge
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 42:   //  it_tools.Presentation.Views.HomePage
+            case 47:   //  it_tools.Presentation.Views.HomePage
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_42_HomePage;
+                userType.Activator = Activate_47_HomePage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 43:   //  it_tools.Presentation.Views.ManagerPage
+            case 48:   //  it_tools.Presentation.Views.ManagerPage
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_43_ManagerPage;
+                userType.Activator = Activate_48_ManagerPage;
                 userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 44:   //  it_tools.Presentation.ViewModels.ManagementViewModel
+            case 49:   //  it_tools.Presentation.ViewModels.ManagementViewModel
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 45:   //  it_tools.Presentation.Views.ToolDetailPage
+            case 50:   //  it_tools.Presentation.Views.ToolDetailPage
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_45_ToolDetailPage;
+                userType.Activator = Activate_50_ToolDetailPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 46:   //  it_tools.Presentation.Views.ToolPage
+            case 51:   //  it_tools.Presentation.Views.ToolPage
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_46_ToolPage;
+                userType.Activator = Activate_51_ToolPage;
                 userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 47:   //  it_tools.Presentation.ViewModels.ToolPageViewModel
+            case 52:   //  it_tools.Presentation.ViewModels.ToolPageViewModel
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 48:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
+            case 53:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.Activator = Activate_48_TreeViewNode;
+                userType.Activator = Activate_53_TreeViewNode;
                 userType.AddMemberName("Children");
                 userType.AddMemberName("Content");
                 userType.AddMemberName("Depth");
@@ -757,14 +807,14 @@ namespace it_tools.it_tools_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 49:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
+            case 54:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
                 userType = new global::it_tools.it_tools_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.CollectionAdd = VectorAdd_49_IList;
+                userType.CollectionAdd = VectorAdd_54_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 50:   //  Int32
+            case 55:   //  Int32
                 xamlType = new global::it_tools.it_tools_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
             }

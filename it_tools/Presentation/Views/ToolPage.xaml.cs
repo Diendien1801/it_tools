@@ -43,7 +43,7 @@ namespace it_tools.Presentation.Views
         {
             if (e.ClickedItem is Tool selectedTool)
             {
-                Debug.WriteLine($"[DEBUG] 🔍 Tool được chọn: {selectedTool.name} (access_level = {selectedTool.access_level})");
+                Debug.WriteLine($"[DEBUG] 🔍 Tool được chọn: {selectedTool.name} (access_level = {selectedTool.access_level}, is_disabled = {selectedTool.status == "disable"})");
 
                 // Gọi hàm kiểm tra quyền trong ViewModel
                 bool hasAccess = await ViewModel.IsUserLevelSufficient(selectedTool.access_level);
@@ -54,7 +54,7 @@ namespace it_tools.Presentation.Views
                 {
                     Debug.WriteLine($"[WARNING] ❌ Không đủ quyền để truy cập tool: {selectedTool.name}");
 
-                    var dialog = new ContentDialog
+                    var deniedDialog = new ContentDialog
                     {
                         Title = "Truy cập bị từ chối",
                         Content = $"Bạn cần cấp quyền '{selectedTool.access_level}' để sử dụng công cụ này.",
@@ -62,7 +62,23 @@ namespace it_tools.Presentation.Views
                         XamlRoot = this.XamlRoot
                     };
 
-                    await dialog.ShowAsync();
+                    await deniedDialog.ShowAsync();
+                    return;
+                }
+
+                if (selectedTool.status == "disable")
+                {
+                    Debug.WriteLine($"[WARNING] 🚫 Tool đã bị vô hiệu hóa: {selectedTool.name}");
+
+                    var disabledDialog = new ContentDialog
+                    {
+                        Title = "Công cụ bị vô hiệu hóa",
+                        Content = "Công cụ này hiện đang bị vô hiệu hóa và không thể sử dụng.",
+                        CloseButtonText = "Đóng",
+                        XamlRoot = this.XamlRoot
+                    };
+
+                    await disabledDialog.ShowAsync();
                     return;
                 }
 
@@ -74,6 +90,7 @@ namespace it_tools.Presentation.Views
                 Debug.WriteLine("[ERROR] ❌ e.ClickedItem không phải là một Tool hợp lệ!");
             }
         }
+
 
 
         private async void OnFavoriteButtonClick(object sender, RoutedEventArgs e)

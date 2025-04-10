@@ -17,9 +17,15 @@
 
             <!-- Converters -->
             <converters:HeartColorConverter x:Key="HeartColorConverter"/>
+            <converters:DateTimeConverter1 x:Key="DateTimeConverter1" />
             <converters:HeartIconConverter x:Key="HeartIconConverter"/>
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <converters:AccessLevelColorConverter x:Key="AccessLevelColorConverter" />
+            <converters:StatusColorConverter x:Key="StatusColorConverter" />
+            <converters:StatusToVisibilityConverter x:Key="StatusToVisibilityConverter" />
+            <converters:StatusToBackgroundConverter x:Key="StatusToBackgroundConverter" />
+            <converters:StatusToBorderBrushConverter x:Key="StatusToBorderBrushConverter" />
+           
         </ResourceDictionary>
     </Application.Resources>
 </Application>

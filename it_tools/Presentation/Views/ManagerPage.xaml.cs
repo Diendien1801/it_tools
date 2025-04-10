@@ -35,9 +35,12 @@ namespace it_tools.Presentation.Views
         private async Task LoadDataAsync()
         {
             bool requestSuccess = await ViewModel.LoadRequestsAsync();
-            bool toolSuccess = await ViewModel.LoadToolsAsync(); 
+            bool toolSuccess = await ViewModel.LoadToolsAsync();
 
-            if (requestSuccess && toolSuccess)
+            if (requestSuccess 
+                &&
+                toolSuccess
+                )
             {
                 Debug.WriteLine("[INFO] LoadDataAsync: Data loaded successfully");
             }
@@ -244,6 +247,39 @@ namespace it_tools.Presentation.Views
 
             string fileName = System.IO.Path.GetFileName(fullPath); // Lấy 'test.dll'
             return $"Plugins/{fileName}";
+        }
+
+
+
+
+
+
+        // SEARCH
+        private void ToolSearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                string searchText = sender.Text;
+                string statusFilter = ((ComboBoxItem)StatusFilterComboBox.SelectedItem)?.Tag?.ToString() ?? "all";
+
+                ViewModel.FilterTools(searchText, statusFilter);
+            }
+        }
+        private void StatusFilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ViewModel == null)
+            {
+                Debug.WriteLine("[ERROR] ViewModel is null in StatusFilterComboBox_SelectionChanged.");
+                return;
+            }
+
+            if (e.AddedItems.Count > 0 && e.AddedItems[0] is ComboBoxItem selectedItem)
+            {
+                string statusFilter = selectedItem.Tag?.ToString() ?? "all";
+                string searchText = ToolSearchBox?.Text ?? string.Empty;
+
+                ViewModel.FilterTools(searchText, statusFilter);
+            }
         }
         private async Task ShowMessageDialog(string content, string title)
         {

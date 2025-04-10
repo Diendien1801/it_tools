@@ -187,45 +187,8 @@ namespace it_tools.DataAccess.Repositories
             return new List<ToolCategory>();
         }
         
-        //public List<Tool> LoadToolsFromFolder()
-        //{
-        //    var tools = new List<Tool>();
-
-        //    if (!Directory.Exists(_pluginPath))
-        //    {
-        //        Directory.CreateDirectory(_pluginPath);
-        //    }
-        //    foreach (var file in Directory.GetFiles(_pluginPath, "*.dll"))
-        //    {
-        //        Assembly assembly = Assembly.LoadFrom(file);
-        //        var pluginType = assembly.GetTypes().FirstOrDefault(t => typeof(ITool).IsAssignableFrom(t) && !t.IsInterface);
-
-        //        if (pluginType != null)
-        //        {
-        //            var pluginInstance = (ITool)Activator.CreateInstance(pluginType);
-        //            tools.Add(new Tool
-        //            {
-        //                idTool = Guid.NewGuid().ToString(),
-        //                name = pluginInstance.name,
-        //                descript = pluginInstance.descript,
-        //                iconURL = pluginInstance.iconURL,
-        //                idToolType = pluginInstance.idToolType,
-        //                access_level = pluginInstance.access_level,
-        //                status = pluginInstance.status,
-        //                dllPath = file,
-        //                LoadedPlugin = pluginInstance
-        //            });
-        //        }
-        //    }
-
-        //    return tools;
-        //}
-
-        // Để tạm ở đây
-        public void ExecuteTool(Tool tool)
-        {
-            tool.LoadedPlugin?.Execute();
-        }
+       
+       
 
     }
 }

@@ -37,6 +37,24 @@ namespace it_tools.Presentation.ViewModels
                 }
             }
         }
+
+        private ObservableCollection<Tool> _filteredTools;
+        public ObservableCollection<Tool> FilteredTools
+        {
+            get => _filteredTools;
+            set
+            {
+                if (_filteredTools != value)
+                {
+                    _filteredTools = value;
+                    OnPropertyChanged(nameof(FilteredTools));
+                }
+            }
+        }
+
+        private string _searchText = "";
+        private string _statusFilter = "all";
+
         public ManagementViewModel(AuthViewModel authViewModel, NavigationViewModel navigationViewModel)
         {
             _repository = new ManagementRepository();
@@ -44,11 +62,34 @@ namespace it_tools.Presentation.ViewModels
             _navigationViewModel = navigationViewModel;
             Requests = new ObservableCollection<UpgradeRequest>();
             Tools = new ObservableCollection<Tool>();
+            FilteredTools = new ObservableCollection<Tool>();
             ToolCategories = new ObservableCollection<ToolCategory>();
-            ToolCategories = navigationViewModel.ToolCategories; 
+            ToolCategories = navigationViewModel.ToolCategories;
 
         }
+        // Add this method to handle filtering
+        public void FilterTools(string searchText, string statusFilter)
+        {
+            _searchText = searchText?.ToLower() ?? "";
+            _statusFilter = statusFilter?.ToLower() ?? "all";
 
+            var filteredList = Tools.Where(tool =>
+                (string.IsNullOrEmpty(_searchText) ||
+                 tool.name.ToLower().Contains(_searchText) ||
+                 tool.descript.ToLower().Contains(_searchText)) &&
+                (_statusFilter == "all" || tool.status.ToLower() == _statusFilter)
+            );
+
+            FilteredTools.Clear();
+            foreach (var tool in filteredList)
+            {
+                FilteredTools.Add(tool);
+            }
+
+            Debug.WriteLine($"[INFO] FilterTools: Filtered {FilteredTools.Count} tools from {Tools.Count} total tools");
+        }
+        // Modify LoadToolsAsync to update FilteredTools
+       
 
         public async Task<(bool success, string message)> DeleteToolAsync(string idTool)
         {
@@ -99,7 +140,6 @@ namespace it_tools.Presentation.ViewModels
             }
             return success;
         }
-
         public async Task<bool> LoadToolsAsync()
         {
             if (string.IsNullOrEmpty(_authViewModel.token))
@@ -116,6 +156,10 @@ namespace it_tools.Presentation.ViewModels
                 {
                     Tools.Add(tool);
                 }
+
+                // Apply current filters to update FilteredTools
+                FilterTools(_searchText, _statusFilter);
+
                 Debug.WriteLine("[INFO] LoadToolsAsync: Tools loaded successfully");
             }
             else
@@ -125,6 +169,31 @@ namespace it_tools.Presentation.ViewModels
 
             return success;
         }
+        //public async Task<bool> LoadToolsAsync()
+        //{
+        //    if (string.IsNullOrEmpty(_authViewModel.token))
+        //    {
+        //        Debug.WriteLine("[ERROR] LoadToolsAsync: No token available");
+        //        return false;
+        //    }
+
+        //    var (success, message, list) = await _repository.GetAllToolAsync(_authViewModel.token);
+        //    if (success && list != null)
+        //    {
+        //        Tools.Clear();
+        //        foreach (var tool in list)
+        //        {
+        //            Tools.Add(tool);
+        //        }
+        //        Debug.WriteLine("[INFO] LoadToolsAsync: Tools loaded successfully");
+        //    }
+        //    else
+        //    {
+        //        Debug.WriteLine("[ERROR] LoadToolsAsync: " + message);
+        //    }
+
+        //    return success;
+        //}
 
         // accept
         public async Task<(bool success, string message)> AcceptRequestAsync(string idRequest)

@@ -7,113 +7,199 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local1="using:it_tools.DataAccess.Models"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="White">
 
-    <ScrollViewer>
-        <StackPanel Padding="20" Spacing="20">
+    <Grid Padding="20,0,20,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
 
-            <StackPanel Margin="0,30,0,0" Padding="10" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" CornerRadius="10">
-                <TextBlock Text="Thêm công cụ mới" FontSize="20" FontWeight="Bold" Margin="0,0,0,10" />
+        <!-- LEFT SIDE: Add New Tool -->
+        <ScrollViewer Grid.Column="0" Margin="0,0,10,0">
+            <Border Margin="0,30,0,0" Padding="15" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
+                    CornerRadius="10" BorderBrush="CornflowerBlue" BorderThickness="1">
+                <StackPanel Spacing="15">
+                    <TextBlock Text="Thêm công cụ mới" FontSize="22" FontWeight="Bold" Margin="0,0,0,10" />
 
-                <!-- Tên công cụ -->
-                <TextBlock Text="Tên công cụ:"/>
-                <TextBox x:ConnectionId='22' x:Name="ToolNameTextBox" PlaceholderText="Nhập tên tool" Margin="0,5,0,10"/>
+                    <!-- Tên công cụ -->
+                    <TextBlock Text="Tên công cụ:"/>
+                    <TextBox x:ConnectionId='22' x:Name="ToolNameTextBox" PlaceholderText="Nhập tên tool" Margin="0,5,0,0"/>
 
-                <!-- Mô tả -->
-                <TextBlock Text="Mô tả:"/>
-                <TextBox x:ConnectionId='23' x:Name="ToolDescriptionTextBox" PlaceholderText="Nhập mô tả tool" Margin="0,5,0,10"/>
-                
-                <!-- Tool type -->
-                <TextBlock Text="Loại công cụ:" />
-                <ComboBox x:ConnectionId='24' x:Name="ToolTypeComboBox"
-                                                                                
-                                                                                       
-                    DisplayMemberPath="name"
-                     Width="200"
-                    Margin="0,5,0,10"/>
-                <!-- Loại quyền truy cập -->
-                <TextBlock Text="Quyền truy cập:"/>
-                <ComboBox x:ConnectionId='25' x:Name="AccessLevelComboBox" Width="200" Margin="0,5,0,10">
-                    <ComboBoxItem Content="user" />
-                    <ComboBoxItem Content="premium" />
-                    <ComboBoxItem Content="anonymous" />
-                </ComboBox>
+                    <!-- Mô tả -->
+                    <TextBlock Text="Mô tả:"/>
+                    <TextBox x:ConnectionId='23' x:Name="ToolDescriptionTextBox" PlaceholderText="Nhập mô tả tool" Margin="0,5,0,0" 
+                             TextWrapping="Wrap" Height="80"/>
 
-                <!-- Chọn file DLL -->
-                <TextBlock Text="Chọn file DLL:"/>
-                <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,5,0,10">
-                    <TextBox x:ConnectionId='28' x:Name="DllPathTextBox" IsReadOnly="True" Width="300"/>
-                    <Button x:ConnectionId='29' Content="Chọn file"                        />
+                    <!-- Tool type -->
+                    <TextBlock Text="Loại công cụ:" />
+                    <ComboBox x:ConnectionId='24' x:Name="ToolTypeComboBox"
+                                                                                    
+                                                                                           
+                        DisplayMemberPath="name"
+                        Width="200"
+                        HorizontalAlignment="Left"
+                        Margin="0,5,0,0"/>
+
+                    <!-- Loại quyền truy cập -->
+                    <TextBlock Text="Quyền truy cập:"/>
+                    <ComboBox x:ConnectionId='25' x:Name="AccessLevelComboBox" Width="200" Margin="0,5,0,0" HorizontalAlignment="Left">
+                        <ComboBoxItem Content="user" />
+                        <ComboBoxItem Content="premium" />
+                        <ComboBoxItem Content="anonymous" />
+                    </ComboBox>
+
+                    <!-- Chọn file DLL -->
+                    <TextBlock Text="Chọn file DLL:"/>
+                    <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,5,0,0">
+                        <TextBox x:ConnectionId='28' x:Name="DllPathTextBox" IsReadOnly="True" Width="300"/>
+                        <Button x:ConnectionId='29' Content="Chọn file"                        />
+                    </StackPanel>
+
+                    <!-- Icon URL -->
+                    <TextBlock Text="Icon URL (nếu có):"/>
+                    <TextBox x:ConnectionId='26' x:Name="IconUrlTextBox" PlaceholderText="https://example.com/icon.png" Margin="0,5,0,0"/>
+
+                    <!-- Nút Thêm -->
+                    <Button x:ConnectionId='27' Content="Thêm công cụ"                       Background="Green" Foreground="White" 
+                            Padding="15,8" Margin="0,15,0,0" HorizontalAlignment="Left" />
                 </StackPanel>
+            </Border>
+        </ScrollViewer>
 
-                <!-- Icon URL -->
-                <TextBlock Text="Icon URL (nếu có):"/>
-                <TextBox x:ConnectionId='26' x:Name="IconUrlTextBox" PlaceholderText="https://example.com/icon.png" Margin="0,5,0,10"/>
+        <!-- RIGHT SIDE: Lists -->
+        <Grid Grid.Column="1" Margin="10,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-                <!-- Nút Thêm -->
-                <Button x:ConnectionId='27' Content="Thêm công cụ"                       Background="Green" Foreground="White" />
-            </StackPanel>
+            <!-- TOP RIGHT: Upgrade Requests List -->
+            <Border Grid.Row="0" Margin="0,30,0,10" Padding="15" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
+                    CornerRadius="10" BorderBrush="CornflowerBlue" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Text="Danh sách yêu cầu nâng cấp" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <ScrollViewer Height="250">
+                        <ListView x:ConnectionId='13' x:Name="RequestListView"                                                       >
+                            <ListView.ItemTemplate>
+                                <DataTemplate                                   >
+                                    <Border x:ConnectionId='15' BorderBrush="CornflowerBlue" BorderThickness="1" Margin="5" Padding="15" CornerRadius="10" Background="White">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="3*" />
+                                                <ColumnDefinition Width="2*" />
+                                            </Grid.ColumnDefinitions>
 
-            <!-- Danh sách Upgrade Requests -->
-            <TextBlock Text="Danh sách yêu cầu nâng cấp" FontSize="20" FontWeight="Bold"/>
-            <ListView x:ConnectionId='2' x:Name="RequestListView"
-                                                                            >
-                <ListView.ItemTemplate>
-                    <DataTemplate                                   >
-                        <Border x:ConnectionId='13' BorderBrush="White" BorderThickness="1" Margin="5" Padding="10">
-                            <StackPanel>
-                                <TextBlock x:ConnectionId='14'                           />
-                                <TextBlock x:ConnectionId='15'                          />
-                                <TextBlock x:ConnectionId='16'                       />
-                                <TextBlock x:ConnectionId='17'                        />
-                                <TextBlock x:ConnectionId='18'                           />
-                                <TextBlock x:ConnectionId='19'                           />
-                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                    <Button x:ConnectionId='20' Content="Accept"                          Margin="0,0,10,0"                     />
-                                    <Button x:ConnectionId='21' Content="Reject"                                              />
-                                </StackPanel>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                            <!-- Left Section: Request Details -->
+                                            <StackPanel Grid.Column="0" Spacing="5">
+                                                <TextBlock x:ConnectionId='18'                          FontWeight="Bold" FontSize="16" Foreground="Black" />
+                                                <TextBlock Text="Level:" FontWeight="SemiBold" Foreground="Black" />
+                                                <TextBlock x:ConnectionId='19'                       Margin="10,0,0,0" Foreground="Gray" />
+                                                <TextBlock Text="Status:" FontWeight="SemiBold" Foreground="Black" />
+                                                <TextBlock x:ConnectionId='20'                        Margin="10,0,0,0" Foreground="Gray" />
+                                                <TextBlock Text="Created At:" FontWeight="SemiBold" Foreground="Black" />
+                                                <TextBlock x:ConnectionId='21'                                                                          Margin="10,0,0,0" FontSize="12" Foreground="Gray" />
+                                            </StackPanel>
 
-            <!-- Danh sách Tool -->
-            <TextBlock Text="Danh sách công cụ" FontSize="20" FontWeight="Bold" Margin="0,20,0,0"/>
-            <ListView x:ConnectionId='3' x:Name="ToolListView"
-                                                                         >
-                <ListView.ItemTemplate>
-                    <DataTemplate                         >
-                        <Border x:ConnectionId='5' BorderBrush="White" BorderThickness="1" Margin="5" Padding="10">
-                            <StackPanel>
-                                <TextBlock x:ConnectionId='6'                      FontWeight="Bold"/>
-                                <TextBlock Text="Trạng thái:"/>
-                                <TextBlock x:ConnectionId='7'                        Foreground="DarkGreen"/>
+                                            <!-- Right Section: Action Buttons -->
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Spacing="10">
+                                                <Button x:ConnectionId='16' Content="Accept"                                              
+                    Background="Green" Foreground="White" Padding="10,5" CornerRadius="5" />
+                                                <Button x:ConnectionId='17' Content="Reject"                                              
+                    Background="Firebrick" Foreground="White" Padding="10,5" CornerRadius="5" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollViewer>
+                </StackPanel>
+            </Border>
 
-                                <TextBlock Text="Quyền truy cập:" Margin="0,5,0,0"/>
-                                <ComboBox x:ConnectionId='8'                                                   
-                                                                
-                                            SelectedValuePath="Content"
-                                                                                                   
-                                            Width="200">
-                                    <ComboBoxItem Content="user"/>
-                                    <ComboBoxItem Content="premium"/>
-                                    <ComboBoxItem Content="anonymous"/>
-                                </ComboBox>
+            <!-- BOTTOM RIGHT: Tools List -->
+            <Border Grid.Row="1" Margin="0,10,0,0" Padding="15" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
+        CornerRadius="10" BorderBrush="CornflowerBlue" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Text="Danh sách công cụ" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
 
-                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                    <Button x:ConnectionId='9' Content="Enable"                       Margin="0,0,10,0"                         />
-                                    <Button x:ConnectionId='10' Content="Disable"                                                />
-                                    <Button x:ConnectionId='11' Content="Delete"                                               />
+                    <!-- Search and Filter Controls -->
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-                                </StackPanel>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                        <!-- Search Box -->
+                        <AutoSuggestBox x:ConnectionId='11' x:Name="ToolSearchBox" 
+                           PlaceholderText="Tìm kiếm công cụ..." 
+                                                                  
+                           Grid.Column="0"
+                           Margin="0,0,10,0"/>
 
-        </StackPanel>
-    </ScrollViewer>
+                        <!-- Status Filter -->
+                        <ComboBox x:ConnectionId='12' x:Name="StatusFilterComboBox" 
+                     Grid.Column="1"
+                     Width="150"
+                                                                             >
+                            <ComboBoxItem Content="Tất cả" Tag="all" IsSelected="True"/>
+                            <ComboBoxItem Content="Active" Tag="active"/>
+                            <ComboBoxItem Content="Disable" Tag="disable"/>
+                        </ComboBox>
+                    </Grid>
+
+                    <!-- Tool List -->
+                    <ScrollViewer Height="350">
+                        <ListView x:ConnectionId='2' x:Name="ToolListView"                                                            >
+                            <ListView.ItemTemplate>
+                                <DataTemplate                         >
+                                    <Border x:ConnectionId='4' BorderBrush="CornflowerBlue" BorderThickness="1" Margin="5" Padding="10" CornerRadius="5" 
+                                                                                                                                 >
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock x:ConnectionId='8'                      FontWeight="Bold"/>
+                                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                                    <TextBlock Text="Trạng thái: " FontWeight="SemiBold" />
+                                                    <TextBlock x:ConnectionId='10'                                     
+                                                                                                                                           />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                                    <TextBlock Text="Quyền truy cập: " FontWeight="SemiBold" Margin="0,5,0,0"/>
+                                                    <ComboBox x:ConnectionId='9'                                                   
+                                                                     
+                                                SelectedValuePath="Content"
+                                               
+                                                                                                       
+                                                Width="150" Margin="0,0,0,0">
+                                                        <ComboBoxItem Content="membership"/>
+                                                        <ComboBoxItem Content="premium"/>
+                                                        <ComboBoxItem Content="anonymous"/>
+                                                    </ComboBox>
+                                                </StackPanel>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                                <Button x:ConnectionId='5' Content="Enable"                       Margin="0,0,0,5"                         
+                                        Background="Green" Foreground="White" HorizontalAlignment="Stretch" 
+                                                                                                                                                                     />
+                                                <Button x:ConnectionId='6' Content="Disable"                       Margin="0,0,0,5"                          
+                                        Background="DarkOrange" Foreground="White" HorizontalAlignment="Stretch" 
+                                                                                                                                                                    />
+                                                <Button x:ConnectionId='7' Content="Delete"                                               
+                                        Background="Firebrick" Foreground="White" HorizontalAlignment="Stretch" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollViewer>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
 </Page>
 

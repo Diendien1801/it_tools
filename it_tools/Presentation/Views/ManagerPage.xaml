@@ -7,112 +7,198 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local1="using:it_tools.DataAccess.Models"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="White">
 
-    <ScrollViewer>
-        <StackPanel Padding="20" Spacing="20">
+    <Grid Padding="20,0,20,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
 
-            <StackPanel Margin="0,30,0,0" Padding="10" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" CornerRadius="10">
-                <TextBlock Text="Thêm công cụ mới" FontSize="20" FontWeight="Bold" Margin="0,0,0,10" />
+        <!-- LEFT SIDE: Add New Tool -->
+        <ScrollViewer Grid.Column="0" Margin="0,0,10,0">
+            <Border Margin="0,30,0,0" Padding="15" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
+                    CornerRadius="10" BorderBrush="CornflowerBlue" BorderThickness="1">
+                <StackPanel Spacing="15">
+                    <TextBlock Text="Thêm công cụ mới" FontSize="22" FontWeight="Bold" Margin="0,0,0,10" />
 
-                <!-- Tên công cụ -->
-                <TextBlock Text="Tên công cụ:"/>
-                <TextBox x:Name="ToolNameTextBox" PlaceholderText="Nhập tên tool" Margin="0,5,0,10"/>
+                    <!-- Tên công cụ -->
+                    <TextBlock Text="Tên công cụ:"/>
+                    <TextBox x:Name="ToolNameTextBox" PlaceholderText="Nhập tên tool" Margin="0,5,0,0"/>
 
-                <!-- Mô tả -->
-                <TextBlock Text="Mô tả:"/>
-                <TextBox x:Name="ToolDescriptionTextBox" PlaceholderText="Nhập mô tả tool" Margin="0,5,0,10"/>
-                
-                <!-- Tool type -->
-                <TextBlock Text="Loại công cụ:" />
-                <ComboBox x:Name="ToolTypeComboBox"
-                    ItemsSource="{x:Bind ViewModel.ToolCategories, Mode=OneWay}"
-                    SelectedItem="{x:Bind ViewModel.SelectedToolCategory, Mode=TwoWay}"
-                    DisplayMemberPath="name"
-                     Width="200"
-                    Margin="0,5,0,10"/>
-                <!-- Loại quyền truy cập -->
-                <TextBlock Text="Quyền truy cập:"/>
-                <ComboBox x:Name="AccessLevelComboBox" Width="200" Margin="0,5,0,10">
-                    <ComboBoxItem Content="user" />
-                    <ComboBoxItem Content="premium" />
-                    <ComboBoxItem Content="anonymous" />
-                </ComboBox>
+                    <!-- Mô tả -->
+                    <TextBlock Text="Mô tả:"/>
+                    <TextBox x:Name="ToolDescriptionTextBox" PlaceholderText="Nhập mô tả tool" Margin="0,5,0,0" 
+                             TextWrapping="Wrap" Height="80"/>
 
-                <!-- Chọn file DLL -->
-                <TextBlock Text="Chọn file DLL:"/>
-                <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,5,0,10">
-                    <TextBox x:Name="DllPathTextBox" IsReadOnly="True" Width="300"/>
-                    <Button Content="Chọn file" Click="BrowseDll_Click"/>
+                    <!-- Tool type -->
+                    <TextBlock Text="Loại công cụ:" />
+                    <ComboBox x:Name="ToolTypeComboBox"
+                        ItemsSource="{x:Bind ViewModel.ToolCategories, Mode=OneWay}"
+                        SelectedItem="{x:Bind ViewModel.SelectedToolCategory, Mode=TwoWay}"
+                        DisplayMemberPath="name"
+                        Width="200"
+                        HorizontalAlignment="Left"
+                        Margin="0,5,0,0"/>
+
+                    <!-- Loại quyền truy cập -->
+                    <TextBlock Text="Quyền truy cập:"/>
+                    <ComboBox x:Name="AccessLevelComboBox" Width="200" Margin="0,5,0,0" HorizontalAlignment="Left">
+                        <ComboBoxItem Content="user" />
+                        <ComboBoxItem Content="premium" />
+                        <ComboBoxItem Content="anonymous" />
+                    </ComboBox>
+
+                    <!-- Chọn file DLL -->
+                    <TextBlock Text="Chọn file DLL:"/>
+                    <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,5,0,0">
+                        <TextBox x:Name="DllPathTextBox" IsReadOnly="True" Width="300"/>
+                        <Button Content="Chọn file" Click="BrowseDll_Click"/>
+                    </StackPanel>
+
+                    <!-- Icon URL -->
+                    <TextBlock Text="Icon URL (nếu có):"/>
+                    <TextBox x:Name="IconUrlTextBox" PlaceholderText="https://example.com/icon.png" Margin="0,5,0,0"/>
+
+                    <!-- Nút Thêm -->
+                    <Button Content="Thêm công cụ" Click="AddTool_Click" Background="Green" Foreground="White" 
+                            Padding="15,8" Margin="0,15,0,0" HorizontalAlignment="Left" />
                 </StackPanel>
+            </Border>
+        </ScrollViewer>
 
-                <!-- Icon URL -->
-                <TextBlock Text="Icon URL (nếu có):"/>
-                <TextBox x:Name="IconUrlTextBox" PlaceholderText="https://example.com/icon.png" Margin="0,5,0,10"/>
+        <!-- RIGHT SIDE: Lists -->
+        <Grid Grid.Column="1" Margin="10,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-                <!-- Nút Thêm -->
-                <Button Content="Thêm công cụ" Click="AddTool_Click" Background="Green" Foreground="White" />
-            </StackPanel>
+            <!-- TOP RIGHT: Upgrade Requests List -->
+            <Border Grid.Row="0" Margin="0,30,0,10" Padding="15" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
+                    CornerRadius="10" BorderBrush="CornflowerBlue" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Text="Danh sách yêu cầu nâng cấp" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <ScrollViewer Height="250">
+                        <ListView x:Name="RequestListView" ItemsSource="{x:Bind ViewModel.Requests, Mode=OneWay}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="local1:UpgradeRequest">
+                                    <Border BorderBrush="CornflowerBlue" BorderThickness="1" Margin="5" Padding="15" CornerRadius="10" Background="White">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="3*" />
+                                                <ColumnDefinition Width="2*" />
+                                            </Grid.ColumnDefinitions>
 
-            <!-- Danh sách Upgrade Requests -->
-            <TextBlock Text="Danh sách yêu cầu nâng cấp" FontSize="20" FontWeight="Bold"/>
-            <ListView x:Name="RequestListView"
-                      ItemsSource="{x:Bind ViewModel.Requests, Mode=OneWay}">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="local1:UpgradeRequest">
-                        <Border BorderBrush="White" BorderThickness="1" Margin="5" Padding="10">
-                            <StackPanel>
-                                <TextBlock Text="{x:Bind IdRequest}" />
-                                <TextBlock Text="{x:Bind Username}" />
-                                <TextBlock Text="{x:Bind Level}" />
-                                <TextBlock Text="{x:Bind Status}" />
-                                <TextBlock Text="{x:Bind CreatedAt}" />
-                                <TextBlock Text="{x:Bind HandledAt}" />
-                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                    <Button Content="Accept" Tag="{x:Bind IdRequest}" Margin="0,0,10,0" Click="Accept_Click"/>
-                                    <Button Content="Reject" Tag="{x:Bind IdRequest}" Click="Reject_Click"/>
-                                </StackPanel>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                            <!-- Left Section: Request Details -->
+                                            <StackPanel Grid.Column="0" Spacing="5">
+                                                <TextBlock Text="{x:Bind Username}" FontWeight="Bold" FontSize="16" Foreground="Black" />
+                                                <TextBlock Text="Level:" FontWeight="SemiBold" Foreground="Black" />
+                                                <TextBlock Text="{x:Bind Level}" Margin="10,0,0,0" Foreground="Gray" />
+                                                <TextBlock Text="Status:" FontWeight="SemiBold" Foreground="Black" />
+                                                <TextBlock Text="{x:Bind Status}" Margin="10,0,0,0" Foreground="Gray" />
+                                                <TextBlock Text="Created At:" FontWeight="SemiBold" Foreground="Black" />
+                                                <TextBlock Text="{x:Bind CreatedAt, Converter={StaticResource DateTimeConverter1}}" Margin="10,0,0,0" FontSize="12" Foreground="Gray" />
+                                            </StackPanel>
 
-            <!-- Danh sách Tool -->
-            <TextBlock Text="Danh sách công cụ" FontSize="20" FontWeight="Bold" Margin="0,20,0,0"/>
-            <ListView x:Name="ToolListView"
-                      ItemsSource="{x:Bind ViewModel.Tools, Mode=OneWay}">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="local1:Tool">
-                        <Border BorderBrush="White" BorderThickness="1" Margin="5" Padding="10">
-                            <StackPanel>
-                                <TextBlock Text="{x:Bind name}" FontWeight="Bold"/>
-                                <TextBlock Text="Trạng thái:"/>
-                                <TextBlock Text="{x:Bind status}" Foreground="DarkGreen"/>
+                                            <!-- Right Section: Action Buttons -->
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Spacing="10">
+                                                <Button Content="Accept" Tag="{x:Bind IdRequest}" Click="Accept_Click"
+                    Background="Green" Foreground="White" Padding="10,5" CornerRadius="5" />
+                                                <Button Content="Reject" Tag="{x:Bind IdRequest}" Click="Reject_Click"
+                    Background="Firebrick" Foreground="White" Padding="10,5" CornerRadius="5" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollViewer>
+                </StackPanel>
+            </Border>
 
-                                <TextBlock Text="Quyền truy cập:" Margin="0,5,0,0"/>
-                                <ComboBox SelectedValue="{x:Bind access_level, Mode=TwoWay}"
-                                           Tag="{x:Bind idTool}"
-                                            SelectedValuePath="Content"
-                                            SelectionChanged="AccessLevelComboBox_SelectionChanged"
-                                            Width="200">
-                                    <ComboBoxItem Content="user"/>
-                                    <ComboBoxItem Content="premium"/>
-                                    <ComboBoxItem Content="anonymous"/>
-                                </ComboBox>
+            <!-- BOTTOM RIGHT: Tools List -->
+            <Border Grid.Row="1" Margin="0,10,0,0" Padding="15" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
+        CornerRadius="10" BorderBrush="CornflowerBlue" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Text="Danh sách công cụ" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
 
-                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                    <Button Content="Enable" Tag="{x:Bind idTool}" Margin="0,0,10,0" Click="EnableTool_Click"/>
-                                    <Button Content="Disable" Tag="{x:Bind idTool}" Click="DisableTool_Click"/>
-                                    <Button Content="Delete" Tag="{x:Bind idTool}" Click="DeleteTool_Click"/>
+                    <!-- Search and Filter Controls -->
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-                                </StackPanel>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                        <!-- Search Box -->
+                        <AutoSuggestBox x:Name="ToolSearchBox" 
+                           PlaceholderText="Tìm kiếm công cụ..." 
+                           TextChanged="ToolSearchBox_TextChanged"
+                           Grid.Column="0"
+                           Margin="0,0,10,0"/>
 
-        </StackPanel>
-    </ScrollViewer>
+                        <!-- Status Filter -->
+                        <ComboBox x:Name="StatusFilterComboBox" 
+                     Grid.Column="1"
+                     Width="150"
+                     SelectionChanged="StatusFilterComboBox_SelectionChanged">
+                            <ComboBoxItem Content="Tất cả" Tag="all" IsSelected="True"/>
+                            <ComboBoxItem Content="Active" Tag="active"/>
+                            <ComboBoxItem Content="Disable" Tag="disable"/>
+                        </ComboBox>
+                    </Grid>
+
+                    <!-- Tool List -->
+                    <ScrollViewer Height="350">
+                        <ListView x:Name="ToolListView" ItemsSource="{x:Bind ViewModel.FilteredTools, Mode=OneWay}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="local1:Tool">
+                                    <Border BorderBrush="CornflowerBlue" BorderThickness="1" Margin="5" Padding="10" CornerRadius="5" 
+                                Background="{x:Bind status, Mode=OneWay, Converter={StaticResource StatusToBackgroundConverter}}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Text="{x:Bind name}" FontWeight="Bold"/>
+                                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                                    <TextBlock Text="Trạng thái: " FontWeight="SemiBold" />
+                                                    <TextBlock Text="{x:Bind status, Mode=OneWay}" 
+                                                 Foreground="{x:Bind status, Mode=OneWay, Converter={StaticResource StatusColorConverter}}"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                                    <TextBlock Text="Quyền truy cập: " FontWeight="SemiBold" Margin="0,5,0,0"/>
+                                                    <ComboBox SelectedValue="{x:Bind access_level, Mode=TwoWay}"
+                                                Tag="{x:Bind idTool}"
+                                                SelectedValuePath="Content"
+                                               
+                                                SelectionChanged="AccessLevelComboBox_SelectionChanged"
+                                                Width="150" Margin="0,0,0,0">
+                                                        <ComboBoxItem Content="membership"/>
+                                                        <ComboBoxItem Content="premium"/>
+                                                        <ComboBoxItem Content="anonymous"/>
+                                                    </ComboBox>
+                                                </StackPanel>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                                <Button Content="Enable" Tag="{x:Bind idTool}" Margin="0,0,0,5" Click="EnableTool_Click"
+                                        Background="Green" Foreground="White" HorizontalAlignment="Stretch" 
+                                        Visibility="{x:Bind status, Mode=OneWay, Converter={StaticResource StatusToVisibilityConverter}, ConverterParameter=disable}"/>
+                                                <Button Content="Disable" Tag="{x:Bind idTool}" Margin="0,0,0,5" Click="DisableTool_Click"
+                                        Background="DarkOrange" Foreground="White" HorizontalAlignment="Stretch" 
+                                        Visibility="{x:Bind status, Mode=OneWay, Converter={StaticResource StatusToVisibilityConverter}, ConverterParameter=active}"/>
+                                                <Button Content="Delete" Tag="{x:Bind idTool}" Click="DeleteTool_Click"
+                                        Background="Firebrick" Foreground="White" HorizontalAlignment="Stretch" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollViewer>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
 </Page>

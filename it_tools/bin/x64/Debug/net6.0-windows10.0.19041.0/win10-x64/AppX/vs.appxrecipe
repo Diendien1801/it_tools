@@ -29,29 +29,29 @@
     <AppXManifest Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-04-09T20:42:33.038</Modified>
+      <Modified>2025-04-10T20:00:24.685</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-04-09T20:16:45.538</Modified>
+      <Modified>2025-04-10T20:00:24.173</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\it_tools.runtimeconfig.json">
       <PackagePath>it_tools.runtimeconfig.json</PackagePath>
-      <Modified>2025-04-03T14:35:03.022</Modified>
+      <Modified>2025-04-10T19:14:46.720</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\it_tools.dll">
       <PackagePath>it_tools.dll</PackagePath>
-      <Modified>2025-04-09T20:42:32.587</Modified>
+      <Modified>2025-04-10T20:00:23.617</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>it_tools.exe</PackagePath>
-      <Modified>2025-04-09T20:42:32.595</Modified>
+      <Modified>2025-04-10T20:00:23.728</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\it_tools.deps.json">
       <PackagePath>it_tools.deps.json</PackagePath>
-      <Modified>2025-04-07T10:54:30.159</Modified>
+      <Modified>2025-04-10T19:14:46.675</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.netcore.app.runtime.win-x64\6.0.36\runtimes\win-x64\lib\net6.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
