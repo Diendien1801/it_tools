@@ -54,4 +54,4 @@ Dự án sử dụng các công nghệ sau:
 💡 **Lưu ý**: Hệ thống hỗ trợ **Hot Plug**, cho phép admin tải DLL vào runtime mà không cần khởi động lại ứng dụng.
 
 ---
-✍️ **Contributor**: *[Tên nhóm của bạn]*
+✍️ **Contributor**: *Trần Nguyễn Hoàng Diễn - Nguyễn Quang Doãn*
