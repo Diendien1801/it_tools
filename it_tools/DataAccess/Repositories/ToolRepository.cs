@@ -9,18 +9,21 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using ToolLib; // Thêm thư viện Debug
+using ToolLib;
+using Microsoft.Extensions.Configuration; // Thêm thư viện Debug
 
 namespace it_tools.DataAccess.Repositories
 {
-    public class ToolRepository
+    public class ToolRepository : IToolRepository
     {
         private readonly HttpClient _httpClient;
-        private readonly string _baseUrl = "http://localhost:5000";
-        private readonly string _pluginPath = "C:/Users/dient/source/repos/it_tools/it_tools/";
-        public ToolRepository()
+        private readonly string _pluginPath;
+        private readonly string _baseUrl;
+        public ToolRepository(HttpClient httpClient, IConfiguration config)
         {
-            _httpClient = new HttpClient();
+            _httpClient = httpClient;
+            _pluginPath = config["PluginPath"];
+            _baseUrl = config["ApiUrls:Tool"];
         }
 
 
@@ -186,9 +189,7 @@ namespace it_tools.DataAccess.Repositories
 
             return new List<ToolCategory>();
         }
-        
-       
-       
 
+       
     }
 }

@@ -1,5 +1,7 @@
-﻿using it_tools.DataAccess.Repositories;
+﻿using it_tools.BusinessLogic.Services;
+using it_tools.DataAccess.Repositories;
 using it_tools.Presentation.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -14,6 +16,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.AppService;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -30,7 +33,7 @@ namespace it_tools.Presentation.Views
         private AccountViewModel _viewModel;
         public AccountPage()
         {
-            _viewModel = new AccountViewModel(AuthPage.ViewModel);
+            _viewModel = AppServices.Services.GetService<AccountViewModel>();
             this.InitializeComponent();
             DataContext = _viewModel;
             // load data

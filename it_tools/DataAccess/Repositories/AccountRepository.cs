@@ -1,4 +1,5 @@
 ﻿using it_tools.DataAccess.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,23 +13,24 @@ using System.Threading.Tasks;
 
 namespace it_tools.DataAccess.Repositories
 {
-    public class AccountRepository
+    public class AccountRepository : IAccountRepository
     {
         private readonly HttpClient _httpClient;
-        private const string BaseUrl = "http://localhost:5000/api/account";
-        private readonly string _pluginPath = "C:/Users/dient/source/repos/it_tools/it_tools/";
+        private readonly string _pluginPath;
+        private readonly string _baseUrl;
 
-
-        public AccountRepository()
+        public AccountRepository(HttpClient httpClient, IConfiguration config)
         {
-            _httpClient = new HttpClient();
+            _httpClient = httpClient;
+            _pluginPath = config["PluginPath"];
+            _baseUrl = config["ApiUrls:Account"];
         }
 
         public async Task<(bool success, string message, User data)> GetAccountInfoAsync(string token)
         {
             try
             {
-                string url = $"{BaseUrl}"; // URL API không cần token trong đường dẫn
+                string url = $"{_baseUrl}"; // URL API không cần token trong đường dẫn
                 Console.WriteLine($"[DEBUG] Gọi API: {url}");
 
                 // Tạo request và đặt token vào Header
@@ -61,7 +63,7 @@ namespace it_tools.DataAccess.Repositories
         {
             try
             {
-                string url = $"{BaseUrl}/favourite"; // Không cần truyền token trong URL
+                string url = $"{_baseUrl}/favourite"; // Không cần truyền token trong URL
                 Debug.WriteLine($"[GetFavoriteToolsAsync] Fetching from: {url}");
 
                 // Tạo request và thêm token vào Header
@@ -113,7 +115,7 @@ namespace it_tools.DataAccess.Repositories
         {
             try
             {
-                string url = $"{BaseUrl}/favourite/add"; // API endpoint
+                string url = $"{_baseUrl}/favourite/add"; // API endpoint
                 Debug.WriteLine($"[AddFavoriteToolAsync] Sending request to: {url}");
 
                 var requestBody = new { idTool }; // Đối tượng chứa idTool
@@ -151,7 +153,7 @@ namespace it_tools.DataAccess.Repositories
         {
             try
             {
-                string url = $"{BaseUrl}/favourite/remove"; // API endpoint
+                string url = $"{_baseUrl}/favourite/remove"; // API endpoint
                 Debug.WriteLine($"[RemoveFavoriteToolAsync] Sending request to: {url}");
 
                 var requestBody = new { idTool }; // Đối tượng chứa idTool
@@ -189,7 +191,7 @@ namespace it_tools.DataAccess.Repositories
         {
             try
             {
-                string url = $"{BaseUrl}/upgrade";
+                string url = $"{_baseUrl}/upgrade";
                 Debug.WriteLine($"[SendUpgradeRequestAsync] Sending request to: {url}");
 
                 var request = new HttpRequestMessage(HttpMethod.Post, url);
@@ -217,8 +219,7 @@ namespace it_tools.DataAccess.Repositories
             }
         }
 
-
-
+       
     }
 }
 

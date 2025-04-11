@@ -1,4 +1,5 @@
-﻿using it_tools.DataAccess.Models;
+﻿using it_tools.BusinessLogic.Services;
+using it_tools.DataAccess.Models;
 using it_tools.DataAccess.Repositories;
 using it_tools.Presentation.Views;
 using System;
@@ -12,22 +13,24 @@ namespace it_tools.Presentation.ViewModels
 {
     public class AuthViewModel
     {
-        private readonly AuthRepository _authRepository;
-        private readonly AccountRepository _accountRepository;
+        private readonly IAuthService _authService;
+        private readonly IAccountService _accountService;
+        private readonly NavigationViewModel _navigationViewModel;
         public  string token { get; private set; }
-        public AuthViewModel()
+        public AuthViewModel(IAuthService authService, IAccountService accountService, NavigationViewModel navigationViewModel)
         {
-            _authRepository = new AuthRepository();
-            _accountRepository = new AccountRepository();
+            _authService = authService;
+            _accountService = accountService;
             token = string.Empty;
+            _navigationViewModel = navigationViewModel;
         }
 
-        
+
 
         // Đăng ký tài khoản
         public async Task<(bool success, string message)> RegisterAsync(string username, string password)
         {
-            var result = await _authRepository.RegisterAsync(username, password);
+            var result = await _authService.RegisterAsync(username, password);
             
             return result;
         }
@@ -37,7 +40,7 @@ namespace it_tools.Presentation.ViewModels
         {
             Debug.WriteLine($"[LoginAsync] Đang đăng nhập với Username: {username}");
 
-            var result = await _authRepository.LoginAsync(username, password);
+            var result = await _authService.LoginAsync(username, password);
 
             Debug.WriteLine($"[LoginAsync] Kết quả trả về: success={result.success}, message={result.message}, token={result.token}");
 
@@ -45,15 +48,15 @@ namespace it_tools.Presentation.ViewModels
             {
                 token = result.token;
                 Debug.WriteLine($"[LoginAsync] Lưu token: {token}");
-                var (success, message, user) = await _accountRepository.GetAccountInfoAsync(token);
+                var (success, message, user) = await _accountService.GetAccountInfoAsync(token);
                 if(user.role == "user")
                 {
-                    HomePage.ViewModel.IsUser = true;
+                    _navigationViewModel.IsUser = true;
                 }
                 else if( user.role == "admin")
                 {
-                    HomePage.ViewModel.IsUser = true;
-                    HomePage.ViewModel.IsAdmin = true;
+                    _navigationViewModel.IsUser = true;
+                    _navigationViewModel.IsAdmin = true;
                 }
             }
             else

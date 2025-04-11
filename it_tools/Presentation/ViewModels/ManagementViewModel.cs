@@ -1,4 +1,5 @@
-﻿using it_tools.DataAccess.Models;
+﻿using it_tools.BusinessLogic.Services;
+using it_tools.DataAccess.Models;
 using it_tools.DataAccess.Repositories;
 using Microsoft.UI.Xaml.Controls;
 using System;
@@ -12,7 +13,7 @@ namespace it_tools.Presentation.ViewModels
 {
     public class ManagementViewModel : INotifyPropertyChanged
     {
-        private readonly ManagementRepository _repository;
+        private readonly IManagementService _managementService;
         private readonly AuthViewModel _authViewModel;
         private readonly NavigationViewModel _navigationViewModel;
 
@@ -55,9 +56,9 @@ namespace it_tools.Presentation.ViewModels
         private string _searchText = "";
         private string _statusFilter = "all";
 
-        public ManagementViewModel(AuthViewModel authViewModel, NavigationViewModel navigationViewModel)
+        public ManagementViewModel(AuthViewModel authViewModel, NavigationViewModel navigationViewModel, IManagementService managementService)
         {
-            _repository = new ManagementRepository();
+            _managementService = managementService;
             _authViewModel = authViewModel;
             _navigationViewModel = navigationViewModel;
             Requests = new ObservableCollection<UpgradeRequest>();
@@ -96,7 +97,7 @@ namespace it_tools.Presentation.ViewModels
             try
             {
                 string token = _authViewModel.token;
-                var result = await _repository.DeleteToolAsync(token, idTool);
+                var result = await _managementService.DeleteToolAsync(token, idTool);
 
                 if (result.success)
                 {
@@ -124,7 +125,7 @@ namespace it_tools.Presentation.ViewModels
                 return false;
             }
 
-            var (success, message, list) = await _repository.GetAllRequestAsync(_authViewModel.token);
+            var (success, message, list) = await _managementService.GetAllRequestAsync(_authViewModel.token);
             if (success && list != null)
             {
                 Requests.Clear();
@@ -148,12 +149,13 @@ namespace it_tools.Presentation.ViewModels
                 return false;
             }
 
-            var (success, message, list) = await _repository.GetAllToolAsync(_authViewModel.token);
+            var (success, message, list) = await _managementService.GetAllToolAsync(_authViewModel.token);
             if (success && list != null)
             {
                 Tools.Clear();
                 foreach (var tool in list)
                 {
+                    tool.OriginalAccessLevel = tool.access_level;
                     Tools.Add(tool);
                 }
 
@@ -203,7 +205,7 @@ namespace it_tools.Presentation.ViewModels
                 return (false, "Bạn cần đăng nhập để thực hiện chức năng này");
             }
 
-            var (success, message) = await _repository.AcceptUpgradeRequest(_authViewModel.token, idRequest);
+            var (success, message) = await _managementService.AcceptUpgradeRequest(_authViewModel.token, idRequest);
             if (success)
             {
                 Debug.WriteLine($"[INFO] AcceptRequestAsync: {message}");
@@ -225,7 +227,7 @@ namespace it_tools.Presentation.ViewModels
                 return (false, "Bạn cần đăng nhập để thực hiện chức năng này");
             }
 
-            var (success, message) = await _repository.RejectUpgradeRequest(_authViewModel.token, idRequest);
+            var (success, message) = await _managementService.RejectUpgradeRequest(_authViewModel.token, idRequest);
             if (success)
             {
                 Debug.WriteLine($"[INFO] RejectRequestAsync: {message}");
@@ -245,7 +247,7 @@ namespace it_tools.Presentation.ViewModels
                 return (false, "Bạn cần đăng nhập để thực hiện chức năng này");
             }
 
-            var (success, message) = await _repository.DisableTool(_authViewModel.token, idTool);
+            var (success, message) = await _managementService.DisableTool(_authViewModel.token, idTool);
             if (success)
             {
                 Debug.WriteLine($"[INFO] DisableToolAsync: {message}");
@@ -267,7 +269,7 @@ namespace it_tools.Presentation.ViewModels
                 return (false, "Bạn cần đăng nhập để thực hiện chức năng này");
             }
 
-            var (success, message) = await _repository.EnableTool(_authViewModel.token, idTool);
+            var (success, message) = await _managementService.EnableTool(_authViewModel.token, idTool);
             if (success)
             {
                 Debug.WriteLine($"[INFO] EnableToolAsync: {message}");
@@ -296,7 +298,7 @@ namespace it_tools.Presentation.ViewModels
                 return (false, "Bạn cần đăng nhập để thực hiện chức năng này");
             }
 
-            var (success, message) = await _repository.UpdateAccessLevel(_authViewModel.token, idTool, accessLevel);
+            var (success, message) = await _managementService.UpdateAccessLevel(_authViewModel.token, idTool, accessLevel);
             if (success)
             {
                 Debug.WriteLine($"[INFO] UpdateToolAccessLevelAsync: {message}");
@@ -315,18 +317,19 @@ namespace it_tools.Presentation.ViewModels
             if (tool != null)
             {
                 tool.access_level = newAccessLevel;
+                tool.OriginalAccessLevel = newAccessLevel; // Update the original value too
                 Debug.WriteLine($"[INFO] Tool {idTool} accessLevel updated to {newAccessLevel}");
             }
         }
 
         public async Task<(bool success, string message)> AddToolAsync(
-    string name,
-    string descript,
-    string iconURL,
-    string access_level,
-    string dllPath,
-    string idToolType
-)
+                                                                    string name,
+                                                                    string descript,
+                                                                    string iconURL,
+                                                                    string access_level,
+                                                                    string dllPath,
+                                                                    string idToolType
+                                                                       )
         {
             if (string.IsNullOrEmpty(_authViewModel.token))
             {
@@ -335,7 +338,7 @@ namespace it_tools.Presentation.ViewModels
 
             try
             {
-                var (success, message) = await _repository.AddToolAsync(
+                var (success, message) = await _managementService.AddToolAsync(
                     _authViewModel.token,
                     name,
                     descript,

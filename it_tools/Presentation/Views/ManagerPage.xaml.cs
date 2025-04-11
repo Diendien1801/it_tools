@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using Windows.Storage.Pickers;
 using Windows.Storage;
 using System.IO;
+using it_tools.BusinessLogic.Services;
+using Microsoft.Extensions.DependencyInjection;
+using System.Linq;
 
 namespace it_tools.Presentation.Views
 {
@@ -20,9 +23,8 @@ namespace it_tools.Presentation.Views
         public ManagerPage()
         {
             this.InitializeComponent();
-            var authViewModel = (AuthPage.ViewModel);
-            var navigationViewModel = (HomePage.ViewModel);
-            ViewModel = new ManagementViewModel(authViewModel, navigationViewModel);
+            
+            ViewModel = AppServices.Services.GetService<ManagementViewModel>();
             this.DataContext = ViewModel;
         }
 
@@ -106,10 +108,19 @@ namespace it_tools.Presentation.Views
                 comboBox.SelectedValue is string newAccessLevel &&
                 comboBox.Tag is string idTool)
             {
-                var (success, message) = await ViewModel.UpdateToolAccessLevelAsync(idTool, newAccessLevel);
-                await ShowMessageDialog(message, success ? "Thành công" : "Thất bại");
+                // Find the tool in the ViewModel
+                var tool = ViewModel.Tools.FirstOrDefault(t => t.idTool == idTool);
 
-              
+                // Only proceed if we found the tool and the access level actually changed
+                if (tool != null && tool.OriginalAccessLevel != newAccessLevel)
+                {
+                    // First update the OriginalAccessLevel to prevent repeat notifications
+                    tool.OriginalAccessLevel = newAccessLevel;
+
+                    // Then call the API
+                    var (success, message) = await ViewModel.UpdateToolAccessLevelAsync(idTool, newAccessLevel);
+                    await ShowMessageDialog(message, success ? "Thành công" : "Thất bại");
+                }
             }
         }
         private async void DeleteTool_Click(object sender, RoutedEventArgs e)

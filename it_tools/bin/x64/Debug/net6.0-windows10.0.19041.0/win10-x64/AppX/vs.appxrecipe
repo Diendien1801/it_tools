@@ -29,29 +29,29 @@
     <AppXManifest Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-04-10T20:00:24.685</Modified>
+      <Modified>2025-04-11T10:07:30.575</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-04-10T20:00:24.173</Modified>
+      <Modified>2025-04-11T10:07:30.224</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\it_tools.runtimeconfig.json">
       <PackagePath>it_tools.runtimeconfig.json</PackagePath>
-      <Modified>2025-04-10T19:14:46.720</Modified>
+      <Modified>2025-04-11T09:20:47.622</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\it_tools.dll">
       <PackagePath>it_tools.dll</PackagePath>
-      <Modified>2025-04-10T20:00:23.617</Modified>
+      <Modified>2025-04-11T10:07:30.035</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>it_tools.exe</PackagePath>
-      <Modified>2025-04-10T20:00:23.728</Modified>
+      <Modified>2025-04-11T10:07:30.043</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\it_tools.deps.json">
       <PackagePath>it_tools.deps.json</PackagePath>
-      <Modified>2025-04-10T19:14:46.675</Modified>
+      <Modified>2025-04-11T09:20:47.444</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.netcore.app.runtime.win-x64\6.0.36\runtimes\win-x64\lib\net6.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -585,14 +585,6 @@
       <PackagePath>System.Text.Encoding.dll</PackagePath>
       <Modified>2024-10-15T03:36:14.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.netcore.app.runtime.win-x64\6.0.36\runtimes\win-x64\lib\net6.0\System.Text.Encodings.Web.dll">
-      <PackagePath>System.Text.Encodings.Web.dll</PackagePath>
-      <Modified>2024-10-15T03:51:20.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.netcore.app.runtime.win-x64\6.0.36\runtimes\win-x64\lib\net6.0\System.Text.Json.dll">
-      <PackagePath>System.Text.Json.dll</PackagePath>
-      <Modified>2024-10-15T03:51:22.000</Modified>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.netcore.app.runtime.win-x64\6.0.36\runtimes\win-x64\lib\net6.0\System.Text.RegularExpressions.dll">
       <PackagePath>System.Text.RegularExpressions.dll</PackagePath>
       <Modified>2024-10-15T03:51:24.000</Modified>
@@ -953,6 +945,50 @@
       <PackagePath>PhoneNumbers.dll</PackagePath>
       <Modified>2025-03-28T08:12:28.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.bcl.asyncinterfaces\9.0.4\lib\netstandard2.1\Microsoft.Bcl.AsyncInterfaces.dll">
+      <PackagePath>Microsoft.Bcl.AsyncInterfaces.dll</PackagePath>
+      <Modified>2025-03-13T22:05:48.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.configuration\9.0.4\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll">
+      <PackagePath>Microsoft.Extensions.Configuration.dll</PackagePath>
+      <Modified>2025-03-13T22:16:12.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.configuration.abstractions\9.0.4\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll">
+      <PackagePath>Microsoft.Extensions.Configuration.Abstractions.dll</PackagePath>
+      <Modified>2025-03-13T22:12:54.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.configuration.fileextensions\9.0.4\lib\netstandard2.0\Microsoft.Extensions.Configuration.FileExtensions.dll">
+      <PackagePath>Microsoft.Extensions.Configuration.FileExtensions.dll</PackagePath>
+      <Modified>2025-03-13T22:16:36.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.configuration.json\9.0.4\lib\netstandard2.1\Microsoft.Extensions.Configuration.Json.dll">
+      <PackagePath>Microsoft.Extensions.Configuration.Json.dll</PackagePath>
+      <Modified>2025-03-13T22:17:22.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.dependencyinjection\9.0.4\lib\netstandard2.1\Microsoft.Extensions.DependencyInjection.dll">
+      <PackagePath>Microsoft.Extensions.DependencyInjection.dll</PackagePath>
+      <Modified>2025-03-13T22:16:00.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.dependencyinjection.abstractions\9.0.4\lib\netstandard2.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll">
+      <PackagePath>Microsoft.Extensions.DependencyInjection.Abstractions.dll</PackagePath>
+      <Modified>2025-03-13T22:14:42.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.fileproviders.abstractions\9.0.4\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Abstractions.dll">
+      <PackagePath>Microsoft.Extensions.FileProviders.Abstractions.dll</PackagePath>
+      <Modified>2025-03-13T22:10:40.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.fileproviders.physical\9.0.4\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Physical.dll">
+      <PackagePath>Microsoft.Extensions.FileProviders.Physical.dll</PackagePath>
+      <Modified>2025-03-13T22:11:00.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.filesystemglobbing\9.0.4\lib\netstandard2.0\Microsoft.Extensions.FileSystemGlobbing.dll">
+      <PackagePath>Microsoft.Extensions.FileSystemGlobbing.dll</PackagePath>
+      <Modified>2025-03-13T22:10:06.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.primitives\9.0.4\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll">
+      <PackagePath>Microsoft.Extensions.Primitives.dll</PackagePath>
+      <Modified>2025-03-13T22:07:34.000</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.win32.systemevents\6.0.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll">
       <PackagePath>Microsoft.Win32.SystemEvents.dll</PackagePath>
       <Modified>2021-10-22T23:40:18.000</Modified>
@@ -1020,6 +1056,18 @@
     <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\system.drawing.common\6.0.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll">
       <PackagePath>System.Drawing.Common.dll</PackagePath>
       <Modified>2021-10-22T23:48:10.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\system.io.pipelines\9.0.4\lib\netstandard2.0\System.IO.Pipelines.dll">
+      <PackagePath>System.IO.Pipelines.dll</PackagePath>
+      <Modified>2025-03-13T22:12:10.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\system.text.encodings.web\9.0.4\lib\netstandard2.0\System.Text.Encodings.Web.dll">
+      <PackagePath>System.Text.Encodings.Web.dll</PackagePath>
+      <Modified>2025-03-13T22:12:20.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\system.text.json\9.0.4\lib\netstandard2.0\System.Text.Json.dll">
+      <PackagePath>System.Text.Json.dll</PackagePath>
+      <Modified>2025-03-13T22:16:40.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.windowsappsdk\1.4.230913002\runtimes\win10-x64\native\Microsoft.WindowsAppRuntime.Bootstrap.dll">
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.dll</PackagePath>

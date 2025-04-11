@@ -6,7 +6,8 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using it_tools.Presentation.ViewModels;
 using it_tools.DataAccess.Models;
-
+using it_tools.BusinessLogic.Services;
+using Microsoft.Extensions.DependencyInjection;
 namespace it_tools.Presentation.Views
 {
     public sealed partial class ToolPage : Page
@@ -16,9 +17,7 @@ namespace it_tools.Presentation.Views
         public ToolPage()
         {
             this.InitializeComponent();
-            ViewModel = new ToolPageViewModel(
-                AuthPage.ViewModel
-                );
+            ViewModel = AppServices.Services.GetService<ToolPageViewModel>();
             DataContext = ViewModel;
         }
 

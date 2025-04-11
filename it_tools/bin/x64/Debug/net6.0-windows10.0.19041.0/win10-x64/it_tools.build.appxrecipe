@@ -439,12 +439,6 @@
     <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.netcore.app.runtime.win-x64\6.0.36\runtimes\win-x64\lib\net6.0\System.Text.Encoding.dll">
       <PackagePath>System.Text.Encoding.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.netcore.app.runtime.win-x64\6.0.36\runtimes\win-x64\lib\net6.0\System.Text.Encodings.Web.dll">
-      <PackagePath>System.Text.Encodings.Web.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.netcore.app.runtime.win-x64\6.0.36\runtimes\win-x64\lib\net6.0\System.Text.Json.dll">
-      <PackagePath>System.Text.Json.dll</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.netcore.app.runtime.win-x64\6.0.36\runtimes\win-x64\lib\net6.0\System.Text.RegularExpressions.dll">
       <PackagePath>System.Text.RegularExpressions.dll</PackagePath>
     </AppxPackagedFile>
@@ -715,6 +709,39 @@
     <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\libphonenumber-csharp\9.0.2\lib\netstandard2.0\PhoneNumbers.dll">
       <PackagePath>PhoneNumbers.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.bcl.asyncinterfaces\9.0.4\lib\netstandard2.1\Microsoft.Bcl.AsyncInterfaces.dll">
+      <PackagePath>Microsoft.Bcl.AsyncInterfaces.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.configuration\9.0.4\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll">
+      <PackagePath>Microsoft.Extensions.Configuration.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.configuration.abstractions\9.0.4\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll">
+      <PackagePath>Microsoft.Extensions.Configuration.Abstractions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.configuration.fileextensions\9.0.4\lib\netstandard2.0\Microsoft.Extensions.Configuration.FileExtensions.dll">
+      <PackagePath>Microsoft.Extensions.Configuration.FileExtensions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.configuration.json\9.0.4\lib\netstandard2.1\Microsoft.Extensions.Configuration.Json.dll">
+      <PackagePath>Microsoft.Extensions.Configuration.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.dependencyinjection\9.0.4\lib\netstandard2.1\Microsoft.Extensions.DependencyInjection.dll">
+      <PackagePath>Microsoft.Extensions.DependencyInjection.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.dependencyinjection.abstractions\9.0.4\lib\netstandard2.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll">
+      <PackagePath>Microsoft.Extensions.DependencyInjection.Abstractions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.fileproviders.abstractions\9.0.4\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Abstractions.dll">
+      <PackagePath>Microsoft.Extensions.FileProviders.Abstractions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.fileproviders.physical\9.0.4\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Physical.dll">
+      <PackagePath>Microsoft.Extensions.FileProviders.Physical.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.filesystemglobbing\9.0.4\lib\netstandard2.0\Microsoft.Extensions.FileSystemGlobbing.dll">
+      <PackagePath>Microsoft.Extensions.FileSystemGlobbing.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.extensions.primitives\9.0.4\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll">
+      <PackagePath>Microsoft.Extensions.Primitives.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.win32.systemevents\6.0.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll">
       <PackagePath>Microsoft.Win32.SystemEvents.dll</PackagePath>
     </AppxPackagedFile>
@@ -765,6 +792,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\system.drawing.common\6.0.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll">
       <PackagePath>System.Drawing.Common.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\system.io.pipelines\9.0.4\lib\netstandard2.0\System.IO.Pipelines.dll">
+      <PackagePath>System.IO.Pipelines.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\system.text.encodings.web\9.0.4\lib\netstandard2.0\System.Text.Encodings.Web.dll">
+      <PackagePath>System.Text.Encodings.Web.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\system.text.json\9.0.4\lib\netstandard2.0\System.Text.Json.dll">
+      <PackagePath>System.Text.Json.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\.nuget\packages\microsoft.windowsappsdk\1.4.230913002\runtimes\win10-x64\native\Microsoft.WindowsAppRuntime.Bootstrap.dll">
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.dll</PackagePath>

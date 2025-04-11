@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
+using it_tools.BusinessLogic.Services;
 
 namespace it_tools.Presentation.ViewModels
 {
     internal class AccountViewModel : INotifyPropertyChanged
     {
-        private readonly AccountRepository _accountRepository;
+        private readonly IAccountService _accountService;
         private readonly AuthViewModel _authViewModel;
 
 
@@ -46,9 +47,9 @@ namespace it_tools.Presentation.ViewModels
             }
         }
 
-        public AccountViewModel(AuthViewModel authViewModel)
+        public AccountViewModel(AuthViewModel authViewModel,IAccountService accountService )
         {
-            _accountRepository = new AccountRepository();
+            _accountService = accountService;
             _authViewModel = authViewModel;
            
         }
@@ -59,7 +60,7 @@ namespace it_tools.Presentation.ViewModels
                 return (false, "Bạn cần đăng nhập để sử dụng tính năng này.");
             }
 
-            var (success, message) = await _accountRepository.SendUpgradeRequestAsync(_authViewModel.token);
+            var (success, message) = await _accountService.SendUpgradeRequestAsync(_authViewModel.token);
             return (success, message);
         }
 
@@ -70,8 +71,8 @@ namespace it_tools.Presentation.ViewModels
                 return false;
             }
 
-            var accountTask = _accountRepository.GetAccountInfoAsync(_authViewModel.token);
-            var favoriteTask = _accountRepository.GetFavoriteToolsAsync(_authViewModel.token);
+            var accountTask = _accountService.GetAccountInfoAsync(_authViewModel.token);
+            var favoriteTask = _accountService.GetFavoriteToolsAsync(_authViewModel.token);
 
             await Task.WhenAll(accountTask, favoriteTask); // 🔹 Chạy song song hai API
 
@@ -98,7 +99,7 @@ namespace it_tools.Presentation.ViewModels
             {
                 return "Bạn cần đăng nhập để thêm tool vào danh sách yêu thích";
             }
-            var (success, message) = await _accountRepository.AddFavoriteToolAsync(_authViewModel.token, idTool);
+            var (success, message) = await _accountService.AddFavoriteToolAsync(_authViewModel.token, idTool);
             return success ? $"✅ {message}" : $"❌ {message}";
         }
 
@@ -108,7 +109,7 @@ namespace it_tools.Presentation.ViewModels
             {
                 return "Bạn cần đăng nhập để xóa tool khỏi danh sách yêu thích";
             }
-            var (success, message) = await _accountRepository.RemoveFavoriteToolAsync(_authViewModel.token, idTool);
+            var (success, message) = await _accountService.RemoveFavoriteToolAsync(_authViewModel.token, idTool);
             return success ? $"✅ {message}" : $"❌ {message}";
         }
         public event PropertyChangedEventHandler? PropertyChanged;

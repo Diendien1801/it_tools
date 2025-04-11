@@ -1,5 +1,7 @@
-﻿using it_tools.DataAccess.Models;
+﻿using it_tools.BusinessLogic.Services;
+using it_tools.DataAccess.Models;
 using it_tools.Presentation.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -24,7 +26,7 @@ namespace it_tools.Presentation.Views
     
     public sealed partial class HomePage : Page
     {
-        public static NavigationViewModel ViewModel { get; set; } = new NavigationViewModel();
+        public NavigationViewModel ViewModel { get; set; }
         
 
 
@@ -32,8 +34,9 @@ namespace it_tools.Presentation.Views
         public HomePage()
         { 
             this.InitializeComponent();
-            
-             this.DataContext = ViewModel;
+            ViewModel = AppServices.Services.GetService<NavigationViewModel>();
+
+            this.DataContext = ViewModel;
             
             ContentFrame.Navigate(typeof(ToolPage), ("0", "All"));
         }

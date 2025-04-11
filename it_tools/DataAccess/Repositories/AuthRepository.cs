@@ -1,4 +1,5 @@
 ﻿using it_tools.DataAccess.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace it_tools.DataAccess.Repositories
 {
-    class AuthRepository
+    class AuthRepository : IAuthRepository
     {
         private readonly HttpClient _httpClient;
-        private const string BaseUrl = "http://localhost:5000/api/auth"; // Cập nhật đúng URL backend
-
-        public AuthRepository()
+        private readonly string _baseUrl;
+        public AuthRepository(HttpClient httpClient, IConfiguration config)
         {
-            _httpClient = new HttpClient();
+            _httpClient = httpClient;
+            _baseUrl = config["ApiUrls:Auth"];
         }
 
         public async Task<(bool success, string message)> RegisterAsync(string username, string password)
@@ -28,9 +29,9 @@ namespace it_tools.DataAccess.Repositories
                 string jsonData = JsonSerializer.Serialize(userData);
                 var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                Console.WriteLine($"[DEBUG] Sending request to {BaseUrl}/register with data: {jsonData}");
+                Console.WriteLine($"[DEBUG] Sending request to {_baseUrl}/register with data: {jsonData}");
 
-                HttpResponseMessage response = await _httpClient.PostAsync($"{BaseUrl}/register", content);
+                HttpResponseMessage response = await _httpClient.PostAsync($"{_baseUrl}/register", content);
                 string responseContent = await response.Content.ReadAsStringAsync();
 
                 Console.WriteLine($"[DEBUG] Response Status: {response.StatusCode}");
@@ -63,7 +64,7 @@ namespace it_tools.DataAccess.Repositories
 
             var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await _httpClient.PostAsync($"{BaseUrl}/login", content);
+            HttpResponseMessage response = await _httpClient.PostAsync($"{_baseUrl}/login", content);
             Debug.WriteLine($"[LoginAsync] Response Status: {response.StatusCode}");
 
             string responseContent = await response.Content.ReadAsStringAsync();
@@ -95,9 +96,10 @@ namespace it_tools.DataAccess.Repositories
             }
         }
 
-
-
-
+        public Task<bool> LogoutAsync(string token)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

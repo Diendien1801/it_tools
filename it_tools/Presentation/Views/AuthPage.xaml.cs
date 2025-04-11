@@ -1,6 +1,7 @@
 ﻿using it_tools.BusinessLogic.Services;
 using it_tools.DataAccess.Repositories;
 using it_tools.Presentation.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace it_tools.Presentation.Views
         public static AuthViewModel ViewModel;
         public AuthPage()
         {
-            ViewModel = new AuthViewModel();
+            ViewModel = AppServices.Services.GetService<AuthViewModel>();
             this.InitializeComponent();
         }
 

@@ -1,4 +1,5 @@
 ﻿using it_tools.BusinessLogic.Services;
+using it_tools.Helper;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -61,7 +62,7 @@ namespace it_tools.DataAccess.Models
         {
             if (!string.IsNullOrEmpty(dllPath))
             {
-                LoadedPlugin = ToolService.LoadToolFromDll(dllPath);
+                LoadedPlugin = ToolHelper.LoadToolFromDll(dllPath);
             }
         }
 
@@ -69,6 +70,17 @@ namespace it_tools.DataAccess.Models
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        // fix lỗi hiern thị thông báo khi recreate itemTool trong combo box
+        private string _originalAccessLevel;
+        public string OriginalAccessLevel
+        {
+            get => _originalAccessLevel;
+            set
+            {
+                _originalAccessLevel = value;
+                OnPropertyChanged(nameof(OriginalAccessLevel));
+            }
         }
     }
 }

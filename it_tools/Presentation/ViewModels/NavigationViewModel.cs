@@ -1,4 +1,5 @@
-﻿using it_tools.DataAccess.Models;
+﻿using it_tools.BusinessLogic.Services;
+using it_tools.DataAccess.Models;
 using it_tools.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,14 @@ namespace it_tools.Presentation.ViewModels
 {
     public class NavigationViewModel
     {
-        private readonly ToolRepository _toolRepository;
+        private readonly IToolService _toolService;
         public ObservableCollection<ToolCategory> ToolCategories { get; set; }
         
         public bool IsUser { get; set; } = false;
         public bool IsAdmin { get; set; } = false;
-        public NavigationViewModel()
+        public NavigationViewModel( IToolService toolService)
         {
-            _toolRepository = new ToolRepository();
+            _toolService = toolService;
             ToolCategories = new ObservableCollection<ToolCategory>();
             _ = LoadToolCategoriesAsync();
             
@@ -27,7 +28,7 @@ namespace it_tools.Presentation.ViewModels
 
         public async Task LoadToolCategoriesAsync()
         {
-            var categories = await _toolRepository.GetToolCategoriesAsync();
+            var categories = await _toolService.GetToolCategoriesAsync();
             ToolCategories.Clear();
             ToolCategories.Add(new ToolCategory
             {

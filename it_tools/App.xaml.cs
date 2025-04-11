@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using it_tools.BusinessLogic.Services;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -28,6 +29,7 @@ namespace it_tools
         public App()
         {
             this.InitializeComponent();
+            AppServices.ConfigureServices();
         }
 
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)

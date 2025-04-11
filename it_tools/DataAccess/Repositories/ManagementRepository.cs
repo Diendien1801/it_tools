@@ -1,4 +1,5 @@
 ﻿using it_tools.DataAccess.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,21 +10,22 @@ using System.Threading.Tasks;
 
 namespace it_tools.DataAccess.Repositories
 {
-    internal class ManagementRepository
+    internal class ManagementRepository : IManagementRepository
     {
         private readonly HttpClient _httpClient;
-        private const string BaseUrl = "http://localhost:5000/api/management";
+        private readonly string _baseUrl;
 
-        public ManagementRepository()
+        public ManagementRepository(HttpClient httpClient, IConfiguration config)
         {
-            _httpClient = new HttpClient();
+            _httpClient = httpClient;
+            _baseUrl = config["ApiUrls:Management"];
         }
 
         public async Task<(bool success, string message, List<UpgradeRequest> data)> GetAllRequestAsync(string token)
         {
             try
             {
-                string url = $"{BaseUrl}/requests";
+                string url = $"{_baseUrl}/requests";
                 Debug.WriteLine($"[DEBUG] Calling API: {url}");
 
                 var request = new HttpRequestMessage(HttpMethod.Get, url);
@@ -59,7 +61,7 @@ namespace it_tools.DataAccess.Repositories
         {
             try
             {
-                string url = $"{BaseUrl}/requests/approve";
+                string url = $"{_baseUrl}/requests/approve";
                 Debug.WriteLine($"[DEBUG] Calling API: {url}");
 
                 var requestBody = new
@@ -105,7 +107,7 @@ namespace it_tools.DataAccess.Repositories
         {
             try
             {
-                string url = $"{BaseUrl}/requests/reject";
+                string url = $"{_baseUrl}/requests/reject";
                 Debug.WriteLine($"[DEBUG] Calling API: {url}");
 
                 var requestBody = new
@@ -152,7 +154,7 @@ namespace it_tools.DataAccess.Repositories
         {
             try
             {
-                string url = $"{BaseUrl}/tools";
+                string url = $"{_baseUrl}/tools";
                 Debug.WriteLine($"[DEBUG] Calling API: {url}");
 
                 var request = new HttpRequestMessage(HttpMethod.Get, url);
@@ -187,7 +189,7 @@ namespace it_tools.DataAccess.Repositories
         {
             try
             {
-                string url = $"{BaseUrl}/tool/disable";
+                string url = $"{_baseUrl}/tool/disable";
                 Debug.WriteLine($"[DEBUG] Calling API: {url}");
 
                 var body = new { idTool = idTool };
@@ -227,7 +229,7 @@ namespace it_tools.DataAccess.Repositories
         {
             try
             {
-                string url = $"{BaseUrl}/tool/active";
+                string url = $"{_baseUrl}/tool/active";
                 Debug.WriteLine($"[DEBUG] Calling API: {url}");
 
                 var body = new { idTool = idTool };
@@ -268,7 +270,7 @@ namespace it_tools.DataAccess.Repositories
         {
             try
             {
-                string url = $"{BaseUrl}/tool/update"; // API endpoint phía server phải trùng khớp
+                string url = $"{_baseUrl}/tool/update"; // API endpoint phía server phải trùng khớp
                 Debug.WriteLine($"[DEBUG] Calling API: {url}");
 
                 var body = new { idTool = idTool, accessLevel = accessLevel };
@@ -309,7 +311,7 @@ namespace it_tools.DataAccess.Repositories
         {
             try
             {
-                string url = $"{BaseUrl}/tool/delete"; 
+                string url = $"{_baseUrl}/tool/delete"; 
                 Debug.WriteLine($"[DEBUG] Calling API: {url}");
 
                 var body = new { idTool = idTool };
@@ -359,7 +361,7 @@ namespace it_tools.DataAccess.Repositories
         {
             try
             {
-                string url = $"{BaseUrl}/tool/add"; // khớp với route backend
+                string url = $"{_baseUrl}/tool/add"; // khớp với route backend
                 Debug.WriteLine($"[DEBUG] Calling API: {url}");
 
                 var requestBody = new

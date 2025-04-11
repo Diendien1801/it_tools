@@ -1,4 +1,5 @@
-﻿using it_tools.DataAccess.Models;
+﻿using it_tools.BusinessLogic.Services;
+using it_tools.DataAccess.Models;
 using it_tools.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
@@ -10,17 +11,17 @@ namespace it_tools.Presentation.ViewModels
 {
     public class ToolPageViewModel
     {
-        private readonly ToolRepository _toolRepository;
-        private readonly AccountRepository _accountRepository;
+        private readonly IToolService _toolService;
+        private readonly IAccountService _accountService;
         private readonly AuthViewModel _authViewModel;
         public ObservableCollection<Tool> Tools { get; private set; }
         private List<Tool> AllTools { get; set; } = new List<Tool>(); // Lưu trữ danh sách đầy đủ
         private List<Tool> FavouriteTools { get; set; } = new List<Tool>();
 
-        public ToolPageViewModel(AuthViewModel authViewModel)
+        public ToolPageViewModel(AuthViewModel authViewModel, IToolService toolService, IAccountService accountService)
         {
-            _toolRepository = new ToolRepository();
-            _accountRepository = new AccountRepository();
+            _toolService = toolService;
+            _accountService = accountService;
             _authViewModel = authViewModel;
             Tools = new ObservableCollection<Tool>();
         }
@@ -38,7 +39,7 @@ namespace it_tools.Presentation.ViewModels
 
             if (isFavorite)
             {
-                var result = await _accountRepository.RemoveFavoriteToolAsync(_authViewModel.token, tool.idTool);
+                var result = await _accountService.RemoveFavoriteToolAsync(_authViewModel.token, tool.idTool);
                 if (result.success)
                 {
                     FavouriteTools.RemoveAll(t => t.idTool == tool.idTool);
@@ -47,7 +48,7 @@ namespace it_tools.Presentation.ViewModels
             }
             else
             {
-                var result = await _accountRepository.AddFavoriteToolAsync(_authViewModel.token, tool.idTool);
+                var result = await _accountService.AddFavoriteToolAsync(_authViewModel.token, tool.idTool);
                 if (result.success)
                 {
                     FavouriteTools.Add(tool);
@@ -81,7 +82,7 @@ namespace it_tools.Presentation.ViewModels
                 return; // Không có user hoặc token, không load danh sách yêu thích
             }
 
-            var (success, message, favoriteTools) = await _accountRepository.GetFavoriteToolsAsync(_authViewModel.token);
+            var (success, message, favoriteTools) = await _accountService.GetFavoriteToolsAsync(_authViewModel.token);
 
             if (success)
             {
@@ -93,7 +94,7 @@ namespace it_tools.Presentation.ViewModels
         public async Task LoadTools(string idToolType)
         {
             //  Load danh sách tool từ repository
-            var tools = await _toolRepository.GetToolsByCategoryAsync(idToolType);
+            var tools = await _toolService.GetToolsByCategoryAsync(idToolType);
 
             //  Cập nhật danh sách gốc ban đầu
             AllTools = tools.ToList();
@@ -155,7 +156,7 @@ namespace it_tools.Presentation.ViewModels
                 return toolValue == 0;
             }
 
-            var (success, _, account) = await _accountRepository.GetAccountInfoAsync(_authViewModel.token);
+            var (success, _, account) = await _accountService.GetAccountInfoAsync(_authViewModel.token);
 
             if (!success || account == null)
             {
@@ -174,7 +175,7 @@ namespace it_tools.Presentation.ViewModels
                 return false;
             }
 
-            var (success, _, account) = await _accountRepository.GetAccountInfoAsync(_authViewModel.token);
+            var (success, _, account) = await _accountService.GetAccountInfoAsync(_authViewModel.token);
 
             return success && account != null;
         }
