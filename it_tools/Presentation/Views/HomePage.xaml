@@ -20,17 +20,36 @@
 
             <!-- Thêm thanh tìm kiếm vào Header -->
             <NavigationView.Header>
-                <AutoSuggestBox x:Name="SearchBox"
-                PlaceholderText="Tìm kiếm..."
-                TextChanged="SearchBox_TextChanged"
-                GotFocus="SearchBox_Nav"
-                Width="600"
-                
-                Background="White"
-                BorderBrush="LightSlateGray"
-                BorderThickness="1"
-                FocusVisualPrimaryBrush="CornflowerBlue"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
+                    <!-- Back Button -->
+                    <Button x:Name="BackButton" 
+                Grid.Column="0"
+                Click="BackButton_Click" 
+                Margin="0,0,20,0"
+                Visibility="{Binding IsGuest, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72B;" Margin="0,0,5,0"/>
+                            <TextBlock Text="Quay lại đăng nhập"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Search Box -->
+                    <AutoSuggestBox x:Name="SearchBox"
+                        Grid.Column="1"
+                        PlaceholderText="Tìm kiếm..."
+                        TextChanged="SearchBox_TextChanged"
+                        GotFocus="SearchBox_Nav"
+                        Width="600"
+                        Background="White"
+                        BorderBrush="LightSlateGray"
+                        BorderThickness="1"
+                        FocusVisualPrimaryBrush="CornflowerBlue"/>
+                </Grid>
             </NavigationView.Header>
 
             <NavigationView.MenuItemTemplate>

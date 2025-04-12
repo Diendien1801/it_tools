@@ -18,6 +18,7 @@ namespace it_tools.Presentation.ViewModels
         
         public bool IsUser { get; set; } = false;
         public bool IsAdmin { get; set; } = false;
+        public bool IsGuest => !IsUser;
         public NavigationViewModel( IToolService toolService)
         {
             _toolService = toolService;

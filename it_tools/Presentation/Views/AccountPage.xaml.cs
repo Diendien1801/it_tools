@@ -31,9 +31,11 @@ namespace it_tools.Presentation.Views
     public sealed partial class AccountPage : Page
     {
         private AccountViewModel _viewModel;
+        private AuthViewModel _authViewModel;
         public AccountPage()
         {
             _viewModel = AppServices.Services.GetService<AccountViewModel>();
+            _authViewModel = AppServices.Services.GetService<AuthViewModel>();
             this.InitializeComponent();
             DataContext = _viewModel;
             // load data
@@ -100,5 +102,37 @@ namespace it_tools.Presentation.Views
             await ShowMessageDialog(message, title);
         }
 
+
+        // logout
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Debug token trước logout
+            Debug.WriteLine($"[LogoutButton_Click] Token: {_authViewModel.token}");
+
+            // Xóa token
+            _authViewModel.Logout();
+
+            // Điều hướng về AuthPage
+            if (App.MainAppWindow.Content is Frame rootFrame)
+            {
+                rootFrame.Navigate(typeof(AuthPage));
+            }
+            else
+            {
+                // Nếu Frame chưa tồn tại, khởi tạo Frame mới
+                var frame = new Frame();
+                frame.Navigate(typeof(AuthPage));
+                App.MainAppWindow.Content = frame;
+            }
+
+            // Kích hoạt cửa sổ để đảm bảo hiển thị
+            App.MainAppWindow.Activate();
+
+            // Debug token sau khi logout
+            Debug.WriteLine($"[LogoutButton_Click] Token sau khi logout: {_authViewModel.token}");
+        }
+
+
     }
 }
+

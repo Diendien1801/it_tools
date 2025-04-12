@@ -20,22 +20,41 @@
 
             <!-- Thêm thanh tìm kiếm vào Header -->
             <NavigationView.Header>
-                <AutoSuggestBox x:ConnectionId='3' x:Name="SearchBox"
-                PlaceholderText="Tìm kiếm..."
-                                                   
-                                        
-                Width="600"
-                
-                Background="White"
-                BorderBrush="LightSlateGray"
-                BorderThickness="1"
-                FocusVisualPrimaryBrush="CornflowerBlue"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
+                    <!-- Back Button -->
+                    <Button x:ConnectionId='3' x:Name="BackButton" 
+                Grid.Column="0"
+                                         
+                Margin="0,0,20,0"
+                Visibility="{Binding IsGuest, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72B;" Margin="0,0,5,0"/>
+                            <TextBlock Text="Quay lại đăng nhập"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Search Box -->
+                    <AutoSuggestBox x:ConnectionId='4' x:Name="SearchBox"
+                        Grid.Column="1"
+                        PlaceholderText="Tìm kiếm..."
+                                                           
+                                                
+                        Width="600"
+                        Background="White"
+                        BorderBrush="LightSlateGray"
+                        BorderThickness="1"
+                        FocusVisualPrimaryBrush="CornflowerBlue"/>
+                </Grid>
             </NavigationView.Header>
 
             <NavigationView.MenuItemTemplate>
                 <DataTemplate                                 >
-                    <NavigationViewItem x:ConnectionId='5'                                                  >
+                    <NavigationViewItem x:ConnectionId='6'                                                  >
                         <NavigationViewItem.Style>
                             <Style TargetType="NavigationViewItem">
                                 <!-- Mặc định -->
@@ -97,7 +116,7 @@
             <NavigationView.PaneFooter>
                 <StackPanel>
                     <!-- Account -->
-                    <NavigationViewItem x:ConnectionId='14' Content="Account" Tag="Account" x:Name="TaskbarAccount" 
+                    <NavigationViewItem x:ConnectionId='15' Content="Account" Tag="Account" x:Name="TaskbarAccount" 
                                                           
                             Visibility="{Binding IsUser, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
                         <NavigationViewItem.Icon>
@@ -106,7 +125,7 @@
                     </NavigationViewItem>
 
                     <!-- Task Management -->
-                    <NavigationViewItem x:ConnectionId='15' Content="Task Management" Tag="TaskManagement" x:Name="TaskbarTaskManagement" 
+                    <NavigationViewItem x:ConnectionId='16' Content="Task Management" Tag="TaskManagement" x:Name="TaskbarTaskManagement" 
                                                                  
                             Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
                         <NavigationViewItem.Icon>
@@ -117,7 +136,7 @@
                 </StackPanel>
             </NavigationView.PaneFooter>
 
-            <Frame x:ConnectionId='16' x:Name="ContentFrame"/>
+            <Frame x:ConnectionId='17' x:Name="ContentFrame"/>
             
         </NavigationView>
     </Grid>

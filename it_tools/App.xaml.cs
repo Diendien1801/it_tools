@@ -1,4 +1,5 @@
 ﻿using it_tools.BusinessLogic.Services;
+using it_tools.Presentation.Views;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -34,7 +35,16 @@ namespace it_tools
 
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            MainAppWindow = new MainWindow();
+            MainAppWindow = new MainWindow(); // Fix: Instantiate MainWindow instead of Window
+
+            var rootFrame = new Frame();
+            MainAppWindow.Content = rootFrame;
+
+            if (rootFrame.Content == null)
+            {
+                rootFrame.Navigate(typeof(AuthPage)); // Trang khởi đầu
+            }
+
             MainAppWindow.Activate();
         }
     }

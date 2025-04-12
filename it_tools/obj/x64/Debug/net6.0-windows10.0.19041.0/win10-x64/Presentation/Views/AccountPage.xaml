@@ -74,7 +74,15 @@
                             Padding="10" BorderThickness="1" BorderBrush="#E0E0E0"/>
                 </StackPanel>
             </Grid>
-
+            <!-- Logout Button -->
+            <Button x:ConnectionId='3' Content="Logout"
+Background="Firebrick"
+Foreground="White"
+Padding="10,5"
+HorizontalAlignment="Right"
+Margin="0,30,0,0"
+Width="150"
+                          />
             <!-- Favorite Tools -->
             <StackPanel>
                 <TextBlock Text="Favorite Tools" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,15"/>
@@ -93,12 +101,13 @@
                                     <TextBlock Text="{Binding name}" FontWeight="SemiBold"/>
                                     <TextBlock Text="{Binding descript}" TextWrapping="Wrap" Opacity="0.7"/>
                                 </StackPanel>
-                                <Button x:ConnectionId='4' Grid.Column="2" Content="Remove" Padding="10,5" Margin="10,0,0,0"                            />
+                                <Button x:ConnectionId='5' Grid.Column="2" Content="Remove" Padding="10,5" Margin="10,0,0,0"                            />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
+            
         </StackPanel>
     </ScrollViewer>
 </Page>

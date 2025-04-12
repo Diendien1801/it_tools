@@ -74,7 +74,15 @@
                             Padding="10" BorderThickness="1" BorderBrush="#E0E0E0"/>
                 </StackPanel>
             </Grid>
-
+            <!-- Logout Button -->
+            <Button Content="Logout"
+Background="Firebrick"
+Foreground="White"
+Padding="10,5"
+HorizontalAlignment="Right"
+Margin="0,30,0,0"
+Width="150"
+Click="LogoutButton_Click"/>
             <!-- Favorite Tools -->
             <StackPanel>
                 <TextBlock Text="Favorite Tools" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,15"/>
@@ -99,6 +107,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
+            
         </StackPanel>
     </ScrollViewer>
 </Page>

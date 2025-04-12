@@ -73,7 +73,18 @@ namespace it_tools.Presentation.Views
             ContentFrame.Navigate(typeof(ManagerPage));
         }
 
-
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            var authViewModel = AppServices.Services.GetService<AuthViewModel>();
+            if (authViewModel != null && authViewModel.token == null)
+            {
+                // Navigate back to the login page
+                if (App.MainAppWindow.Content is Frame rootFrame)
+                {
+                    rootFrame.Navigate(typeof(AuthPage));
+                }
+            }
+        }
 
 
 

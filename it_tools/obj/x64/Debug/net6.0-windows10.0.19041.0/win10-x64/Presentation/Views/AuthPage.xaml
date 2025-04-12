@@ -177,7 +177,7 @@
                                  >
                             <Grid>
                                 <!-- Text "Guess" -->
-                                <TextBlock x:ConnectionId='10' x:Name="GuessButtonText" Text="Guess" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <TextBlock x:ConnectionId='10' x:Name="GuessButtonText" Text="Guest" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
                                 <!-- Loading spinner -->
                                 <ProgressRing x:ConnectionId='11' x:Name="GuessProgressRing" IsActive="False" Width="20" Height="20" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" />

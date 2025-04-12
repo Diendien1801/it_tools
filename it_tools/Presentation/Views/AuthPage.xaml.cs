@@ -92,7 +92,10 @@ namespace it_tools.Presentation.Views
                 // Lưu token và chuyển sang trang HomePage
                 SettingsService.SaveToken(token);
                 ShowSuccess(message);
-                App.MainAppWindow.NavigateToHome();
+                if (App.MainAppWindow.Content is Frame rootFrame)
+                {
+                    rootFrame.Navigate(typeof(HomePage)); 
+                }
             }
             else
             {
@@ -116,7 +119,10 @@ namespace it_tools.Presentation.Views
             GuessButtonText.Visibility = Visibility.Visible;
 
             // Điều hướng đến HomePage
-            App.MainAppWindow.NavigateToHome();
+            if (App.MainAppWindow.Content is Frame rootFrame)
+            {
+                rootFrame.Navigate(typeof(HomePage)); // Thay ManagerPage bằng trang chính của bạn
+            }
         }
         private bool IsValidLogin()
         {

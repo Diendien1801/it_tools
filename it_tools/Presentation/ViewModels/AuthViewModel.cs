@@ -26,6 +26,15 @@ namespace it_tools.Presentation.ViewModels
         }
 
 
+        // logout
+
+        public void Logout()
+        {
+            token = null;
+            _navigationViewModel.IsUser = false;
+            _navigationViewModel.IsAdmin = false;
+
+        }
 
         // Đăng ký tài khoản
         public async Task<(bool success, string message)> RegisterAsync(string username, string password)
