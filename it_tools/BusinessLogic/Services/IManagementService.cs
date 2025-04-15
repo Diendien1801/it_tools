@@ -26,5 +26,6 @@ namespace it_tools.BusinessLogic.Services
                                         string idToolType
                                                 );
         Task<(bool success, string message)> UpdateAccessLevel(string token, string idTool, string accessLevel);
+        Task<(bool success, string message)> ReCoverToolAsync(string token,string idTool);
     }
 }

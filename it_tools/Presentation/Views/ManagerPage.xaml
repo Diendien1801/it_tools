@@ -145,6 +145,7 @@
                             <ComboBoxItem Content="Tất cả" Tag="all" IsSelected="True"/>
                             <ComboBoxItem Content="Active" Tag="active"/>
                             <ComboBoxItem Content="Disable" Tag="disable"/>
+                            <ComboBoxItem Content="Deleted" Tag="deleted"/>
                         </ComboBox>
                     </Grid>
 
@@ -154,27 +155,33 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="local1:Tool">
                                     <Border BorderBrush="CornflowerBlue" BorderThickness="1" Margin="5" Padding="10" CornerRadius="5" 
-                                Background="{x:Bind status, Mode=OneWay, Converter={StaticResource StatusToBackgroundConverter}}">
+        Background="{x:Bind Converter={StaticResource DeletedStatusToBackgroundConverter}}">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*" />
                                                 <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
                                             <StackPanel Grid.Column="0">
-                                                <TextBlock Text="{x:Bind name}" FontWeight="Bold"/>
+                                                <!-- Add an indicator for deleted tools -->
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{x:Bind name}" FontWeight="Bold"/>
+                                                    <TextBlock Text=" (Đã xóa)" Foreground="Red" 
+                           Visibility="{x:Bind isDelete, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                                     <TextBlock Text="Trạng thái: " FontWeight="SemiBold" />
                                                     <TextBlock Text="{x:Bind status, Mode=OneWay}" 
-                                                 Foreground="{x:Bind status, Mode=OneWay, Converter={StaticResource StatusColorConverter}}"/>
+                           Foreground="{x:Bind status, Mode=OneWay, Converter={StaticResource StatusColorConverter}}"/>
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                                     <TextBlock Text="Quyền truy cập: " FontWeight="SemiBold" Margin="0,5,0,0"/>
                                                     <ComboBox SelectedValue="{x:Bind access_level, Mode=TwoWay}"
-          Tag="{x:Bind idTool}"
-          SelectedValuePath="Content"
-          x:Phase="2"
-          SelectionChanged="AccessLevelComboBox_SelectionChanged"
-          Width="150" Margin="0,0,0,0">
+                          Tag="{x:Bind idTool}"
+                          SelectedValuePath="Content"
+                          x:Phase="2"
+                          SelectionChanged="AccessLevelComboBox_SelectionChanged"
+                          Width="150" Margin="0,0,0,0"
+                          IsEnabled="{x:Bind isDelete, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}">
                                                         <ComboBoxItem Content="membership"/>
                                                         <ComboBoxItem Content="premium"/>
                                                         <ComboBoxItem Content="anonymous"/>
@@ -182,14 +189,22 @@
                                                 </StackPanel>
                                             </StackPanel>
                                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                                <Button Content="Enable" Tag="{x:Bind idTool}" Margin="0,0,0,5" Click="EnableTool_Click"
-                                        Background="Green" Foreground="White" HorizontalAlignment="Stretch" 
-                                        Visibility="{x:Bind status, Mode=OneWay, Converter={StaticResource StatusToVisibilityConverter}, ConverterParameter=disable}"/>
-                                                <Button Content="Disable" Tag="{x:Bind idTool}" Margin="0,0,0,5" Click="DisableTool_Click"
-                                        Background="DarkOrange" Foreground="White" HorizontalAlignment="Stretch" 
-                                        Visibility="{x:Bind status, Mode=OneWay, Converter={StaticResource StatusToVisibilityConverter}, ConverterParameter=active}"/>
+                                                <!-- Show Enable/Disable buttons only for non-deleted tools -->
+                                                <StackPanel Visibility="{x:Bind isDelete, Mode=OneWay, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                                                    <Button Content="Enable" Tag="{x:Bind idTool}" Margin="0,0,0,5" Click="EnableTool_Click"
+                        Background="Green" Foreground="White" HorizontalAlignment="Stretch" 
+                        Visibility="{x:Bind status, Mode=OneWay, Converter={StaticResource StatusToVisibilityConverter}, ConverterParameter=disable}"/>
+                                                    <Button Content="Disable" Tag="{x:Bind idTool}" Margin="0,0,0,5" Click="DisableTool_Click"
+                        Background="DarkOrange" Foreground="White" HorizontalAlignment="Stretch" 
+                        Visibility="{x:Bind status, Mode=OneWay, Converter={StaticResource StatusToVisibilityConverter}, ConverterParameter=active}"/>
+                                                </StackPanel>
+                                                <!-- Toggle between Delete and Restore buttons based on isDeleted status -->
+                                                <Button Content="Khôi phục" Tag="{x:Bind idTool}" Click="RestoreTool_Click"
+                    Background="MediumSeaGreen" Foreground="White" HorizontalAlignment="Stretch"
+                    Visibility="{x:Bind isDelete, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                                                 <Button Content="Delete" Tag="{x:Bind idTool}" Click="DeleteTool_Click"
-                                        Background="Firebrick" Foreground="White" HorizontalAlignment="Stretch" />
+                    Background="Firebrick" Foreground="White" HorizontalAlignment="Stretch"
+                    Visibility="{x:Bind isDelete, Mode=OneWay, Converter={StaticResource InverseBooleanToVisibilityConverter}}"/>
                                             </StackPanel>
                                         </Grid>
                                     </Border>

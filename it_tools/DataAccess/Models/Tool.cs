@@ -65,7 +65,19 @@ namespace it_tools.DataAccess.Models
                 LoadedPlugin = ToolHelper.LoadToolFromDll(dllPath);
             }
         }
-
+        private bool _isDelete;
+        public bool isDelete
+        {
+            get => _isDelete;
+            set
+            {
+                if (_isDelete != value)
+                {
+                    _isDelete = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

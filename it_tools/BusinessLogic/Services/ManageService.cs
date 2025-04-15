@@ -60,6 +60,11 @@ namespace it_tools.BusinessLogic.Services
         {
             return await managementRepository.UpdateAccessLevel(token, idTool, accessLevel);
         }
+        
 
+        public async Task<(bool success, string message)> ReCoverToolAsync(string token, string idTool)
+        {
+            return await managementRepository.ReCoverToolAsync(token, idTool);
+        }
     }
 }

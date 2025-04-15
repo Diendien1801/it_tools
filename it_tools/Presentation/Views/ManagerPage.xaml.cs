@@ -224,6 +224,11 @@ namespace it_tools.Presentation.Views
                 {
                     Debug.WriteLine("[SUCCESS] Thêm công cụ thành công");
 
+                    // Show success message
+                    isDialogOpen_AddTool = true;
+                    await ShowMessageDialog("Đã thêm công cụ thành công!", "Thành công");
+                    isDialogOpen_AddTool = false;
+
                     // Reset các trường sau khi thêm
                     ToolNameTextBox.Text = "";
                     ToolDescriptionTextBox.Text = "";
@@ -308,7 +313,29 @@ namespace it_tools.Presentation.Views
             await _activeDialog.ShowAsync();
             _activeDialog = null;
         }
+        private async void RestoreTool_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.Tag is string idTool)
+            {
+                Debug.WriteLine($"[DEBUG] Bắt đầu khôi phục tool với idTool: {idTool}");
 
+                var (success, message) = await ViewModel.ReCoverToolAsync(idTool);
+
+                Debug.WriteLine($"[DEBUG] Kết quả khôi phục tool: Success = {success}, Message = {message}");
+
+                await ShowMessageDialog(message, success ? "Thành công" : "Thất bại");
+
+                if (success)
+                {
+                    // Refresh the list after successful restoration
+                    await ViewModel.LoadToolsAsync();
+                }
+            }
+            else
+            {
+                Debug.WriteLine("[ERROR] Không thể lấy idTool từ Tag của Button");
+            }
+        }
 
     }
 }

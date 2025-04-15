@@ -1,4 +1,6 @@
-﻿using it_tools.DataAccess.Models;
+﻿using it_tools.BusinessLogic.Services;
+using it_tools.DataAccess.Models;
+using it_tools.Presentation.ViewModels;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -7,6 +9,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using ToolLib;
 
 namespace it_tools.DataAccess.Repositories
 {
@@ -411,6 +414,46 @@ namespace it_tools.DataAccess.Repositories
             }
         }
 
+        public async Task<(bool success, string message)> ReCoverToolAsync(string token, string idTool)
+        {
+            try
+            {
+                string url = $"{_baseUrl}/tool/recover"; // Đường dẫn API khôi phục tool
+                Debug.WriteLine($"[DEBUG] Calling API: {url}");
+
+                var body = new { idTool = idTool };
+                var content = new StringContent(JsonSerializer.Serialize(body), Encoding.UTF8, "application/json");
+
+                var request = new HttpRequestMessage(HttpMethod.Post, url)
+                {
+                    Content = content
+                };
+                request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                HttpResponseMessage response = await _httpClient.SendAsync(request);
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                Debug.WriteLine($"[DEBUG] Response Status: {response.StatusCode}");
+                Debug.WriteLine($"[DEBUG] Response Content: {responseContent}");
+
+                var result = JsonSerializer.Deserialize<BaseResponse<object>>(responseContent, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+                if (result != null && result.success)
+                {
+                    return (true, result.message);
+                }
+
+                return (false, result?.message ?? "Unknown error");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[ERROR] Exception in RestoreToolAsync: {ex.Message}");
+                return (false, "Lỗi khi khôi phục tool");
+            }
+        }
 
 
 

@@ -65,8 +65,41 @@ namespace it_tools.Presentation.ViewModels
             Tools = new ObservableCollection<Tool>();
             FilteredTools = new ObservableCollection<Tool>();
             ToolCategories = new ObservableCollection<ToolCategory>();
-            ToolCategories = navigationViewModel.ToolCategories;
+            foreach (var category in navigationViewModel.ToolCategories)
+            {
+                if (category.idToolType != "0" && category.idToolType != "-1")
+                {
+                    ToolCategories.Add(category);
+                }
+            }
 
+        }
+        public async Task<(bool success, string message)> ReCoverToolAsync(string idTool)
+        {
+            try
+            {
+                string token = _authViewModel.token;
+                // Call your backend method to restore the tool
+                var result = await _managementService.ReCoverToolAsync(token, idTool);
+
+                if (result.success)
+                {
+                    // Update tool's isDelete status in the list
+                    var tool = Tools.FirstOrDefault(t => t.idTool == idTool);
+                    if (tool != null)
+                    {
+                        tool.isDelete = false;
+                        // Refresh filtered tools
+                        FilterTools(_searchText, _statusFilter);
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Lỗi khi khôi phục tool: {ex.Message}");
+            }
         }
         // Add this method to handle filtering
         public void FilterTools(string searchText, string statusFilter)
@@ -78,7 +111,9 @@ namespace it_tools.Presentation.ViewModels
                 (string.IsNullOrEmpty(_searchText) ||
                  tool.name.ToLower().Contains(_searchText) ||
                  tool.descript.ToLower().Contains(_searchText)) &&
-                (_statusFilter == "all" || tool.status.ToLower() == _statusFilter)
+                (_statusFilter == "all" ||
+                 (_statusFilter == "deleted" ? tool.isDelete :
+                  !tool.isDelete && tool.status.ToLower() == _statusFilter))
             );
 
             FilteredTools.Clear();
@@ -90,7 +125,7 @@ namespace it_tools.Presentation.ViewModels
             Debug.WriteLine($"[INFO] FilterTools: Filtered {FilteredTools.Count} tools from {Tools.Count} total tools");
         }
         // Modify LoadToolsAsync to update FilteredTools
-       
+
 
         public async Task<(bool success, string message)> DeleteToolAsync(string idTool)
         {
@@ -101,11 +136,17 @@ namespace it_tools.Presentation.ViewModels
 
                 if (result.success)
                 {
-                    // Xóa khỏi danh sách hiển thị
-                    var toolToRemove = Tools.FirstOrDefault(t => t.idTool == idTool);
-                    if (toolToRemove != null)
+                    // Update the tool's delete status instead of removing it from the list
+                    var tool = Tools.FirstOrDefault(t => t.idTool == idTool);
+                    if (tool != null)
                     {
-                        Tools.Remove(toolToRemove);
+                        tool.isDelete = true;
+
+                        // Refresh filtered tools to reflect the change immediately
+                        FilterTools(_searchText, _statusFilter);
+
+                        // Notify UI of property change
+                        OnPropertyChanged(nameof(FilteredTools));
                     }
                 }
 

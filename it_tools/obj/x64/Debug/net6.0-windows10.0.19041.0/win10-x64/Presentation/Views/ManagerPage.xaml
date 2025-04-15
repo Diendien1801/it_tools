@@ -24,16 +24,16 @@
 
                     <!-- Tên công cụ -->
                     <TextBlock Text="Tên công cụ:"/>
-                    <TextBox x:ConnectionId='22' x:Name="ToolNameTextBox" PlaceholderText="Nhập tên tool" Margin="0,5,0,0"/>
+                    <TextBox x:ConnectionId='25' x:Name="ToolNameTextBox" PlaceholderText="Nhập tên tool" Margin="0,5,0,0"/>
 
                     <!-- Mô tả -->
                     <TextBlock Text="Mô tả:"/>
-                    <TextBox x:ConnectionId='23' x:Name="ToolDescriptionTextBox" PlaceholderText="Nhập mô tả tool" Margin="0,5,0,0" 
+                    <TextBox x:ConnectionId='26' x:Name="ToolDescriptionTextBox" PlaceholderText="Nhập mô tả tool" Margin="0,5,0,0" 
                              TextWrapping="Wrap" Height="80"/>
 
                     <!-- Tool type -->
                     <TextBlock Text="Loại công cụ:" />
-                    <ComboBox x:ConnectionId='24' x:Name="ToolTypeComboBox"
+                    <ComboBox x:ConnectionId='27' x:Name="ToolTypeComboBox"
                                                                                     
                                                                                            
                         DisplayMemberPath="name"
@@ -43,7 +43,7 @@
 
                     <!-- Loại quyền truy cập -->
                     <TextBlock Text="Quyền truy cập:"/>
-                    <ComboBox x:ConnectionId='25' x:Name="AccessLevelComboBox" Width="200" Margin="0,5,0,0" HorizontalAlignment="Left">
+                    <ComboBox x:ConnectionId='28' x:Name="AccessLevelComboBox" Width="200" Margin="0,5,0,0" HorizontalAlignment="Left">
                         <ComboBoxItem Content="user" />
                         <ComboBoxItem Content="premium" />
                         <ComboBoxItem Content="anonymous" />
@@ -52,16 +52,16 @@
                     <!-- Chọn file DLL -->
                     <TextBlock Text="Chọn file DLL:"/>
                     <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,5,0,0">
-                        <TextBox x:ConnectionId='28' x:Name="DllPathTextBox" IsReadOnly="True" Width="300"/>
-                        <Button x:ConnectionId='29' Content="Chọn file"                        />
+                        <TextBox x:ConnectionId='31' x:Name="DllPathTextBox" IsReadOnly="True" Width="300"/>
+                        <Button x:ConnectionId='32' Content="Chọn file"                        />
                     </StackPanel>
 
                     <!-- Icon URL -->
                     <TextBlock Text="Icon URL (nếu có):"/>
-                    <TextBox x:ConnectionId='26' x:Name="IconUrlTextBox" PlaceholderText="https://example.com/icon.png" Margin="0,5,0,0"/>
+                    <TextBox x:ConnectionId='29' x:Name="IconUrlTextBox" PlaceholderText="https://example.com/icon.png" Margin="0,5,0,0"/>
 
                     <!-- Nút Thêm -->
-                    <Button x:ConnectionId='27' Content="Thêm công cụ"                       Background="Green" Foreground="White" 
+                    <Button x:ConnectionId='30' Content="Thêm công cụ"                       Background="Green" Foreground="White" 
                             Padding="15,8" Margin="0,15,0,0" HorizontalAlignment="Left" />
                 </StackPanel>
             </Border>
@@ -80,10 +80,10 @@
                 <StackPanel>
                     <TextBlock Text="Danh sách yêu cầu nâng cấp" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
                     <ScrollViewer Height="250">
-                        <ListView x:ConnectionId='13' x:Name="RequestListView"                                                       >
+                        <ListView x:ConnectionId='16' x:Name="RequestListView"                                                       >
                             <ListView.ItemTemplate>
                                 <DataTemplate                                   >
-                                    <Border x:ConnectionId='15' BorderBrush="CornflowerBlue" BorderThickness="1" Margin="5" Padding="15" CornerRadius="10" Background="White">
+                                    <Border x:ConnectionId='18' BorderBrush="CornflowerBlue" BorderThickness="1" Margin="5" Padding="15" CornerRadius="10" Background="White">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="3*" />
@@ -92,20 +92,20 @@
 
                                             <!-- Left Section: Request Details -->
                                             <StackPanel Grid.Column="0" Spacing="5">
-                                                <TextBlock x:ConnectionId='18'                          FontWeight="Bold" FontSize="16" Foreground="Black" />
+                                                <TextBlock x:ConnectionId='21'                          FontWeight="Bold" FontSize="16" Foreground="Black" />
                                                 <TextBlock Text="Level:" FontWeight="SemiBold" Foreground="Black" />
-                                                <TextBlock x:ConnectionId='19'                       Margin="10,0,0,0" Foreground="Gray" />
+                                                <TextBlock x:ConnectionId='22'                       Margin="10,0,0,0" Foreground="Gray" />
                                                 <TextBlock Text="Status:" FontWeight="SemiBold" Foreground="Black" />
-                                                <TextBlock x:ConnectionId='20'                        Margin="10,0,0,0" Foreground="Gray" />
+                                                <TextBlock x:ConnectionId='23'                        Margin="10,0,0,0" Foreground="Gray" />
                                                 <TextBlock Text="Created At:" FontWeight="SemiBold" Foreground="Black" />
-                                                <TextBlock x:ConnectionId='21'                                                                          Margin="10,0,0,0" FontSize="12" Foreground="Gray" />
+                                                <TextBlock x:ConnectionId='24'                                                                          Margin="10,0,0,0" FontSize="12" Foreground="Gray" />
                                             </StackPanel>
 
                                             <!-- Right Section: Action Buttons -->
                                             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Spacing="10">
-                                                <Button x:ConnectionId='16' Content="Accept"                                              
+                                                <Button x:ConnectionId='19' Content="Accept"                                              
                     Background="Green" Foreground="White" Padding="10,5" CornerRadius="5" />
-                                                <Button x:ConnectionId='17' Content="Reject"                                              
+                                                <Button x:ConnectionId='20' Content="Reject"                                              
                     Background="Firebrick" Foreground="White" Padding="10,5" CornerRadius="5" />
                                             </StackPanel>
                                         </Grid>
@@ -131,20 +131,21 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- Search Box -->
-                        <AutoSuggestBox x:ConnectionId='11' x:Name="ToolSearchBox" 
+                        <AutoSuggestBox x:ConnectionId='14' x:Name="ToolSearchBox" 
                            PlaceholderText="Tìm kiếm công cụ..." 
                                                                   
                            Grid.Column="0"
                            Margin="0,0,10,0"/>
 
                         <!-- Status Filter -->
-                        <ComboBox x:ConnectionId='12' x:Name="StatusFilterComboBox" 
+                        <ComboBox x:ConnectionId='15' x:Name="StatusFilterComboBox" 
                      Grid.Column="1"
                      Width="150"
                                                                              >
                             <ComboBoxItem Content="Tất cả" Tag="all" IsSelected="True"/>
                             <ComboBoxItem Content="Active" Tag="active"/>
                             <ComboBoxItem Content="Disable" Tag="disable"/>
+                            <ComboBoxItem Content="Deleted" Tag="deleted"/>
                         </ComboBox>
                     </Grid>
 
@@ -154,27 +155,33 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate                         >
                                     <Border x:ConnectionId='4' BorderBrush="CornflowerBlue" BorderThickness="1" Margin="5" Padding="10" CornerRadius="5" 
-                                                                                                                                 >
+                                                                                           >
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*" />
                                                 <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
                                             <StackPanel Grid.Column="0">
-                                                <TextBlock x:ConnectionId='8'                      FontWeight="Bold"/>
+                                                <!-- Add an indicator for deleted tools -->
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock x:ConnectionId='12'                      FontWeight="Bold"/>
+                                                    <TextBlock x:ConnectionId='13' Text=" (Đã xóa)" Foreground="Red" 
+                                                                                                                               />
+                                                </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                                     <TextBlock Text="Trạng thái: " FontWeight="SemiBold" />
-                                                    <TextBlock x:ConnectionId='10'                                     
-                                                                                                                                           />
+                                                    <TextBlock x:ConnectionId='11'                                     
+                                                                                                                     />
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                                     <TextBlock Text="Quyền truy cập: " FontWeight="SemiBold" Margin="0,5,0,0"/>
-                                                    <ComboBox x:ConnectionId='9'                                                   
-                               
-          SelectedValuePath="Content"
-                     
-                                                                 
-          Width="150" Margin="0,0,0,0">
+                                                    <ComboBox x:ConnectionId='10'                                                   
+                                               
+                          SelectedValuePath="Content"
+                                     
+                                                                                 
+                          Width="150" Margin="0,0,0,0"
+                                                                                                                        >
                                                         <ComboBoxItem Content="membership"/>
                                                         <ComboBoxItem Content="premium"/>
                                                         <ComboBoxItem Content="anonymous"/>
@@ -182,14 +189,22 @@
                                                 </StackPanel>
                                             </StackPanel>
                                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                                <Button x:ConnectionId='5' Content="Enable"                       Margin="0,0,0,5"                         
-                                        Background="Green" Foreground="White" HorizontalAlignment="Stretch" 
-                                                                                                                                                                     />
-                                                <Button x:ConnectionId='6' Content="Disable"                       Margin="0,0,0,5"                          
-                                        Background="DarkOrange" Foreground="White" HorizontalAlignment="Stretch" 
-                                                                                                                                                                    />
+                                                <!-- Show Enable/Disable buttons only for non-deleted tools -->
+                                                <StackPanel x:ConnectionId='5'                                                                                                            >
+                                                    <Button x:ConnectionId='8' Content="Enable"                       Margin="0,0,0,5"                         
+                        Background="Green" Foreground="White" HorizontalAlignment="Stretch" 
+                                                                                                                                                     />
+                                                    <Button x:ConnectionId='9' Content="Disable"                       Margin="0,0,0,5"                          
+                        Background="DarkOrange" Foreground="White" HorizontalAlignment="Stretch" 
+                                                                                                                                                    />
+                                                </StackPanel>
+                                                <!-- Toggle between Delete and Restore buttons based on isDeleted status -->
+                                                <Button x:ConnectionId='6' Content="Khôi phục"                                                
+                    Background="MediumSeaGreen" Foreground="White" HorizontalAlignment="Stretch"
+                                                                                                                        />
                                                 <Button x:ConnectionId='7' Content="Delete"                                               
-                                        Background="Firebrick" Foreground="White" HorizontalAlignment="Stretch" />
+                    Background="Firebrick" Foreground="White" HorizontalAlignment="Stretch"
+                                                                                                                               />
                                             </StackPanel>
                                         </Grid>
                                     </Border>

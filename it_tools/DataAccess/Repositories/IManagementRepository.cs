@@ -26,5 +26,7 @@ namespace it_tools.DataAccess.Repositories
                                         string idToolType
                                                 );
         Task<(bool success, string message)> UpdateAccessLevel(string token, string idTool, string accessLevel);
-    }
+
+        Task<(bool success, string message)> ReCoverToolAsync(string token, string idTool);
+    } 
 }

@@ -25,7 +25,10 @@
             <converters:StatusToVisibilityConverter x:Key="StatusToVisibilityConverter" />
             <converters:StatusToBackgroundConverter x:Key="StatusToBackgroundConverter" />
             <converters:StatusToBorderBrushConverter x:Key="StatusToBorderBrushConverter" />
-           
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+            <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
+            <converters:DeletedStatusToBackgroundConverter x:Key="DeletedStatusToBackgroundConverter"/>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
