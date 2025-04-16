@@ -17,7 +17,6 @@
           "QRCoder": "1.6.0",
           "libphonenumber-csharp": "9.0.2",
           "RandomStringGenerator": "1.0.0.0",
-          "RandomStringTool": "1.0.0.0",
           "ToolLib": "1.0.0.0",
           "runtimepack.Microsoft.NETCore.App.Runtime.win-x64": "6.0.36",
           "runtimepack.Microsoft.Windows.SDK.NET.Ref": "10.0.19041.55"
@@ -1350,14 +1349,6 @@
           }
         }
       },
-      "RandomStringTool/1.0.0.0": {
-        "runtime": {
-          "RandomStringTool.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
       "ToolLib/1.0.0.0": {
         "runtime": {
           "ToolLib.dll": {
@@ -1805,11 +1796,6 @@
       "hashPath": "system.threading.tasks.extensions.4.5.4.nupkg.sha512"
     },
     "RandomStringGenerator/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "RandomStringTool/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

@@ -22,7 +22,7 @@ namespace it_tools.DataAccess.Repositories
         public AccountRepository(HttpClient httpClient, IConfiguration config)
         {
             _httpClient = httpClient;
-            _pluginPath = config["PluginPath"];
+            _pluginPath = "D:\\Doan\\TKPM\\Project\\it_tool_frontend (new)\\it_tools";
             _baseUrl = config["ApiUrls:Account"];
         }
 

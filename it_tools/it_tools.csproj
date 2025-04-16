@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
@@ -114,11 +114,8 @@
     <Reference Include="RandomStringGenerator">
       <HintPath>..\..\RandomStringGenerator\bin\Debug\net8.0-windows10.0.19041.0\RandomStringGenerator.dll</HintPath>
     </Reference>
-    <Reference Include="RandomStringTool">
-      <HintPath>..\..\RandomStringTool\RandomStringTool\bin\Debug\net6.0-windows10.0.19041.0\RandomStringTool.dll</HintPath>
-    </Reference>
     <Reference Include="ToolLib">
-      <HintPath>..\..\ToolLib\ToolLib\bin\Debug\net6.0-windows10.0.19041.0\ToolLib.dll</HintPath>
+      <HintPath>..\..\tool_lib\ToolLib\ToolLib\bin\Debug\net6.0-windows10.0.19041.0\ToolLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

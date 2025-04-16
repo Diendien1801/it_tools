@@ -1,1 +1,1 @@
-C:\Users\dient\source\repos\it_tools\it_tools\it_tools.csproj;x64
+D:\Doan\TKPM\Project\it_tool_frontend (new)\it_tools\it_tools.csproj;x64
