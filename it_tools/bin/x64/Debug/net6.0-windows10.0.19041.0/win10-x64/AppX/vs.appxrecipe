@@ -29,29 +29,29 @@
     <AppXManifest Include="D:\Doan\TKPM\Project\it_tool_frontend %28new%29\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-04-15T16:39:40.524</Modified>
+      <Modified>2025-04-16T17:07:17.568</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\Doan\TKPM\Project\it_tool_frontend %28new%29\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-04-15T07:38:06.451</Modified>
+      <Modified>2025-04-16T16:55:29.704</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Doan\TKPM\Project\it_tool_frontend %28new%29\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\it_tools.runtimeconfig.json">
       <PackagePath>it_tools.runtimeconfig.json</PackagePath>
-      <Modified>2025-04-15T07:38:06.168</Modified>
+      <Modified>2025-04-16T16:55:29.619</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Doan\TKPM\Project\it_tool_frontend %28new%29\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\it_tools.dll">
       <PackagePath>it_tools.dll</PackagePath>
-      <Modified>2025-04-15T16:39:40.220</Modified>
+      <Modified>2025-04-16T17:07:17.076</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Doan\TKPM\Project\it_tool_frontend %28new%29\it_tools\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>it_tools.exe</PackagePath>
-      <Modified>2025-04-15T16:39:40.225</Modified>
+      <Modified>2025-04-16T17:07:17.080</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Doan\TKPM\Project\it_tool_frontend %28new%29\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\it_tools.deps.json">
       <PackagePath>it_tools.deps.json</PackagePath>
-      <Modified>2025-04-15T07:38:06.023</Modified>
+      <Modified>2025-04-16T16:55:29.616</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Doan\.nuget\packages\microsoft.netcore.app.runtime.win-x64\6.0.36\runtimes\win-x64\lib\net6.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>

@@ -42,7 +42,7 @@ namespace it_tools
 
             if (rootFrame.Content == null)
             {
-                rootFrame.Navigate(typeof(AuthPage)); // Trang khởi đầu
+                rootFrame.Navigate(typeof(HomePage)); // Trang khởi đầu
             }
 
             MainAppWindow.Activate();
