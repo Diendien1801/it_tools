@@ -76,7 +76,7 @@ namespace it_tools.Presentation.Views
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             var authViewModel = AppServices.Services.GetService<AuthViewModel>();
-            if (authViewModel != null && authViewModel.token == null)
+            if (authViewModel != null && string.IsNullOrEmpty(authViewModel.token))
             {
                 // Navigate back to the login page
                 if (App.MainAppWindow.Content is Frame rootFrame)

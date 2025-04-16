@@ -29,7 +29,7 @@
     <AppXManifest Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-04-15T08:50:50.425</Modified>
+      <Modified>2025-04-16T09:27:06.005</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -43,11 +43,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\it_tools.dll">
       <PackagePath>it_tools.dll</PackagePath>
-      <Modified>2025-04-15T08:50:49.811</Modified>
+      <Modified>2025-04-16T09:27:05.442</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>it_tools.exe</PackagePath>
-      <Modified>2025-04-15T08:50:49.821</Modified>
+      <Modified>2025-04-16T09:27:05.505</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dient\source\repos\it_tools\it_tools\bin\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\it_tools.deps.json">
       <PackagePath>it_tools.deps.json</PackagePath>
