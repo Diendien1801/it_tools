@@ -1,4 +1,4 @@
-<Page
+﻿<Page x:ConnectionId='1'
     x:Class="it_tools.Presentation.Views.ManagerPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -24,27 +24,27 @@
 
                     <!-- Tên công cụ -->
                     <TextBlock Text="Tên công cụ:"/>
-                    <TextBox x:Name="ToolNameTextBox" PlaceholderText="Nhập tên tool" Margin="0,5,0,0"/>
+                    <TextBox x:ConnectionId='25' x:Name="ToolNameTextBox" PlaceholderText="Nhập tên tool" Margin="0,5,0,0"/>
 
                     <!-- Mô tả -->
                     <TextBlock Text="Mô tả:"/>
-                    <TextBox x:Name="ToolDescriptionTextBox" PlaceholderText="Nhập mô tả tool" Margin="0,5,0,0" 
+                    <TextBox x:ConnectionId='26' x:Name="ToolDescriptionTextBox" PlaceholderText="Nhập mô tả tool" Margin="0,5,0,0" 
                              TextWrapping="Wrap" Height="80"/>
 
                     <!-- Tool type with Add Button -->
                     <StackPanel>
                         <TextBlock Text="Loại công cụ:" />
                         <StackPanel Orientation="Horizontal" Spacing="10">
-                            <ComboBox x:Name="ToolTypeComboBox"
-            ItemsSource="{x:Bind ViewModel.ToolCategories, Mode=OneWay}"
-            SelectedItem="{x:Bind ViewModel.SelectedToolCategory, Mode=TwoWay}"
+                            <ComboBox x:ConnectionId='32' x:Name="ToolTypeComboBox"
+                                                                        
+                                                                               
             DisplayMemberPath="name"
             Width="200"
             HorizontalAlignment="Left"
             Margin="0,5,0,0"/>
-                            <Button x:Name="AddToolTypeButton" 
+                            <Button x:ConnectionId='33' x:Name="AddToolTypeButton" 
                 Content="+" 
-                Click="AddToolType_Click"
+                                         
                 Width="40" 
                 Height="32"
                 Margin="0,5,0,0"
@@ -56,7 +56,7 @@
 
                     <!-- Loại quyền truy cập -->
                     <TextBlock Text="Quyền truy cập:"/>
-                    <ComboBox x:Name="AccessLevelComboBox" Width="200" Margin="0,5,0,0" HorizontalAlignment="Left">
+                    <ComboBox x:ConnectionId='27' x:Name="AccessLevelComboBox" Width="200" Margin="0,5,0,0" HorizontalAlignment="Left">
                         <ComboBoxItem Content="user" />
                         <ComboBoxItem Content="premium" />
                         <ComboBoxItem Content="anonymous" />
@@ -65,16 +65,16 @@
                     <!-- Chọn file DLL -->
                     <TextBlock Text="Chọn file DLL:"/>
                     <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,5,0,0">
-                        <TextBox x:Name="DllPathTextBox" IsReadOnly="True" Width="300"/>
-                        <Button Content="Chọn file" Click="BrowseDll_Click"/>
+                        <TextBox x:ConnectionId='30' x:Name="DllPathTextBox" IsReadOnly="True" Width="300"/>
+                        <Button x:ConnectionId='31' Content="Chọn file"                        />
                     </StackPanel>
 
                     <!-- Icon URL -->
                     <TextBlock Text="Icon URL (nếu có):"/>
-                    <TextBox x:Name="IconUrlTextBox" PlaceholderText="https://example.com/icon.png" Margin="0,5,0,0"/>
+                    <TextBox x:ConnectionId='28' x:Name="IconUrlTextBox" PlaceholderText="https://example.com/icon.png" Margin="0,5,0,0"/>
 
                     <!-- Nút Thêm -->
-                    <Button Content="Thêm công cụ" Click="AddTool_Click" Background="Green" Foreground="White" 
+                    <Button x:ConnectionId='29' Content="Thêm công cụ"                       Background="Green" Foreground="White" 
                             Padding="15,8" Margin="0,15,0,0" HorizontalAlignment="Left" />
                 </StackPanel>
             </Border>
@@ -93,10 +93,10 @@
                 <StackPanel>
                     <TextBlock Text="Danh sách yêu cầu nâng cấp" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
                     <ScrollViewer Height="250">
-                        <ListView x:Name="RequestListView" ItemsSource="{x:Bind ViewModel.Requests, Mode=OneWay}">
+                        <ListView x:ConnectionId='16' x:Name="RequestListView"                                                       >
                             <ListView.ItemTemplate>
-                                <DataTemplate x:DataType="local1:UpgradeRequest">
-                                    <Border BorderBrush="CornflowerBlue" BorderThickness="1" Margin="5" Padding="15" CornerRadius="10" Background="White">
+                                <DataTemplate                                   >
+                                    <Border x:ConnectionId='18' BorderBrush="CornflowerBlue" BorderThickness="1" Margin="5" Padding="15" CornerRadius="10" Background="White">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="3*" />
@@ -105,20 +105,20 @@
 
                                             <!-- Left Section: Request Details -->
                                             <StackPanel Grid.Column="0" Spacing="5">
-                                                <TextBlock Text="{x:Bind Username}" FontWeight="Bold" FontSize="16" Foreground="Black" />
+                                                <TextBlock x:ConnectionId='21'                          FontWeight="Bold" FontSize="16" Foreground="Black" />
                                                 <TextBlock Text="Level:" FontWeight="SemiBold" Foreground="Black" />
-                                                <TextBlock Text="{x:Bind Level}" Margin="10,0,0,0" Foreground="Gray" />
+                                                <TextBlock x:ConnectionId='22'                       Margin="10,0,0,0" Foreground="Gray" />
                                                 <TextBlock Text="Status:" FontWeight="SemiBold" Foreground="Black" />
-                                                <TextBlock Text="{x:Bind Status}" Margin="10,0,0,0" Foreground="Gray" />
+                                                <TextBlock x:ConnectionId='23'                        Margin="10,0,0,0" Foreground="Gray" />
                                                 <TextBlock Text="Created At:" FontWeight="SemiBold" Foreground="Black" />
-                                                <TextBlock Text="{x:Bind CreatedAt, Converter={StaticResource DateTimeConverter1}}" Margin="10,0,0,0" FontSize="12" Foreground="Gray" />
+                                                <TextBlock x:ConnectionId='24'                                                                          Margin="10,0,0,0" FontSize="12" Foreground="Gray" />
                                             </StackPanel>
 
                                             <!-- Right Section: Action Buttons -->
                                             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Spacing="10">
-                                                <Button Content="Accept" Tag="{x:Bind IdRequest}" Click="Accept_Click"
+                                                <Button x:ConnectionId='19' Content="Accept"                                              
                     Background="Green" Foreground="White" Padding="10,5" CornerRadius="5" />
-                                                <Button Content="Reject" Tag="{x:Bind IdRequest}" Click="Reject_Click"
+                                                <Button x:ConnectionId='20' Content="Reject"                                              
                     Background="Firebrick" Foreground="White" Padding="10,5" CornerRadius="5" />
                                             </StackPanel>
                                         </Grid>
@@ -144,17 +144,17 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- Search Box -->
-                        <AutoSuggestBox x:Name="ToolSearchBox" 
+                        <AutoSuggestBox x:ConnectionId='14' x:Name="ToolSearchBox" 
                            PlaceholderText="Tìm kiếm công cụ..." 
-                           TextChanged="ToolSearchBox_TextChanged"
+                                                                  
                            Grid.Column="0"
                            Margin="0,0,10,0"/>
 
                         <!-- Status Filter -->
-                        <ComboBox x:Name="StatusFilterComboBox" 
+                        <ComboBox x:ConnectionId='15' x:Name="StatusFilterComboBox" 
                      Grid.Column="1"
                      Width="150"
-                     SelectionChanged="StatusFilterComboBox_SelectionChanged">
+                                                                             >
                             <ComboBoxItem Content="Tất cả" Tag="all" IsSelected="True"/>
                             <ComboBoxItem Content="Active" Tag="active"/>
                             <ComboBoxItem Content="Disable" Tag="disable"/>
@@ -164,11 +164,11 @@
 
                     <!-- Tool List -->
                     <ScrollViewer Height="350">
-                        <ListView x:Name="ToolListView" ItemsSource="{x:Bind ViewModel.FilteredTools, Mode=OneWay}">
+                        <ListView x:ConnectionId='2' x:Name="ToolListView"                                                            >
                             <ListView.ItemTemplate>
-                                <DataTemplate x:DataType="local1:Tool">
-                                    <Border BorderBrush="CornflowerBlue" BorderThickness="1" Margin="5" Padding="10" CornerRadius="5" 
-        Background="{x:Bind Converter={StaticResource DeletedStatusToBackgroundConverter}}">
+                                <DataTemplate                         >
+                                    <Border x:ConnectionId='4' BorderBrush="CornflowerBlue" BorderThickness="1" Margin="5" Padding="10" CornerRadius="5" 
+                                                                                           >
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*" />
@@ -177,24 +177,24 @@
                                             <StackPanel Grid.Column="0">
                                                 <!-- Add an indicator for deleted tools -->
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{x:Bind name}" FontWeight="Bold"/>
-                                                    <TextBlock Text=" (Đã xóa)" Foreground="Red" 
-                           Visibility="{x:Bind isDelete, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                    <TextBlock x:ConnectionId='12'                      FontWeight="Bold"/>
+                                                    <TextBlock x:ConnectionId='13' Text=" (Đã xóa)" Foreground="Red" 
+                                                                                                                               />
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                                     <TextBlock Text="Trạng thái: " FontWeight="SemiBold" />
-                                                    <TextBlock Text="{x:Bind status, Mode=OneWay}" 
-                           Foreground="{x:Bind status, Mode=OneWay, Converter={StaticResource StatusColorConverter}}"/>
+                                                    <TextBlock x:ConnectionId='11'                                     
+                                                                                                                     />
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                                     <TextBlock Text="Quyền truy cập: " FontWeight="SemiBold" Margin="0,5,0,0"/>
-                                                    <ComboBox SelectedValue="{x:Bind access_level, Mode=TwoWay}"
-                          Tag="{x:Bind idTool}"
+                                                    <ComboBox x:ConnectionId='10'                                                   
+                                               
                           SelectedValuePath="Content"
-                          x:Phase="2"
-                          SelectionChanged="AccessLevelComboBox_SelectionChanged"
+                                     
+                                                                                 
                           Width="150" Margin="0,0,0,0"
-                          IsEnabled="{x:Bind isDelete, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}">
+                                                                                                                        >
                                                         <ComboBoxItem Content="membership"/>
                                                         <ComboBoxItem Content="premium"/>
                                                         <ComboBoxItem Content="anonymous"/>
@@ -203,21 +203,21 @@
                                             </StackPanel>
                                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                                 <!-- Show Enable/Disable buttons only for non-deleted tools -->
-                                                <StackPanel Visibility="{x:Bind isDelete, Mode=OneWay, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
-                                                    <Button Content="Enable" Tag="{x:Bind idTool}" Margin="0,0,0,5" Click="EnableTool_Click"
+                                                <StackPanel x:ConnectionId='5'                                                                                                            >
+                                                    <Button x:ConnectionId='8' Content="Enable"                       Margin="0,0,0,5"                         
                         Background="Green" Foreground="White" HorizontalAlignment="Stretch" 
-                        Visibility="{x:Bind status, Mode=OneWay, Converter={StaticResource StatusToVisibilityConverter}, ConverterParameter=disable}"/>
-                                                    <Button Content="Disable" Tag="{x:Bind idTool}" Margin="0,0,0,5" Click="DisableTool_Click"
+                                                                                                                                                     />
+                                                    <Button x:ConnectionId='9' Content="Disable"                       Margin="0,0,0,5"                          
                         Background="DarkOrange" Foreground="White" HorizontalAlignment="Stretch" 
-                        Visibility="{x:Bind status, Mode=OneWay, Converter={StaticResource StatusToVisibilityConverter}, ConverterParameter=active}"/>
+                                                                                                                                                    />
                                                 </StackPanel>
                                                 <!-- Toggle between Delete and Restore buttons based on isDeleted status -->
-                                                <Button Content="Khôi phục" Tag="{x:Bind idTool}" Click="RestoreTool_Click"
+                                                <Button x:ConnectionId='6' Content="Khôi phục"                                                
                     Background="MediumSeaGreen" Foreground="White" HorizontalAlignment="Stretch"
-                    Visibility="{x:Bind isDelete, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                                <Button Content="Delete" Tag="{x:Bind idTool}" Click="DeleteTool_Click"
+                                                                                                                        />
+                                                <Button x:ConnectionId='7' Content="Delete"                                               
                     Background="Firebrick" Foreground="White" HorizontalAlignment="Stretch"
-                    Visibility="{x:Bind isDelete, Mode=OneWay, Converter={StaticResource InverseBooleanToVisibilityConverter}}"/>
+                                                                                                                               />
                                             </StackPanel>
                                         </Grid>
                                     </Border>
@@ -230,3 +230,4 @@
         </Grid>
     </Grid>
 </Page>
+

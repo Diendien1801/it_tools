@@ -20,6 +20,14 @@ namespace it_tools.BusinessLogic.Services
             _repo = repo;
         }
 
+        public IToolRepository IToolRepository
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public async Task<List<Tool>> GetAllTools()
         {
             var tools = await _repo.GetAllTools();

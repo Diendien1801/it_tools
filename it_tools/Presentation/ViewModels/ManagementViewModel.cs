@@ -407,9 +407,50 @@ namespace it_tools.Presentation.ViewModels
                 return (false, $"Lỗi khi thêm tool: {ex.Message}");
             }
         }
-        
 
+        public async Task<(bool success, string message)> AddNewToolTypeAsync(ToolCategory toolType)
+        {
+            if (string.IsNullOrEmpty(_authViewModel.token))
+            {
+                Debug.WriteLine("[ERROR] AddNewToolTypeAsync: No token available");
+                return (false, "Bạn cần đăng nhập để thực hiện chức năng này");
+            }
 
+            try
+            {
+                // Gọi service để thêm loại công cụ mới
+                var result = await _managementService.AddNewToolType(_authViewModel.token, toolType);
+
+                if (result.success)
+                {
+                    Debug.WriteLine($"[INFO] AddNewToolTypeAsync: {result.message}");
+
+                    // Cập nhật danh sách loại công cụ từ NavigationViewModel
+                    await _navigationViewModel.LoadToolCategoriesAsync();
+
+                    // Cập nhật danh sách loại công cụ trong ViewModel hiện tại
+                    ToolCategories.Clear();
+                    foreach (var category in _navigationViewModel.ToolCategories)
+                    {
+                        if (category.idToolType != "0" && category.idToolType != "-1")
+                        {
+                            ToolCategories.Add(category);
+                        }
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine($"[ERROR] AddNewToolTypeAsync: {result.message}");
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[ERROR] Exception in AddNewToolTypeAsync: {ex.Message}");
+                return (false, $"Lỗi khi thêm loại công cụ mới: {ex.Message}");
+            }
+        }
 
     }
 }

@@ -17,6 +17,15 @@ namespace it_tools.Presentation.ViewModels
         private readonly IAccountService _accountService;
         private readonly NavigationViewModel _navigationViewModel;
         public  string token { get; private set; }
+
+        public IAuthService IAuthService
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public AuthViewModel(IAuthService authService, IAccountService accountService, NavigationViewModel navigationViewModel)
         {
             _authService = authService;

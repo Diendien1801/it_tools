@@ -117,5 +117,13 @@ namespace it_tools.Presentation.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public IAccountService đá
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

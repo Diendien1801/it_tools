@@ -20,6 +20,7 @@ namespace it_tools.Presentation.Views
         public ManagementViewModel ViewModel { get; set; }
         private bool isDialogOpen_AddTool = false;
         private ContentDialog _activeDialog;
+        private bool isDialogOpen_AddToolType = false;
         public ManagerPage()
         {
             this.InitializeComponent();
@@ -337,5 +338,142 @@ namespace it_tools.Presentation.Views
             }
         }
 
+
+        private async void AddToolType_Click(object sender, RoutedEventArgs e)
+        {
+            if (isDialogOpen_AddToolType || _activeDialog != null)
+            {
+                Debug.WriteLine("[WARN] Một Dialog đang hiển thị, bỏ qua thao tác thêm loại công cụ.");
+                return;
+            }
+
+            try
+            {
+                isDialogOpen_AddToolType = true;
+
+                // Create dialog content
+                Grid dialogContent = new Grid();
+                dialogContent.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                dialogContent.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                dialogContent.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                dialogContent.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                dialogContent.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+                dialogContent.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+                // Name field
+                TextBlock nameLabel = new TextBlock { Text = "Tên loại công cụ:", Margin = new Thickness(0, 0, 10, 10), VerticalAlignment = VerticalAlignment.Center };
+                Grid.SetRow(nameLabel, 0);
+                Grid.SetColumn(nameLabel, 0);
+                dialogContent.Children.Add(nameLabel);
+
+                TextBox nameTextBox = new TextBox { PlaceholderText = "Nhập tên loại công cụ", Margin = new Thickness(0, 0, 0, 10), Width = 300 };
+                Grid.SetRow(nameTextBox, 0);
+                Grid.SetColumn(nameTextBox, 1);
+                dialogContent.Children.Add(nameTextBox);
+
+                // Icon URL field
+                TextBlock iconUrlLabel = new TextBlock { Text = "Icon URL:", Margin = new Thickness(0, 0, 10, 10), VerticalAlignment = VerticalAlignment.Center };
+                Grid.SetRow(iconUrlLabel, 1);
+                Grid.SetColumn(iconUrlLabel, 0);
+                dialogContent.Children.Add(iconUrlLabel);
+
+                TextBox iconUrlTextBox = new TextBox { PlaceholderText = "https://example.com/icon.png", Margin = new Thickness(0, 0, 0, 10), Width = 300 };
+                Grid.SetRow(iconUrlTextBox, 1);
+                Grid.SetColumn(iconUrlTextBox, 1);
+                dialogContent.Children.Add(iconUrlTextBox);
+
+                // Create and configure the dialog
+                ContentDialog addDialog = new ContentDialog
+                {
+                    Title = "Thêm loại công cụ mới",
+                    Content = dialogContent,
+                    PrimaryButtonText = "Thêm",
+                    CloseButtonText = "Hủy",
+                    DefaultButton = ContentDialogButton.Primary,
+                    XamlRoot = this.XamlRoot
+                };
+
+                // Show the dialog and wait for user input
+                var result = await addDialog.ShowAsync();
+
+                if (result == ContentDialogResult.Primary)
+                {
+                    string name = nameTextBox.Text?.Trim();
+                    string iconUrl = iconUrlTextBox.Text?.Trim();
+
+                    if (string.IsNullOrEmpty(name))
+                    {
+                        // Reset the flag before showing the error dialog
+                        isDialogOpen_AddToolType = false;
+
+                        // Show error message using a new dialog
+                        ContentDialog errorDialog = new ContentDialog
+                        {
+                            Title = "Lỗi",
+                            Content = "Tên loại công cụ không được để trống.",
+                            CloseButtonText = "OK",
+                            XamlRoot = this.XamlRoot
+                        };
+
+                        await errorDialog.ShowAsync();
+                        return;
+                    }
+
+                    // Create a new ToolCategory object
+                    ToolCategory newToolType = new ToolCategory
+                    {
+                        name = name,
+                        iconURL = iconUrl
+                    };
+
+                    // Call API to add the new tool type
+                    Debug.WriteLine($"[DEBUG] Thêm loại công cụ mới: {name}, Icon URL: {iconUrl}");
+                    var (success, message) = await ViewModel.AddNewToolTypeAsync(newToolType);
+
+                    // Reset the flag before showing the result dialog
+                    isDialogOpen_AddToolType = false;
+
+                    // Show result message
+                    ContentDialog resultDialog = new ContentDialog
+                    {
+                        Title = success ? "Thành công" : "Lỗi",
+                        Content = success ? "Thêm loại công cụ thành công!" : $"Không thể thêm loại công cụ: {message}",
+                        CloseButtonText = "OK",
+                        XamlRoot = this.XamlRoot
+                    };
+
+                    await resultDialog.ShowAsync();
+
+                    if (success)
+                    {
+                        // Refresh the combobox
+                        ToolTypeComboBox.SelectedItem = ViewModel.ToolCategories.FirstOrDefault(c => c.name == name);
+                    }
+                }
+                else
+                {
+                    // Reset the flag if user cancelled
+                    isDialogOpen_AddToolType = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[EXCEPTION] Lỗi khi thêm loại công cụ: {ex}");
+
+                // Reset the flag before showing the exception dialog
+                isDialogOpen_AddToolType = false;
+
+                // Show exception message
+                ContentDialog exceptionDialog = new ContentDialog
+                {
+                    Title = "Lỗi hệ thống",
+                    Content = $"Lỗi khi thêm loại công cụ: {ex.Message}",
+                    CloseButtonText = "OK",
+                    XamlRoot = this.XamlRoot
+                };
+
+                await exceptionDialog.ShowAsync();
+            }
+        }
     }
 }

@@ -26,6 +26,16 @@ namespace it_tools.DataAccess.Repositories
             _baseUrl = config["ApiUrls:Account"];
         }
 
+       
+
+        public User User
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public async Task<(bool success, string message, User data)> GetAccountInfoAsync(string token)
         {
             try

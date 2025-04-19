@@ -15,6 +15,9 @@ namespace it_tools.BusinessLogic.Services
         {
             _accountRepository = accountRepository;
         }
+
+        
+
         public async Task<(bool success, string message, User data)> GetAccountInfoAsync(string token)
         {
             return await _accountRepository.GetAccountInfoAsync(token);

@@ -16,6 +16,15 @@ namespace it_tools.BusinessLogic.Services
         {
             this.managementRepository = managementRepository;
         }
+
+        public IManagementRepository IManagementRepository
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public async Task<(bool success, string message, List<UpgradeRequest> data)> GetAllRequestAsync(string token)
         {
             return await managementRepository.GetAllRequestAsync(token);
@@ -65,6 +74,12 @@ namespace it_tools.BusinessLogic.Services
         public async Task<(bool success, string message)> ReCoverToolAsync(string token, string idTool)
         {
             return await managementRepository.ReCoverToolAsync(token, idTool);
+        }
+      
+
+        public async Task<(bool success, string message)> AddNewToolType(string token, ToolCategory toolType)
+        {
+            return await managementRepository.AddNewToolType(token, toolType);
         }
     }
 }

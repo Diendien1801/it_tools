@@ -454,6 +454,61 @@ namespace it_tools.DataAccess.Repositories
                 return (false, "Lỗi khi khôi phục tool");
             }
         }
+        public async Task<(bool success, string message)> AddNewToolType(string token, ToolCategory toolType)
+        {
+            try
+            {
+                // Đường dẫn API
+                string url = $"{_baseUrl}/categories/add";
+                Debug.WriteLine($"🔹 Sending POST request to: {url}");
+
+                // Tạo object gửi đi
+                var body = new
+                {
+                    name = toolType.name,
+                    iconURL = toolType.iconURL,
+                };
+
+                // Serialize JSON
+                string jsonContent = JsonSerializer.Serialize(body);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                // Thêm token vào header
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                // Gửi yêu cầu POST
+                HttpResponseMessage response = await _httpClient.PostAsync(url, content);
+                Debug.WriteLine($"🔹 Response Status Code: {response.StatusCode}");
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+                Debug.WriteLine($"🔹 Response Content: {responseContent}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = JsonSerializer.Deserialize<BaseResponse<object>>(responseContent, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                    if (result?.success == true)
+                    {
+                        Debug.WriteLine("✅ Tool category added successfully.");
+                        return (true, "Tool category added successfully.");
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"❌ API returned failure: {result?.message}");
+                        return (false, result?.message ?? "Failed to add tool category.");
+                    }
+                }
+                else
+                {
+                    return (false, $"API Error: {response.StatusCode}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ Exception: {ex.Message}");
+                return (false, $"Exception: {ex.Message}");
+            }
+        }
 
 
 

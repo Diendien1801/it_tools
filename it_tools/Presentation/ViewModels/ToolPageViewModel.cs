@@ -18,6 +18,14 @@ namespace it_tools.Presentation.ViewModels
         private List<Tool> AllTools { get; set; } = new List<Tool>(); // Lưu trữ danh sách đầy đủ
         private List<Tool> FavouriteTools { get; set; } = new List<Tool>();
 
+        public IToolService IToolService
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public ToolPageViewModel(AuthViewModel authViewModel, IToolService toolService, IAccountService accountService)
         {
             _toolService = toolService;

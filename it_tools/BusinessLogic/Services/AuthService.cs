@@ -14,6 +14,15 @@ namespace it_tools.BusinessLogic.Services
         {
             _authRepository = authRepository;
         }
+
+        public IAuthRepository IAuthRepository
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public async Task<(bool success, string message)> RegisterAsync(string username, string password)
         {
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
