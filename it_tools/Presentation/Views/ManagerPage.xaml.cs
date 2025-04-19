@@ -204,11 +204,63 @@ namespace it_tools.Presentation.Views
                 string fileName = Path.GetFileName(originalDllPath);
                 string destinationPath = Path.Combine(pluginsFolder, fileName);
 
-                Debug.WriteLine($"[INFO] Copy DLL từ {originalDllPath} vào {destinationPath}");
-                File.Copy(originalDllPath, destinationPath, overwrite: true);
+                // Check if file already exists and is in use
+                if (File.Exists(destinationPath))
+                {
+                    try
+                    {
+                        // Try to open the file to see if it's locked
+                        using (FileStream fs = File.Open(destinationPath, FileMode.Open, FileAccess.Read, FileShare.None))
+                        {
+                            // File is not locked, we can close and continue with copy
+                        }
+                    }
+                    catch (IOException)
+                    {
+                        // File is locked, just use the existing file
+                        Debug.WriteLine($"[INFO] File {fileName} is already in use, skipping copy");
+                        // Continue with the existing file
+                        var (addToolSuccess, addToolMessage) = await ViewModel.AddToolAsync(
+     name,
+     description,
+     iconUrl,
+     accessLevel,
+     ParseDllPath(destinationPath),
+     selectedCategory.idToolType
+ );
+
+                        // Show results and return
+                        isDialogOpen_AddTool = true;
+                        await ShowMessageDialog(addToolSuccess ? "Đã thêm công cụ thành công!" : $"Không thể thêm công cụ: {addToolMessage}",
+                                                addToolSuccess ? "Thành công" : "Lỗi");
+                        isDialogOpen_AddTool = false;
+
+                        if (addToolSuccess)
+                        {
+                            // Reset các trường sau khi thêm
+                            ResetToolInputFields();
+                        }
+
+                        return;
+                    }
+                }
+
+                // If we get here, we can safely copy the file
+                try
+                {
+                    File.Copy(originalDllPath, destinationPath, overwrite: true);
+                }
+                catch (IOException ex)
+                {
+                    Debug.WriteLine($"[ERROR] Cannot copy DLL: {ex.Message}");
+                    isDialogOpen_AddTool = true;
+                    await ShowMessageDialog($"Không thể sao chép file DLL: {ex.Message}\nVui lòng đảm bảo file không đang được sử dụng.", "Lỗi");
+                    isDialogOpen_AddTool = false;
+                    return;
+                }
 
                 // ✅ Lấy đường dẫn tương đối
-                string parsedDllPath = ParseDllPath(originalDllPath);
+                string parsedDllPath = ParseDllPath(destinationPath);
                 Debug.WriteLine($"[INFO] DLL parsed path: {parsedDllPath}");
 
                 // ✅ Gọi ViewModel để thêm tool
@@ -231,12 +283,7 @@ namespace it_tools.Presentation.Views
                     isDialogOpen_AddTool = false;
 
                     // Reset các trường sau khi thêm
-                    ToolNameTextBox.Text = "";
-                    ToolDescriptionTextBox.Text = "";
-                    IconUrlTextBox.Text = "";
-                    DllPathTextBox.Text = "";
-                    ToolTypeComboBox.SelectedItem = null;
-                    AccessLevelComboBox.SelectedItem = null;
+                    ResetToolInputFields();
                 }
                 else
                 {
@@ -255,7 +302,15 @@ namespace it_tools.Presentation.Views
             }
         }
 
-
+        private void ResetToolInputFields()
+        {
+            ToolNameTextBox.Text = "";
+            ToolDescriptionTextBox.Text = "";
+            IconUrlTextBox.Text = "";
+            DllPathTextBox.Text = "";
+            ToolTypeComboBox.SelectedItem = null;
+            AccessLevelComboBox.SelectedItem = null;
+        }
 
         public static string ParseDllPath(string fullPath)
         {
