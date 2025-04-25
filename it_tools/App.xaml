@@ -28,6 +28,8 @@
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
             <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
             <converters:DeletedStatusToBackgroundConverter x:Key="DeletedStatusToBackgroundConverter"/>
+            <converters:StatusToColorConverter x:Key="StatusToColorConverter"/>
+            <converters:StatusToBackgroundConverter2 x:Key="StatusToBackgroundConverter2"/>
 
         </ResourceDictionary>
     </Application.Resources>

@@ -36,6 +36,16 @@ namespace it_tools.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+        private ObservableCollection<UpgradeRequest> _historyRequest = new();
+        public ObservableCollection<UpgradeRequest> HistoryRequest
+        {
+            get => _historyRequest;
+            set
+            {
+                _historyRequest = value;
+                OnPropertyChanged();
+            }
+        }
         private ObservableCollection<Tool> _favoriteTools = new();
         public ObservableCollection<Tool> FavoriteTools
         {
@@ -73,8 +83,9 @@ namespace it_tools.Presentation.ViewModels
 
             var accountTask = _accountService.GetAccountInfoAsync(_authViewModel.token);
             var favoriteTask = _accountService.GetFavoriteToolsAsync(_authViewModel.token);
+            var historyRequestTask = _accountService.GetHistoryRequest(_authViewModel.token);
 
-            await Task.WhenAll(accountTask, favoriteTask); // 🔹 Chạy song song hai API
+            await Task.WhenAll(accountTask, favoriteTask, historyRequestTask); // 🔹 Chạy song song hai API
 
             var accountResult = await accountTask;
             var favoriteResult = await favoriteTask;
@@ -89,6 +100,10 @@ namespace it_tools.Presentation.ViewModels
                 FavoriteTools = new ObservableCollection<Tool>(favoriteResult.tools);
             }
 
+            if (historyRequestTask.Result.success)
+            {
+               HistoryRequest = new ObservableCollection<UpgradeRequest>(historyRequestTask.Result.Item3);
+            }
             return accountResult.success && favoriteResult.success;
         }
 

@@ -20,20 +20,20 @@
             <Border Margin="0,30,0,0" Padding="15" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
                     CornerRadius="10" BorderBrush="CornflowerBlue" BorderThickness="1">
                 <StackPanel Spacing="15">
-                    <TextBlock Text="Thêm công cụ mới" FontSize="22" FontWeight="Bold" Margin="0,0,0,10" />
+                    <TextBlock Text="Add New Tool" FontSize="22" FontWeight="Bold" Margin="0,0,0,10" />
 
                     <!-- Tên công cụ -->
-                    <TextBlock Text="Tên công cụ:"/>
-                    <TextBox x:ConnectionId='25' x:Name="ToolNameTextBox" PlaceholderText="Nhập tên tool" Margin="0,5,0,0"/>
+                    <TextBlock Text="Tool Name:"/>
+                    <TextBox x:ConnectionId='25' x:Name="ToolNameTextBox" PlaceholderText="Enter tool's name" Margin="0,5,0,0"/>
 
                     <!-- Mô tả -->
-                    <TextBlock Text="Mô tả:"/>
-                    <TextBox x:ConnectionId='26' x:Name="ToolDescriptionTextBox" PlaceholderText="Nhập mô tả tool" Margin="0,5,0,0" 
+                    <TextBlock Text="Description:"/>
+                    <TextBox x:ConnectionId='26' x:Name="ToolDescriptionTextBox" PlaceholderText="Enter tool's description" Margin="0,5,0,0" 
                              TextWrapping="Wrap" Height="80"/>
 
                     <!-- Tool type with Add Button -->
                     <StackPanel>
-                        <TextBlock Text="Loại công cụ:" />
+                        <TextBlock Text="Tool Type:" />
                         <StackPanel Orientation="Horizontal" Spacing="10">
                             <ComboBox x:ConnectionId='32' x:Name="ToolTypeComboBox"
                                                                         
@@ -50,12 +50,12 @@
                 Margin="0,5,0,0"
                 Background="CornflowerBlue"
                 Foreground="White"
-                ToolTipService.ToolTip="Thêm loại công cụ mới"/>
+                ToolTipService.ToolTip="Add New Tool Type"/>
                         </StackPanel>
                     </StackPanel>
 
                     <!-- Loại quyền truy cập -->
-                    <TextBlock Text="Quyền truy cập:"/>
+                    <TextBlock Text="Access Level:"/>
                     <ComboBox x:ConnectionId='27' x:Name="AccessLevelComboBox" Width="200" Margin="0,5,0,0" HorizontalAlignment="Left">
                         <ComboBoxItem Content="user" />
                         <ComboBoxItem Content="premium" />
@@ -63,18 +63,18 @@
                     </ComboBox>
 
                     <!-- Chọn file DLL -->
-                    <TextBlock Text="Chọn file DLL:"/>
+                    <TextBlock Text="Choose DLL File:"/>
                     <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,5,0,0">
                         <TextBox x:ConnectionId='30' x:Name="DllPathTextBox" IsReadOnly="True" Width="300"/>
-                        <Button x:ConnectionId='31' Content="Chọn file"                        />
+                        <Button x:ConnectionId='31' Content="Choose file"                        />
                     </StackPanel>
 
                     <!-- Icon URL -->
-                    <TextBlock Text="Icon URL (nếu có):"/>
+                    <TextBlock Text="Icon URL (if have):"/>
                     <TextBox x:ConnectionId='28' x:Name="IconUrlTextBox" PlaceholderText="https://example.com/icon.png" Margin="0,5,0,0"/>
 
                     <!-- Nút Thêm -->
-                    <Button x:ConnectionId='29' Content="Thêm công cụ"                       Background="Green" Foreground="White" 
+                    <Button x:ConnectionId='29' Content="Add New Tool"                       Background="Green" Foreground="White" 
                             Padding="15,8" Margin="0,15,0,0" HorizontalAlignment="Left" />
                 </StackPanel>
             </Border>
@@ -91,7 +91,7 @@
             <Border Grid.Row="0" Margin="0,30,0,10" Padding="15" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
                     CornerRadius="10" BorderBrush="CornflowerBlue" BorderThickness="1">
                 <StackPanel>
-                    <TextBlock Text="Danh sách yêu cầu nâng cấp" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock Text="Upgrade Request" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
                     <ScrollViewer Height="250">
                         <ListView x:ConnectionId='16' x:Name="RequestListView"                                                       >
                             <ListView.ItemTemplate>
@@ -134,7 +134,7 @@
             <Border Grid.Row="1" Margin="0,10,0,0" Padding="15" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
         CornerRadius="10" BorderBrush="CornflowerBlue" BorderThickness="1">
                 <StackPanel>
-                    <TextBlock Text="Danh sách công cụ" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock Text="Tool List" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
 
                     <!-- Search and Filter Controls -->
                     <Grid Margin="0,0,0,10">
@@ -145,7 +145,7 @@
 
                         <!-- Search Box -->
                         <AutoSuggestBox x:ConnectionId='14' x:Name="ToolSearchBox" 
-                           PlaceholderText="Tìm kiếm công cụ..." 
+                           PlaceholderText="Search tool..." 
                                                                   
                            Grid.Column="0"
                            Margin="0,0,10,0"/>
@@ -155,7 +155,7 @@
                      Grid.Column="1"
                      Width="150"
                                                                              >
-                            <ComboBoxItem Content="Tất cả" Tag="all" IsSelected="True"/>
+                            <ComboBoxItem Content="All" Tag="all" IsSelected="True"/>
                             <ComboBoxItem Content="Active" Tag="active"/>
                             <ComboBoxItem Content="Disable" Tag="disable"/>
                             <ComboBoxItem Content="Deleted" Tag="deleted"/>
@@ -178,16 +178,16 @@
                                                 <!-- Add an indicator for deleted tools -->
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBlock x:ConnectionId='12'                      FontWeight="Bold"/>
-                                                    <TextBlock x:ConnectionId='13' Text=" (Đã xóa)" Foreground="Red" 
+                                                    <TextBlock x:ConnectionId='13' Text=" (Deleted)" Foreground="Red" 
                                                                                                                                />
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                                    <TextBlock Text="Trạng thái: " FontWeight="SemiBold" />
+                                                    <TextBlock Text="Status: " FontWeight="SemiBold" />
                                                     <TextBlock x:ConnectionId='11'                                     
                                                                                                                      />
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                                    <TextBlock Text="Quyền truy cập: " FontWeight="SemiBold" Margin="0,5,0,0"/>
+                                                    <TextBlock Text="Access Level: " FontWeight="SemiBold" Margin="0,5,0,0"/>
                                                     <ComboBox x:ConnectionId='10'                                                   
                                                
                           SelectedValuePath="Content"
@@ -212,7 +212,7 @@
                                                                                                                                                     />
                                                 </StackPanel>
                                                 <!-- Toggle between Delete and Restore buttons based on isDeleted status -->
-                                                <Button x:ConnectionId='6' Content="Khôi phục"                                                
+                                                <Button x:ConnectionId='6' Content="Restore"                                                
                     Background="MediumSeaGreen" Foreground="White" HorizontalAlignment="Stretch"
                                                                                                                         />
                                                 <Button x:ConnectionId='7' Content="Delete"                                               

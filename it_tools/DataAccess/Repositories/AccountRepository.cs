@@ -228,8 +228,42 @@ namespace it_tools.DataAccess.Repositories
                 return (false, "Lỗi khi gửi yêu cầu nâng cấp");
             }
         }
+        public async Task<(bool success, string message, List<UpgradeRequest> upgradeRequests)> GetHistoryRequest(string token)
+        {
+            try
+            {
+                string url = $"{_baseUrl}/upgradeHistory";
+                Debug.WriteLine($"[GetHistoryRequest] Fetching from: {url}");
 
-       
+                // Create request and add token to the header
+                var request = new HttpRequestMessage(HttpMethod.Get, url);
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                HttpResponseMessage response = await _httpClient.SendAsync(request);
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                Debug.WriteLine($"[GetHistoryRequest] Response Status: {response.StatusCode}");
+                Debug.WriteLine($"[GetHistoryRequest] Response Content: {responseContent}");
+
+                var result = JsonSerializer.Deserialize<BaseResponse<List<UpgradeRequest>>>(responseContent,
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                if (result != null && result.success)
+                {
+                    return (true, result.message, result.data);
+                }
+
+                Debug.WriteLine($"[GetHistoryRequest] Lấy lịch sử yêu cầu thất bại - Message: {result?.message ?? "Unknown error"}");
+                return (false, result?.message ?? "Unknown error", null);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[GetHistoryRequest] Lỗi khi lấy lịch sử yêu cầu: {ex.Message}");
+                return (false, "Lỗi khi lấy lịch sử yêu cầu nâng cấp", null);
+            }
+        }
+
+        
     }
 }
 

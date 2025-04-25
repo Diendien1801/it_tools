@@ -34,14 +34,14 @@
                 Visibility="{Binding IsGuest, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
                         <StackPanel Orientation="Horizontal">
                             <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72B;" Margin="0,0,5,0"/>
-                            <TextBlock Text="Quay lại đăng nhập"/>
+                            <TextBlock Text="Return Login"/>
                         </StackPanel>
                     </Button>
 
                     <!-- Search Box -->
                     <AutoSuggestBox x:Name="SearchBox"
                         Grid.Column="1"
-                        PlaceholderText="Tìm kiếm..."
+                        PlaceholderText="Search Tool..."
                         TextChanged="SearchBox_TextChanged"
                         GotFocus="SearchBox_Nav"
                         Width="600"

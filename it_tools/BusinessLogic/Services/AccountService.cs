@@ -38,5 +38,9 @@ namespace it_tools.BusinessLogic.Services
         {
             return await _accountRepository.SendUpgradeRequestAsync(token);
         }
+        public async Task<(bool success, string message, List<UpgradeRequest> upgradeRequests)> GetHistoryRequest(string token)
+        {
+            return await _accountRepository.GetHistoryRequest(token);
+        }
     }
 }

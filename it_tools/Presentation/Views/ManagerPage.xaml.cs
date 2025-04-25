@@ -87,7 +87,14 @@ namespace it_tools.Presentation.Views
                 var (success, message) = await ViewModel.EnableToolAsync(idTool);
                 await ShowMessageDialog(message, success ? "Thành công" : "Thất bại");
 
-                
+                // Cập nhật UI sau khi thay đổi status
+                if (success)
+                {
+                    // Làm mới FilteredTools với trạng thái hiện tại
+                    string statusFilter = ((ComboBoxItem)StatusFilterComboBox.SelectedItem)?.Tag?.ToString() ?? "all";
+                    string searchText = ToolSearchBox?.Text ?? string.Empty;
+                    ViewModel.FilterTools(searchText, statusFilter);
+                }
             }
         }
 
@@ -98,6 +105,14 @@ namespace it_tools.Presentation.Views
                 var (success, message) = await ViewModel.DisableToolAsync(idTool);
                 await ShowMessageDialog(message, success ? "Thành công" : "Thất bại");
 
+                // Cập nhật UI sau khi thay đổi status
+                if (success)
+                {
+                    // Làm mới FilteredTools với trạng thái hiện tại
+                    string statusFilter = ((ComboBoxItem)StatusFilterComboBox.SelectedItem)?.Tag?.ToString() ?? "all";
+                    string searchText = ToolSearchBox?.Text ?? string.Empty;
+                    ViewModel.FilterTools(searchText, statusFilter);
+                }
             }
         }
 
@@ -416,12 +431,12 @@ namespace it_tools.Presentation.Views
                 dialogContent.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
                 // Name field
-                TextBlock nameLabel = new TextBlock { Text = "Tên loại công cụ:", Margin = new Thickness(0, 0, 10, 10), VerticalAlignment = VerticalAlignment.Center };
+                TextBlock nameLabel = new TextBlock { Text = "Tool Type Name:", Margin = new Thickness(0, 0, 10, 10), VerticalAlignment = VerticalAlignment.Center };
                 Grid.SetRow(nameLabel, 0);
                 Grid.SetColumn(nameLabel, 0);
                 dialogContent.Children.Add(nameLabel);
 
-                TextBox nameTextBox = new TextBox { PlaceholderText = "Nhập tên loại công cụ", Margin = new Thickness(0, 0, 0, 10), Width = 300 };
+                TextBox nameTextBox = new TextBox { PlaceholderText = "Enter New ToolType's Name", Margin = new Thickness(0, 0, 0, 10), Width = 300 };
                 Grid.SetRow(nameTextBox, 0);
                 Grid.SetColumn(nameTextBox, 1);
                 dialogContent.Children.Add(nameTextBox);
@@ -440,10 +455,10 @@ namespace it_tools.Presentation.Views
                 // Create and configure the dialog
                 ContentDialog addDialog = new ContentDialog
                 {
-                    Title = "Thêm loại công cụ mới",
+                    Title = "Add New ToolType",
                     Content = dialogContent,
-                    PrimaryButtonText = "Thêm",
-                    CloseButtonText = "Hủy",
+                    PrimaryButtonText = "Add",
+                    CloseButtonText = "Cancel",
                     DefaultButton = ContentDialogButton.Primary,
                     XamlRoot = this.XamlRoot
                 };
@@ -464,8 +479,8 @@ namespace it_tools.Presentation.Views
                         // Show error message using a new dialog
                         ContentDialog errorDialog = new ContentDialog
                         {
-                            Title = "Lỗi",
-                            Content = "Tên loại công cụ không được để trống.",
+                            Title = "Error",
+                            Content = "Empty Tool Type name",
                             CloseButtonText = "OK",
                             XamlRoot = this.XamlRoot
                         };
@@ -492,7 +507,7 @@ namespace it_tools.Presentation.Views
                     ContentDialog resultDialog = new ContentDialog
                     {
                         Title = success ? "Thành công" : "Lỗi",
-                        Content = success ? "Thêm loại công cụ thành công!" : $"Không thể thêm loại công cụ: {message}",
+                        Content = success ? "Add New ToolType Successfully" : $" Can't Add This New ToolType: {message}",
                         CloseButtonText = "OK",
                         XamlRoot = this.XamlRoot
                     };
@@ -521,8 +536,8 @@ namespace it_tools.Presentation.Views
                 // Show exception message
                 ContentDialog exceptionDialog = new ContentDialog
                 {
-                    Title = "Lỗi hệ thống",
-                    Content = $"Lỗi khi thêm loại công cụ: {ex.Message}",
+                    Title = "Server Error",
+                    Content = $"Error While Add New ToolType: {ex.Message}",
                     CloseButtonText = "OK",
                     XamlRoot = this.XamlRoot
                 };

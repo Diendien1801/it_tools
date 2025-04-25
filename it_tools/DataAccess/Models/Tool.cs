@@ -13,6 +13,7 @@ namespace it_tools.DataAccess.Models
         public string name { get; set; }
         public string descript { get; set; }
         private string _status;
+
         public string status
         {
             get => _status;
@@ -21,7 +22,7 @@ namespace it_tools.DataAccess.Models
                 if (_status != value)
                 {
                     _status = value;
-                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(status));
                 }
             }
         }
@@ -83,6 +84,7 @@ namespace it_tools.DataAccess.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         // fix lỗi hiern thị thông báo khi recreate itemTool trong combo box
         private string _originalAccessLevel;
         public string OriginalAccessLevel

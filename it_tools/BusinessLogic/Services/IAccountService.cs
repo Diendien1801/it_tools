@@ -14,5 +14,6 @@ namespace it_tools.BusinessLogic.Services
         Task<(bool success, string message)> AddFavoriteToolAsync(string token, string idTool);
         Task<(bool success, string message)> RemoveFavoriteToolAsync(string token, string idTool);
         Task<(bool success, string message)> SendUpgradeRequestAsync(string token);
+        Task<(bool success, string message, List<UpgradeRequest> upgradeRequests)> GetHistoryRequest(string token);
     }
 }

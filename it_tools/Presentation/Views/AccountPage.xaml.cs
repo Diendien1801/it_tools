@@ -44,6 +44,7 @@ namespace it_tools.Presentation.Views
         private async Task LoadDataAsync()
         {
             await _viewModel.LoadAccountDataAsync();
+            
         }
         private async void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
